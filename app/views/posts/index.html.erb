@@ -14,18 +14,20 @@
 <h1><%= @title %></h1>
 
 <main>
-	<p class="book-text current-book">| Current book |</p>
+	<div class="book-text current-book">
+		| Current book |
+	</div>
 	<div class="book-cover current-book">
 		<%= image_tag('strangers_on_a_train.jpg') %>
-		<div class="search-links">
-			<a href="https://www.torontopubliclibrary.ca/search.jsp?Ntt=Strangers+on+a+Train+Patricia+Highsmith"
-			target="_blank">Library search</a>
-			<span>|</span>
-			<a href="https://www.amazon.com/s?k=Strangers+on+a+Train+Patricia+Highsmith&ref=nb_sb_noss"
-			target="_blank">Amazon search</a>
-		</div>
+	</div>
+	<div class="search-links">
+		<a href="https://www.torontopubliclibrary.ca/search.jsp?Ntt=Strangers+on+a+Train+Patricia+Highsmith"
+		target="_blank">Library search</a>
+		<a href="https://www.amazon.com/s?k=Strangers+on+a+Train+Patricia+Highsmith&ref=nb_sb_noss"
+		target="_blank">Amazon search</a>
 	</div>	
 	<p class="book-text previous-books">| Previous books |</p>
+
 	<section>
 		<div class="book-cover previous">
 			<%= image_tag('in_the_skin_of_a_lion.jpg') %>

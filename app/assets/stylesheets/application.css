@@ -13,3 +13,126 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+	position: relative;
+	color: white;
+	font-family: 'Roboto Mono', monospace;
+	margin: 15px 0 50px;
+	/*background: url(/assets/books_background.jpg), url(/assets/books_backgrounds_flipped.jpg);*/
+	background-image: 
+      /*url(https://mdn.mozillademos.org/files/11307/bubbles.png),*/
+    linear-gradient(to right, rgba(30, 75, 115, 1), rgba(255, 255, 255, 0)),
+	url(/assets/books_background.jpg),
+	url(/assets/books_backgrounds_flipped.jpg);
+  	/*background-repeat: no-repeat;*/
+  	background-position: top, center, bottom;
+	background-size: cover;
+	width: 100%;
+}
+
+a {
+	text-decoration: none;
+	color: skyblue;
+	display: inline-block;
+}
+
+a:hover {
+	color: black;
+	transition: 0.2 ease;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+
+}
+
+h1 {
+	font-size: 2.9rem;
+	margin: 60px 10px 40px;
+	text-align: center;
+	font-family: 'ZCOOL KuaiLe', cursive;
+	text-shadow: -4px 4px 12px rgba(150, 150, 150, 1);
+}
+
+ul {
+	display: flex;
+	align-items: right;
+	justify-content: center;
+}
+
+ul li {
+	font-size: 1.3rem; 
+	list-style-type: none;
+	display: inline-block;
+}
+
+.book-text {
+	font-size: 1.5rem;
+	color: yellow;
+	margin: 50px 0 20px 100px;
+}
+
+.book-cover {
+	margin-left: 10%;
+	padding: 20px 0;
+	display: inline-flex;
+	clear: left;
+}
+
+.current-book {
+	display: block;
+	margin-left: 20%;
+	/*margin: 0 0 50px 100px;*/
+}
+
+.search-links {
+	margin-top: 10px;
+	position: relative;
+	left: -40px;
+	width: 350px;
+	background: white;
+	padding: 4px;
+	border-radius: 4px;
+}
+
+.search-links a, .search-links span {
+	/*color: skyblue;*/
+	font-size: 1.2rem;
+	display: inline-block;
+}
+
+.search-links span {
+	color: skyblue;
+}	
+
+.previous-books {
+	margin-left: 10%;
+}
+
+section {
+	display: flex;
+}
+
+section ul {
+	display: flex;
+	flex-direction: column;
+	margin: 10px 5%;
+}
+
+section ul li {
+	margin: 10px;
+}
+
+section ul li span {
+	color: red;
+}
+
+#copyright {
+	position: absolute;
+	bottom: -30px;
+	right: 20px;
+	color: white;
+	font-size: 0.6rem;
+}

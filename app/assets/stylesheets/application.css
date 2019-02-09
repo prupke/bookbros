@@ -23,8 +23,8 @@ body {
 	background-image: 
       /*url(https://mdn.mozillademos.org/files/11307/bubbles.png),*/
     linear-gradient(to right, rgba(30, 75, 115, 1), rgba(255, 255, 255, 0)),
-	url(/assets/books_background.jpg),
-	url(/assets/books_backgrounds_flipped.jpg);
+	url(/books_background.jpg),
+	url(/books_backgrounds_flipped.jpg);
   	/*background-repeat: no-repeat;*/
   	background-position: top, center, bottom;
 	background-size: cover;

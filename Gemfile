@@ -9,7 +9,6 @@ gem 'rails', '~> 5.2.2'
 # Use Postgres on production
 group :production do
   gem 'pg'
-  RAILS_ENV=production rake db:migrate
 end  
 # Use sqlite3 as the database for Active Record
 group :development do

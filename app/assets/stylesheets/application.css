@@ -32,7 +32,7 @@ body {
 	width: 100vw;
 }
 
-a {
+a, .add-rating, figcaption input[type="submit"] {
 	text-decoration: none;
 	color: skyblue;
 	display: inline-block;
@@ -44,7 +44,7 @@ a {
 	border: skyblue;*/
 }
 
-a:hover {
+a:hover, figcaption input[type="submit"]:hover {
 	background: skyblue;
 	color: white;
 	transition: 0.2 ease;
@@ -73,6 +73,7 @@ main {
 	flex-direction: column;
 	width: 100%;
 	height: 100%;
+
 	background: url(/books_background.jpg) no-repeat, 
 		/*black;*/
 		linear-gradient(to bottom, rgba(10,10,10,0.9) 0%, rgba(0,0,0,1) 100%);
@@ -145,7 +146,7 @@ ul li {
 }
 
 .book-cover {
-	/*height: 400px;*/
+	height: 400px;
 	margin-left: 10%;
 	padding: 20px 0;
 	display: inline-flex;
@@ -154,19 +155,18 @@ ul li {
 .book-cover img {
 	width: 30vw;
 	height: auto;
+
 	/*max-height: 400px;*/
-	/*min-height: 400px;*/
+	min-height: 350px;
 }
 
 .current-book {
-	display: block;
-	position: relative;
-	margin: 10px 0 15px 0;
-	padding: 0 0 0 35vw;
+	margin: 10px auto;
 }
 
 .current-book img {
 	box-shadow: 3px -1px 36px 6px rgba(153,181,247,1);
+	display: flex;
 }
 
 .search-links {
@@ -220,32 +220,72 @@ figcaption {
 	/*white-space: pre;*/
 }
 
-figcaption a.add-rating {
+figcaption div.add-rating {
 	font-size: 1.2rem;
 	text-align: center;
 	border: 2px solid skyblue;
 	padding: 10px 4px;
-	width: 120px;
+	width: 130px;
 	max-width: 100%;
 	background: white;
 	opacity: 0.8;
 	position: relative;
 	height: 22px;
 	top: 0;
-	transition: height 15ms ease, width 15ms ease-in-out, padding 15ms ease, top 15ms ease;
-
+	transition: height 15ms ease, width 15ms ease-in-out, padding 15ms ease, top 20ms ease;
 }
 
-figure:hover figcaption a.add-rating {
+figcaption form {
+	border-radius: 4px;
+	display: flex;
+	flex-direction: column;
+	height: 0;
+	overflow: hidden;
+	position: relative;
+	top: 0;
+}
+figcaption:hover form {
+	height: auto;
+	background: skyblue;
+	overflow: show;
+	max-width: 50vw;
+	height: 100%;
+	top: -125px;
+	transition: top 20ms ease, height 20ms ease;
+}
+
+figcaption:hover img {
+	filter: blue(50%);
+}
+
+figcaption:hover div.add-rating {
 	/*width: 110%;*/
 	opacity: 1;
 	height: 30px;
 	width: 125px;
 	padding: 18px 6px 10px;
-	top: -8px;
-	transition: height 15ms ease, width 15ms ease-in-out, padding 15ms ease, top 15ms ease;
+	top: -125px;
+	transition: height 15ms ease, width 15ms ease-in-out, padding 15ms ease, top 20ms ease;
+	border-radius: 25px 25px 0 0;
+	background: white;
+	color: skyblue;
 	box-shadow: 3px -1px 46px -3px rgba(27,92,245,1);
+}
 
+figcaption input[type="submit"] {
+	font-size: 1.3rem;
+	margin: 0 5px 20px;
+	padding: 5px;
+	width: 150px;
+	cursor: pointer;
+}
+
+figcaption:hover div.rating-title {
+	display: none;
+}
+
+label {
+	display: none;
 }
 
 .ratings ul {
@@ -282,8 +322,12 @@ figure:hover figcaption a.add-rating {
 
 
 .book-image {
-	display: flex;
-	min-height: 40vw;
+	/*min-height: 40vw;*/
+}
+
+.book-image img {
+	width: 30vw;
+	height: auto;
 }
 
 
@@ -342,7 +386,7 @@ section ul li span {
 #copyright {
 	position: absolute;
 	bottom: 20px;
-	right: 20px;
+	right: 50px;
 	color: white;
 	font-size: 0.6rem;
 }
@@ -353,6 +397,45 @@ form {
 	align-items: center;
 }
 
+.range-output {
+	width: 80px;
+	display: flex;
+	flex-direction: column;
+	margin: 5px auto;
+}
+
+output { 
+	position: relative;
+	color: yellow;
+	font-size: 1.4rem;
+	background: black;
+	padding: 5px;
+	/*background-image: linear-gradient(top, #444444, #999999);*/
+	/*  width: 80px; 
+	height: 30px; */
+	text-align: center; 
+	/*border-radius: 10px; */
+	/*display: inline-block; */
+	/*font: bold 15px/30px Georgia;*/
+	/*  bottom: 175%;
+	left: 0;
+	margin-left: -1%;*/
+}
+
+/*output:after { 
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 10px solid #999999;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  margin-top: -1px;
+}
+*/
 
 /*-------------------------- MEDIA QUERIES --------------------------*/
 
@@ -399,6 +482,16 @@ form {
 		margin: 20%;
 	}
 
+	figcaption:hover div.add-rating {
+		display: none;
+	}
+
+	figcaption:hover div.rating-title {
+		display: flex;
+		flex-direction: column;
+		margin: 5px;
+	}
+
 	.current-book-section ul, .current-book {
 		width: 100vw;
 		text-align: center;
@@ -408,6 +501,14 @@ form {
 
 	.current-book img {
 		margin: 0 auto;
+	}
+
+	.book-cover img {
+		min-height: auto;
+	}
+
+	.book-image img {
+		min-height: 150px;
 	}
 
 	.book-text {

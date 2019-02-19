@@ -38,7 +38,7 @@
 			</ul>
 			<figure>
 
-				<div class="book-image book-cover current-book">
+				<div class="current-book">
 					<img src="/assets/<%= book[0] %>.jpg" alt="<%= book[1] %> by <%= book[2] %>">
 				</div>
 			</figure>
@@ -60,7 +60,33 @@
 					<img src="/assets/<%= book[0] %>.jpg" alt="<%= book[1] %> by <%= book[2] %>">
 				</span>
 				<figcaption>
-					<a class="button add-rating" href="/ratings/new?book=<%= book[0] %>">Add rating</a>
+					<div class="button add-rating">
+						<span>Add rating</span>
+					</div>
+						<%= form_for :rating, url: ratings_path do |f| %>
+
+							<div class="rating-title"><em><%= book[1] %></em> by <%= book[2] %></div>
+							<%= f.label :book %>
+							<%= f.hidden_field :book, :value => book[0] %>	
+							<p>	
+								<%= f.label :name %>
+								<%= f.text_field :name, placeholder: "Name", autocomplete: "off" %>
+							</p>
+							<p>
+								<%= f.label :rating, autocomplete: "off" %>
+								<!-- <%= f.range_field :rating, in:1..10 %>  -->
+								<input min="0" max="10" type="range" step="0.5" name="rating[rating]" id="rating_rating" oninput="output.value=parseFloat(rating_rating.value)">
+							</p>
+							<div class="range-output">
+								<output name="output" for = "rating_rating">5</output>
+							</div>
+						</p>
+						<p>
+							<%= f.submit %>
+						</p>
+
+						<% end %>	
+
 				</figcaption>
 					<!-- <%= image_tag('in_the_skin_of_a_lion.jpg') %> -->
 			</figure>
@@ -96,12 +122,12 @@
 										<li>	
 											<%= rating.name %>:
 											<span style=
-												<% if rating.rating > 65 %>
-												"background-color: rgb(0, <%= rating.rating * 2 %>, 0)"
-												<% elsif rating.rating > 30 %>
-												"background-color: rgb(252,234, <%= rating.rating * 3 %>)"
-												<% elsif rating.rating > 10 %>
-												"background-color: rgb(<%= (rating.rating * 20) %>, 0, 0)"
+												<% if rating.rating > 6.5 %>
+												"background-color: rgb(0, <%= rating.rating * 20 %>, 0)"
+												<% elsif rating.rating > 3 %>
+												"background-color: rgb(252,234, <%= rating.rating * 40 %>)"
+												<% elsif rating.rating > 1 %>
+												"background-color: rgb(<%= (rating.rating * 200) %>, 0, 0)"
 												<% else %>
 												"background-color: rgb(250, 0, 0)"
 												<% end %>
@@ -121,10 +147,11 @@
 						<% if @rating_total == 0 %>
 							<p><em>No ratings yet</em></p>
 						<% else %>
+						<!-- <input type="number" value='<%= (@rating_total / @rating_count) %>' id="average_output"> -->
 							<p>
 								<span>Average rating:</span>
-
-								<span class="average-rating"><%= (@rating_total / @rating_count) %></span>
+								<!-- <output name="average_output" for="average_output" onload="average_output.value=parseFloat(average_output.value)"></output> -->
+								<span class="average-rating" value=><%= (((@rating_total / @rating_count) * 10).floor / 10.0) %></span>
 							</p>
 						<% end %>
 

@@ -68,12 +68,19 @@ class PostsController < ApplicationController
 		# @books = (books.map {|book| [book["id"], book["name"], book["author"]]})
 	end
 
+
+
 	def create
+	  @rating = ratings_controller.create(rating_params)
+	  ratings_controller.request = request
+	  ratings_controller.response = response
+	  ratings_controller.post
+	end
 		# render plain: params[:post].inspect
 		# @post = Post.new(params[:post])
 		# @post.save
 		# redirect_to @post
-	end
+
 
 	# private 
 

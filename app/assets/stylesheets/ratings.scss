@@ -1,0 +1,54 @@
+// Place all the styles related to the Ratings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+html {
+ 	height: 100%;
+ 	overflow-x: hidden;
+ }
+
+body {
+	position: relative;
+	color: white;
+	font-family: 'Roboto Mono', monospace;
+	margin: 0;
+	padding: 0;
+	width: 100vw;
+}
+
+a {
+	text-decoration: none;
+	color: skyblue;
+	display: inline-block;
+	width: 46%;
+	padding: 0;
+	height: 100%;
+}
+
+a:hover {
+	background: skyblue;
+	color: white;
+	transition: 0.2 ease;
+}
+
+main {
+	z-index: 1;
+	padding: 0 10px 50px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	background: url(/books_background.jpg) no-repeat, 
+		/*black;*/
+		linear-gradient(to bottom, rgba(10,10,10,0.9) 0%, rgba(0,0,0,1) 100%);
+	background-size: 70vw;
+	background-position: bottom right, left;
+	/*min-height: 1900px;*/
+	/*background-image: */
+    /*linear-gradient(to bottom, rgba(30, 75, 115, 0.6), rgba(255, 255, 255, 0.4)),url(/books.png);*/
+	/*background-position: top right;*/
+	
+
+}

@@ -1,0 +1,25 @@
+<body>
+	
+<main class="sub-page">
+<h1>Add rating</h1>
+
+	<%= form_for :rating, url: ratings_path do |f| %>
+
+	<p>
+		<%= f.label :book %><%=  %><br>
+		<%= f.hidden_field :book, :value => params[:book] %><br>		
+		<%= f.label :name %><br>
+		<%= f.text_field :name %><br>
+		<%= f.label :rating %><br>
+		<%= f.range_field :rating %>
+		<%= f.label :myRange %>
+		<input type="range" min="1" max="10" value="5" class="slider" id="myRange" step=0.5 form="rating">
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+
+	<% end %>	
+
+</main>	
+</body>

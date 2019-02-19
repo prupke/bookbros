@@ -1,0 +1,10 @@
+
+<h1>Ratings</h1>
+
+<main>
+<% @ratings.each do |rating| %>
+	<h3><%= rating.book %></h3>
+	<p><%= rating.name %></p>
+	<p><%= rating.rating %></p>
+<% end %>
+</main>

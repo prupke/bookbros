@@ -254,10 +254,6 @@ figcaption:hover form {
 	transition: top 20ms ease, height 20ms ease;
 }
 
-figcaption:hover img {
-	filter: blue(50%);
-}
-
 figcaption:hover div.add-rating {
 	/*width: 110%;*/
 	opacity: 1;

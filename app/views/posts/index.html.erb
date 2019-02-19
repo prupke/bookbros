@@ -36,9 +36,12 @@
 					<span class="book-author"><%= book[2] %></span>
 				</li>
 			</ul>
-			<div class="book-cover current-book">
-				<img src="/assets/<%= book[0] %>.jpg" alt="<%= book[1] %> by <%= book[2] %>">
-			</div>
+			<figure>
+
+				<div class="book-image book-cover current-book">
+					<img src="/assets/<%= book[0] %>.jpg" alt="<%= book[1] %> by <%= book[2] %>">
+				</div>
+			</figure>
 			<div class="search-links">
 				<a class="button" href="https://www.torontopubliclibrary.ca/search.jsp?Ntt=<%= book[1] %>+<%= book[2] %>"
 				target="_blank">Library search</a>

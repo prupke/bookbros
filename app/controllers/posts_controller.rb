@@ -13,11 +13,11 @@ class PostsController < ApplicationController
 			# 	name: "The Lorax", 
 			# 	author: "Dr. Suess"
 			# },
-			# {
-			# 	id: "test_2",
-			# 	name: "Test Book 2", 
-			# 	author: "Test Author 2"
-			# },
+			{
+				id: "test_2",
+				name: "Test Book 2", 
+				author: "Test Author 2"
+			},
 			{
 				id: "strangers_on_a_train",
 				name: "Strangers on a Train", 

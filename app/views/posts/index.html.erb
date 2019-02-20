@@ -65,17 +65,23 @@
 					</div>
 						<%= form_for :rating, url: ratings_path do |f| %>
 
-							<div class="rating-title"><em><%= book[1] %></em> by <%= book[2] %></div>
+							<div class="rating-title">
+								<em><%= book[1] %></em>
+								<span class="by">by</span>
+								<span class="book-author"><%= book[2] %></span>
+							</div>
 							<%= f.label :book %>
 							<%= f.hidden_field :book, :value => book[0] %>	
 							<p>	
-								<%= f.label :name %>
-								<%= f.text_field :name, placeholder: "Name", autocomplete: "off" %>
+								<%= f.label :name%>
+								<%= f.text_field :name, placeholder: "Name", autocomplete: "off", required: "true",
+								value: session['name'] %>
 							</p>
 							<p>
 								<%= f.label :rating, autocomplete: "off" %>
 								<!-- <%= f.range_field :rating, in:1..10 %>  -->
-								<input min="0" max="10" type="range" step="0.5" name="rating[rating]" id="rating_rating" oninput="output.value=parseFloat(rating_rating.value)">
+								<input min="0" max="10" type="range" step="0.5" name="rating[rating]" id="rating_rating" 
+								required="true" oninput="output.value=parseFloat(rating_rating.value)">
 							</p>
 							<div class="range-output">
 								<output name="output" for = "rating_rating">5</output>

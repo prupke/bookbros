@@ -44,13 +44,14 @@ a, .add-rating, figcaption input[type="submit"] {
 	border: skyblue;*/
 }
 
-a:hover, figcaption input[type="submit"]:hover {
+a:hover, .button:hover, figcaption input[type="submit"]:hover {
 	background: skyblue;
 	color: white;
-	transition: 0.2 ease;
+	transition: background 0.15s ease, color 0.15s ease;
+	opacity: 1;
 }
 
-.button {
+.button, figcaption input[type="submit"] {
 	background: transparent;
 	border: 2px solid skyblue;
 	color: skyblue;
@@ -58,16 +59,14 @@ a:hover, figcaption input[type="submit"]:hover {
 	box-shadow: none;
 }
 
-.button:hover {
-	background: skyblue;
-	color: white;
-	opacity: 1;
-	/*box-shadow: 1px -1px 7px 2px rgba(153,181,247,1);*/
+figcaption input[type="submit"] {
+	background: white;
+	color: skyblue;
 }
 
 main {
 	z-index: 1;
-	padding: 0 10px 50px;
+	padding: 0 10px 200px;
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -180,8 +179,7 @@ ul li {
 }
 
 .search-links a {
-	width: 30vw;
-	max-width: 200px;
+	width: 200px;
 	margin: 5px 0;
 	padding: 8px 0;
 	font-size: 1.1rem;
@@ -214,7 +212,7 @@ figure {
 
 figcaption {
 	position: absolute;
-	margin: 30% auto;
+	margin: 98px auto 0;
 	width: 100%;
 	text-align: center;
 	/*white-space: pre;*/
@@ -222,46 +220,58 @@ figcaption {
 
 figcaption div.add-rating {
 	font-size: 1.2rem;
-	text-align: center;
-	border: 2px solid skyblue;
+	/*text-align: center;
+	border: 2px solid skyblue;*/
 	padding: 10px 4px;
 	width: 130px;
 	max-width: 100%;
 	background: white;
 	opacity: 0.8;
 	position: relative;
-	height: 22px;
+	/*height: 22px;*/
 	top: 0;
-	transition: height 15ms ease, width 15ms ease-in-out, padding 15ms ease, top 20ms ease;
+	transition: height 15ms ease, width 15ms ease-in-out, padding 15ms ease, top 150ms ease;
 }
 
 figcaption form {
-	border-radius: 4px;
 	display: flex;
+	background: linear-gradient(rgba(107, 209, 251, 1), rgba(107, 209, 251, 0.01));
 	flex-direction: column;
 	height: 0;
 	overflow: hidden;
 	position: relative;
 	top: 0;
+	bottom: 0;
+}
+
+figcaption form input {
+	height: 30px;
+	border-radius: 4px;
+	background: white;
+	color: skyblue;
+	padding: 2px;
+	font-size: 1.5rem;
+	width: 80%;
 }
 figcaption:hover form {
-	height: auto;
-	background: skyblue;
+	height: 80vh;
+	max-height: 420px;
 	overflow: show;
 	max-width: 50vw;
-	height: 100%;
-	top: -125px;
-	transition: top 20ms ease, height 20ms ease;
+	/*height: 120%;*/
+	top: -160px;
+	transition: top 150ms ease, height 150ms ease;
 }
 
 figcaption:hover div.add-rating {
 	/*width: 110%;*/
 	opacity: 1;
-	height: 30px;
+	height: 28px;
+	border: none;
 	width: 125px;
 	padding: 18px 6px 10px;
-	top: -125px;
-	transition: height 15ms ease, width 15ms ease-in-out, padding 15ms ease, top 20ms ease;
+	top: -160px;
+	transition: height 15ms ease, width 15ms ease-in-out, padding 15ms ease, top 150ms ease;
 	border-radius: 25px 25px 0 0;
 	background: white;
 	color: skyblue;
@@ -270,6 +280,7 @@ figcaption:hover div.add-rating {
 
 figcaption input[type="submit"] {
 	font-size: 1.3rem;
+	border-radius: 25px;
 	margin: 0 5px 20px;
 	padding: 5px;
 	width: 150px;
@@ -406,6 +417,7 @@ output {
 	font-size: 1.4rem;
 	background: black;
 	padding: 5px;
+	border-radius: 25px;
 	/*background-image: linear-gradient(top, #444444, #999999);*/
 	/*  width: 80px; 
 	height: 30px; */
@@ -435,11 +447,6 @@ output {
 
 /*-------------------------- MEDIA QUERIES --------------------------*/
 
-/*@media screen and (max-width: 1100px) {
-	main {
-		background-size: 200px;
-	}
-}*/
 
 @media screen and (max-width: 700px) {
 
@@ -476,6 +483,11 @@ output {
 
 	figcaption {
 		margin: 20%;
+		position: relative;
+	}
+
+	.add-rating {
+		height: 30px;
 	}
 
 	figcaption:hover div.add-rating {
@@ -488,6 +500,13 @@ output {
 		margin: 5px;
 	}
 
+	figcaption:hover form {
+		width: 80vw;
+		margin: 0 auto;
+		position: relative;
+		left: -20vw;
+	}
+
 	.current-book-section ul, .current-book {
 		width: 100vw;
 		text-align: center;
@@ -497,6 +516,7 @@ output {
 
 	.current-book img {
 		margin: 0 auto;
+		min-height: 400px;
 	}
 
 	.book-cover img {

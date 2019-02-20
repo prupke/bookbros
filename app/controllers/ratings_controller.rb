@@ -14,9 +14,9 @@ class RatingsController < ApplicationController
 
 	def create
 		# render plain: params[:rating].inspect
-
 		@rating = Rating.new(rating_params)
-
+		session[:name] = @rating[:name]
+		print(session[:name])
 		@rating.save
 		redirect_to posts_url
 	end

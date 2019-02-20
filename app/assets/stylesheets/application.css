@@ -166,6 +166,7 @@ ul li {
 .current-book img {
 	box-shadow: 3px -1px 36px 6px rgba(153,181,247,1);
 	display: flex;
+	min-height: 400px;
 }
 
 .search-links {
@@ -255,7 +256,7 @@ figcaption form input {
 }
 figcaption:hover form {
 	height: 80vh;
-	max-height: 420px;
+	max-height: 400px;
 	overflow: show;
 	max-width: 50vw;
 	/*height: 120%;*/
@@ -501,10 +502,11 @@ output {
 	}
 
 	figcaption:hover form {
-		width: 80vw;
+		width: 95vw;
 		margin: 0 auto;
 		position: relative;
-		left: -20vw;
+		left: -30vw;
+		max-height: 450px;
 	}
 
 	.current-book-section ul, .current-book {
@@ -516,7 +518,7 @@ output {
 
 	.current-book img {
 		margin: 0 auto;
-		min-height: 400px;
+		min-height: 200px;
 	}
 
 	.book-cover img {

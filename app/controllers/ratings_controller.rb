@@ -18,7 +18,7 @@ class RatingsController < ApplicationController
 		session[:name] = @rating[:name]
 		print(session[:name])
 		@rating.save
-		redirect_to posts_url
+		redirect_to posts_url(:anchor => @rating[:book])
 	end
 	
 	private

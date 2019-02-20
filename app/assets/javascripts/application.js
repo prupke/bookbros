@@ -14,3 +14,8 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+function inputRating() {
+	var add_rating = document.getElementsByClass("book-cover");
+	console.log("hello");
+}

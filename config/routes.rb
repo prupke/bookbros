@@ -3,6 +3,10 @@ Rails.application.routes.draw do
  
 root 'posts#index'
 
+get 'rating' => 'pages#rating'
+
 resources :posts
+
+resources :ratings
 
 end

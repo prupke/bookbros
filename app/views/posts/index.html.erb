@@ -11,40 +11,176 @@
 
 <body>
 
-<h1><%= @title %></h1>
-
 <main>
-	<div class="book-text current-book">
-		| Current book |
-	</div>
-	<div class="book-cover current-book">
-		<%= image_tag('strangers_on_a_train.jpg') %>
-	</div>
-	<div class="search-links">
-		<a href="https://www.torontopubliclibrary.ca/search.jsp?Ntt=Strangers+on+a+Train+Patricia+Highsmith"
-		target="_blank">Library search</a>
-		<a href="https://www.amazon.com/s?k=Strangers+on+a+Train+Patricia+Highsmith&ref=nb_sb_noss"
-		target="_blank">Amazon search</a>
-	</div>	
-	<p class="book-text previous-books">| Previous books |</p>
+	
+	<img id="book-header" src="/assets/books.png" alt="">
+	
+	<h1><%= @title %></h1>
+<!-- <%= @rating_total %> -->
+<%= @count %>
+<!-- <%= @ratings_2 %> -->
 
-	<section>
-		<div class="book-cover previous">
-			<%= image_tag('in_the_skin_of_a_lion.jpg') %>
-		</div>
-		<ul>
-			<li>Dave: <span>8.5</span></li>
-			<li>Mike: <span>6</span></li>
-			<li>Andrew: <span>9</span></li>
-			<li>Paul: <span>7</span></li>
-			<li>Jeff: <span>8</span></li>
-		</ul>
-	</section>
+
+<% @books.reverse.each_with_index do |book, i| %>
+	<% if @books.last == book %>
+		<section class="current-book-section">
+			<div class="book-text current-book">
+				| Current book |
+			</div>
+			<ul class="book-title-and-author">
+				<li>
+					<span class="book-title"><%= book[1] %></span>
+				</li>
+				<li >
+					<span class="by">by</span>
+					<span class="book-author"><%= book[2] %></span>
+				</li>
+			</ul>
+			<figure>
+
+				<div class="current-book">
+					<img src="/assets/<%= book[0] %>.jpg" alt="<%= book[1] %> by <%= book[2] %>">
+				</div>
+			</figure>
+			<div class="search-links">
+				<a class="button" href="https://www.torontopubliclibrary.ca/search.jsp?Ntt=<%= book[1] %>+<%= book[2] %>"
+				target="_blank">Library search</a>
+				<a class="button" href="https://www.amazon.com/s?k=<%= book[1] %>+<%= book[2] %>"
+				target="_blank">Amazon search</a>
+			</div>	
+		</section>
+		<% if @books.length > 1 %>
+		<div class="book-text previous-books">| Previous books |</div>
+		<% end %>
+	<% else %>
+		<section>
+			<figure class="book-cover previous" id="<%= book[0] %>">
+				
+				<span class="book-image">
+					<img src="/assets/<%= book[0] %>.jpg" alt="<%= book[1] %> by <%= book[2] %>">
+				</span>
+				<figcaption>
+					<div class="button add-rating">
+						<span>Add rating</span>
+					</div>
+						<%= form_for :rating, url: ratings_path do |f| %>
+
+							<div class="rating-title">
+								<em><%= book[1] %></em>
+								<span class="by">by</span>
+								<span class="book-author"><%= book[2] %></span>
+							</div>
+							<%= f.label :book %>
+							<%= f.hidden_field :book, :value => book[0] %>	
+							<p>	
+								<%= f.label :name%>
+								<%= f.text_field :name, placeholder: "Name", autocomplete: "off", required: "true",
+								value: session['name'] %>
+							</p>
+							<p>
+								<%= f.label :rating, autocomplete: "off" %>
+								<!-- <%= f.range_field :rating, in:1..10 %>  -->
+								<input min="0" max="10" type="range" step="0.5" name="rating[rating]" id="rating_rating" 
+								required="true" oninput="output.value=parseFloat(rating_rating.value)">
+							</p>
+							<div class="range-output">
+								<output name="output" for = "rating_rating">5</output>
+							</div>
+						</p>
+						<p>
+							<%= f.submit %>
+						</p>
+
+						<% end %>	
+
+				</figcaption>
+					<!-- <%= image_tag('in_the_skin_of_a_lion.jpg') %> -->
+			</figure>
+			
+
+
+			<ul>
+				<!-- <li>Ratings: 
+					<% @ratings.each_with_index do |rating, i| %>
+						<%= i %>
+						<%= rating.name %>
+					<% end %>
+				</li> -->
+				
+					<li>
+						<span class="book-title"><%= book[1] %></span>
+					</li>
+					<li >
+						<span class="by">by</span>
+						<span class="book-author"><%= book[2] %></span>
+					</li>
+					<!-- <p>test: <%= book[i] %></p> -->
+					<li>
+					<!-- <a class="add-rating" href="/ratings/new?book=<%= book[0] %>">Add rating</a>	 -->
+
+					</li>
+					<li class="ratings">
+						<% @ratings.each do |rating| %>
+						
+							<% if rating.book == book[0] %>
+								<% if @rating_count < 5 %>
+									<ul>
+										<li>	
+											<%= rating.name %>:
+											<span style=
+												<% if rating.rating > 6.5 %>
+												"background-color: rgb(0, <%= rating.rating * 20 %>, 0)"
+												<% elsif rating.rating > 3 %>
+												"background-color: rgb(252,234, <%= rating.rating * 40 %>)"
+												<% elsif rating.rating > 1 %>
+												"background-color: rgb(<%= (rating.rating * 200) %>, 0, 0)"
+												<% else %>
+												"background-color: rgb(250, 0, 0)"
+												<% end %>
+												><%= rating.rating %></span>
+										</li>
+									</ul>
+								<% end %>
+								
+								<% @rating_count += 1 %>
+								<% @rating_total += rating.rating %>
+							<% end %>							
+						<% end %>	
+						<% if @rating_count > 5 %>
+							<span class="more">...<%= @rating_count - 5 %> more</span> 
+							<a href="#" class="see-all">See all</a>
+						<% end %>
+						<% if @rating_total == 0 %>
+							<p><em>No ratings yet</em></p>
+						<% else %>
+						<!-- <input type="number" value='<%= (@rating_total / @rating_count) %>' id="average_output"> -->
+							<p>
+								<span>Average rating:</span>
+								<!-- <output name="average_output" for="average_output" onload="average_output.value=parseFloat(average_output.value)"></output> -->
+								<span class="average-rating" value=><%= (((@rating_total / @rating_count) * 10).floor / 10.0) %></span>
+							</p>
+						<% end %>
+
+					<% @rating_count = 0 %>
+					<% @rating_total = 0 %>	
+					</li>
+
+	<!-- 			<li>Dave: <span>8.5</span></li>
+				<li>Mike: <span>6</span></li>
+				<li>Andrew: <span>9</span></li>
+				<li>Paul: <span>7</span></li>
+				<li>Jeff: <span>8</span></li> -->
+			</ul>
+		</section>
+	<% end %>
+
+<% end %>
+<span id="copyright">© 2019 Book Bros Inc.</span>
 
 </main>
-<span id="copyright">© 2019 Book Bros Inc.</span>
 
 
 </body>
+
 
 </html>

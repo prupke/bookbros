@@ -88,7 +88,7 @@
 								required="true" oninput="output.value=parseFloat(rating_rating.value)">
 							</p>
 							<span class="range-output">
-								<output name="output" for = "rating_rating">5</output>
+								<output name="output" for = "rating_rating">?</output>
 							</span>
 						</p>
 							<%= f.text_field :notes, placeholder: "Notes (optional)", autocomplete: "off" %>
@@ -132,10 +132,12 @@
 										<% end %>
 										><%= rating.rating %>
 									</span>	
-									<% if rating.notes and rating.notes != '' %>&nbsp;📖<% end %>
-									<span class="rating-notes">
-										<%= rating.notes %>
-									</span>	
+									<% if rating.notes and rating.notes != '' %>
+										&nbsp;📖
+										<span class="rating-notes">
+											<%= rating.notes %>
+										</span>	
+									<% end %>
 								</li>
 							<% end %>
 							

@@ -31,14 +31,10 @@ function scrollFunction() {
   }
 }
 
-// count=0
 function getForm(id) {
-	// id[count] = 0;
-	var form = document.getElementById(id)
-	// form.className += "form-show";
+	var form = document.getElementById(id);
 	form.classList.toggle("form-show");
 	button_id = id + "-button";
 	document.getElementById(button_id).classList.toggle("move-add-rating-up");
-	// id[count] += 1;
 }
 

@@ -327,18 +327,20 @@ label {
 	display: none;
 }
 
-.ratings li:first-child {
+.rating {
 	position: relative;
 }
 
 .rating:hover .rating-notes {
-	/*color: blue;*/
+	font-style: italic;
 	position: absolute;
 	display: block;
-	background: rgba(107, 209, 251, 0.95);
-	margin-top: -30px;
-	max-width: 25vw;
-	right: 20px;
+	background: rgba(107, 209, 251, 0.94);
+	margin-top: -28px;
+	width: 25vw;
+	padding: 5px;
+	left: 150px;
+	z-index: 10;
 }
 
 .more {
@@ -581,7 +583,7 @@ output {
 		margin-top: 5px;
 		position: relative;
 		display: block;
-		max-width: 60vw;
+		width: 60vw;
 		left: 0;
 	}
 

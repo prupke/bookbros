@@ -221,10 +221,6 @@ figcaption {
 	margin: 150px auto 0;
 	height: 32px;
 	font-size: 1.4rem;
-
-	/*text-align: center;
-	border: 2px solid skyblue;*/
-	padding: 15px 4px;
 	width: 130px;
 	max-width: 100%;
 	background: white;
@@ -273,7 +269,7 @@ figure:hover .add-rating {
 	height: 42px;
 	/*border: none;*/
 
-	padding: 18px 6px 18px;
+	/*padding: 18px 6px 18px;*/
 	/*top: -4px;*/
 	transition: width .15s ease-in-out, padding .15s ease, top .15s ease, opacity .15s ease, height .15s ease;
 }
@@ -325,6 +321,24 @@ label {
 .rating-number {
 	color: black;
 	font-weight: bold;
+}
+
+.rating-notes {
+	display: none;
+}
+
+.ratings li:first-child {
+	position: relative;
+}
+
+.rating:hover .rating-notes {
+	/*color: blue;*/
+	position: absolute;
+	display: block;
+	background: rgba(107, 209, 251, 0.95);
+	margin-top: -30px;
+	max-width: 25vw;
+	right: 20px;
 }
 
 .more {
@@ -563,22 +577,13 @@ output {
 		width: auto;
 	}
 
-	/*figcaption:hover .add-rating {
-		display: none;
-	}*/
-
-	/*figcaption:hover div.rating-title {
-		display: flex;
-		flex-direction: column;
-		margin: 5px;
-	}*/
-
-/*	figcaption:hover .form-wrapper form {
-		width: 95vw;
-		margin: 0 auto;
+	.rating:hover .rating-notes {
+		margin-top: 5px;
 		position: relative;
-		max-height: 450px;
-	}*/
+		display: block;
+		max-width: 60vw;
+		left: 0;
+	}
 
 	.form-wrapper {
 		width: 95vw;
@@ -602,7 +607,6 @@ output {
 		padding: 5px 0;
 		margin-left: 0;
 		font-size: 6vw;
-
 	}
 
 	ul:first-child li:first-child, ul:first-child li:nth-child(2) {
@@ -614,7 +618,7 @@ output {
 	}
 
 	.average-rating {
-		width: 70vw;
+		width: 60vw;
 		text-align: center;
 	}
 

@@ -118,22 +118,25 @@
 					
 						<% if rating.book == book[0] %>
 							<% if @rating_count < 5 %>
-								<!-- <ul> -->
-									<li>
-										<%= rating.name %>:
-										<span class="rating-number" style=
-											<% if rating.rating > 6.5 %>
-											"background-color: rgba(0, <%= rating.rating * 20 %>, 0, 0.9)"
-											<% elsif rating.rating > 3 %>
-											"background-color: rgba(252,234, <%= rating.rating * 40 %>, 0.9)"
-											<% elsif rating.rating > 1 %>
-											"background-color: rgba(<%= (rating.rating * 200) %>, 0, 0, 0.9)"
-											<% else %>
-											"background-color: rgba(250, 0, 0, 0.9)"
-											<% end %>
-											><%= rating.rating %></span>
-									</li>
-								<!-- </ul> -->
+								<li class="rating">
+									<%= rating.name %>:
+									<span class="rating-number" style=
+										<% if rating.rating > 6.5 %>
+										"background-color: rgba(0, <%= rating.rating * 20 %>, 0, 0.9)"
+										<% elsif rating.rating > 3 %>
+										"background-color: rgba(252,234, <%= rating.rating * 40 %>, 0.9)"
+										<% elsif rating.rating > 1 %>
+										"background-color: rgba(<%= (rating.rating * 200) %>, 0, 0, 0.9)"
+										<% else %>
+										"background-color: rgba(250, 0, 0, 0.9)"
+										<% end %>
+										><%= rating.rating %>
+									</span>	
+									<% if rating.notes and rating.notes != '' %>&nbsp;📖<% end %>
+									<span class="rating-notes">
+										<%= rating.notes %>
+									</span>	
+								</li>
 							<% end %>
 							
 							<% @rating_count += 1 %>

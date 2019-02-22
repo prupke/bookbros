@@ -8,16 +8,6 @@ class PostsController < ApplicationController
 				author: "Michael Ondaatje"
 			},
 			{
-				id: "asdfasdfasdf",
-				name: "test5", 
-				author: "test5 author"
-			},
-			{
-				id: "asdfasdfasdf2",
-				name: "test5", 
-				author: "test5 author"
-			},
-			{
 				id: "strangers_on_a_train",
 				name: "Strangers on a Train", 
 				author: "Patricia Highsmith"

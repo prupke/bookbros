@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_09_184000) do
+ActiveRecord::Schema.define(version: 2019_02_22_183744) do
 
   create_table "posts", force: :cascade do |t|
     t.text "rating"
@@ -18,12 +18,7 @@ ActiveRecord::Schema.define(version: 2019_02_09_184000) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "ratings", force: :cascade do |t|
-    t.string "book"
-    t.string "name"
-    t.float "rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+# Could not dump table "ratings" because of following StandardError
+#   Unknown type 'notes' for column 'string'
 
 end

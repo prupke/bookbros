@@ -32,6 +32,16 @@ body {
 	width: 100vw;
 }
 
+#logo img {
+	position: fixed;
+	width: 400px;
+	height: auto;
+	top: 20px;
+	right: calc(50% - 200px);
+	opacity: 1;
+	transition: width 0.2s ease-in-out, opacity 0.2s ease, right 0.2s ease;
+}
+
 a, .add-rating, figcaption input[type="submit"] {
 	text-decoration: none;
 	color: skyblue;
@@ -40,33 +50,41 @@ a, .add-rating, figcaption input[type="submit"] {
 	padding: 0;
 	height: 100%;
 	border-radius: 25px;
-	/*background: white;
-	border: skyblue;*/
+	border: 2px solid skyblue;
+
 }
 
-a:hover, .button:hover, figcaption input[type="submit"]:hover {
+a:hover, .add-rating:hover, figcaption input[type="submit"]:hover {
 	background: skyblue;
 	color: white;
 	transition: background 0.15s ease, color 0.15s ease;
 	opacity: 1;
+	cursor: pointer;
 }
 
-.button, figcaption input[type="submit"] {
+button, figcaption input[type="submit"] {
 	background: transparent;
 	border: 2px solid skyblue;
 	color: skyblue;
 	opacity: 0.9;
 	box-shadow: none;
+	height: 32px;
+	padding: 2px 0 10px;
 }
 
 figcaption input[type="submit"] {
 	background: white;
 	color: skyblue;
+	font-size: 1.3rem;
+	border-radius: 25px;
+	margin: 0 5px 20px;
+	width: 150px;
+	cursor: pointer;
 }
 
 main {
 	z-index: 1;
-	padding: 0 10px 200px;
+	padding: 0 0 200px;
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -79,34 +97,11 @@ main {
 	background-size: 70vw;
 	min-height: 100vh;
 	background-position: bottom right, left;
-	/*min-height: 1900px;*/
-	/*background-image: */
-    /*linear-gradient(to bottom, rgba(30, 75, 115, 0.6), rgba(255, 255, 255, 0.4)),url(/books.png);*/
-	/*background-position: top right;*/
-	
-
 }
 
 .sub-page {
 	background-size: 100vw;
 }
-
-/*main:before {
-	content: '';
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	/*background-image: linear-gradient(to bottom right,#002f4b,#dc4225);
-	filter: brightness(90%); 
-	background: 
-      url(https://mdn.mozillademos.org/files/11307/bubbles.png),
-    /*linear-gradient(to bottom, rgba(30, 75, 115, 1), rgba(255, 255, 255, 0));
-  	background-repeat: no-repeat;
-  	background-position: top, bottom;
-	/*background-size: cover;
-}*/
 
 h1 {
 	font-size: 2.9rem;
@@ -141,32 +136,29 @@ ul li {
 .book-text {
 	font-size: 3.2vw;
 	color: yellow;
-	margin: 40px 0 10px 100px;
+	text-align: center;
+	margin: 100px 0 35px;
+}
+
+.current-book-text {
+	margin: 250px auto 50px;
 }
 
 .book-cover {
-	height: 400px;
-	margin-left: 10%;
-	padding: 20px 0;
+	height: auto;
+	margin: 50px 10px 0 10%;
+	padding: 0;
 	display: inline-flex;
 }
 
 .book-cover img {
 	width: 30vw;
 	height: auto;
-
-	/*max-height: 400px;*/
 	min-height: 350px;
 }
 
-.current-book {
-	margin: 10px auto;
-}
-
 .current-book img {
-	box-shadow: 3px -1px 36px 6px rgba(153,181,247,1);
 	display: flex;
-	min-height: 400px;
 }
 
 .search-links {
@@ -176,7 +168,7 @@ ul li {
 	flex-direction: column;
 	text-align: center;
 	align-items: center;
-
+	width: 100%;
 }
 
 .search-links a {
@@ -192,10 +184,6 @@ ul li {
 	background: transparent;
 	color: skyblue;
 	height: 100%;
-}	
-
-.previous-books {
-	margin-left: 10%;
 }
 
 .min-height {
@@ -203,27 +191,40 @@ ul li {
 }
 
 figure.previous img {
-	box-shadow: 3px -1px 46px -3px rgba(27,92,245,1);
+	/*box-shadow: 3px -1px 46px -3px rgba(27,92,245,1);*/
 }
 
 figure {
 	display: flex;
 	position: relative;
+	padding: 0;
+}
+
+figure:hover span img {
+	box-shadow: 3px -1px 36px 6px rgba(153,181,247,1);
 }
 
 figcaption {
 	position: absolute;
-	margin: 98px auto 0;
+	height: 100%;
+	margin: 0 auto;
+	padding: 0;
 	width: 100%;
 	text-align: center;
 	/*white-space: pre;*/
 }
 
-figcaption div.add-rating {
-	font-size: 1.2rem;
+.add-rating {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 150px auto 0;
+	height: 32px;
+	font-size: 1.4rem;
+
 	/*text-align: center;
 	border: 2px solid skyblue;*/
-	padding: 10px 4px;
+	padding: 15px 4px;
 	width: 130px;
 	max-width: 100%;
 	background: white;
@@ -231,12 +232,13 @@ figcaption div.add-rating {
 	position: relative;
 	/*height: 22px;*/
 	top: 0;
-	transition: height 15ms ease, width 15ms ease-in-out, padding 15ms ease, top 150ms ease;
+	transition: height .15s ease, width .15s ease-in-out, padding .15s ease, top .15s ease, opacity .15s ease;
 }
 
-figcaption form {
+.form-wrapper {
 	display: flex;
-	background: linear-gradient(rgba(107, 209, 251, 1), rgba(107, 209, 251, 0.01));
+	/*background: linear-gradient(rgba(107, 209, 251, 0.95) 10%, rgba(107, 209, 251, 0.5), rgba(107, 209, 251, 0.01));*/
+	background: rgba(107, 209, 251, 0.3);
 	flex-direction: column;
 	height: 0;
 	overflow: hidden;
@@ -245,7 +247,8 @@ figcaption form {
 	bottom: 0;
 }
 
-figcaption form input {
+form input {
+	margin: -2px;
 	height: 30px;
 	border-radius: 4px;
 	background: white;
@@ -254,64 +257,74 @@ figcaption form input {
 	font-size: 1.5rem;
 	width: 80%;
 }
-figcaption:hover form {
-	height: 80vh;
-	max-height: 400px;
+
+.form-show {
+	height: 100%;
+	max-height: 100%;
 	overflow: show;
 	max-width: 50vw;
 	/*height: 120%;*/
-	top: -160px;
+	top: -192px;
 	transition: top 150ms ease, height 150ms ease;
 }
 
-figcaption:hover div.add-rating {
-	/*width: 110%;*/
+figure:hover .add-rating {
 	opacity: 1;
-	height: 28px;
-	border: none;
-	width: 125px;
-	padding: 18px 6px 10px;
-	top: -160px;
-	transition: height 15ms ease, width 15ms ease-in-out, padding 15ms ease, top 150ms ease;
-	border-radius: 25px 25px 0 0;
-	background: white;
-	color: skyblue;
-	box-shadow: 3px -1px 46px -3px rgba(27,92,245,1);
-}
+	height: 42px;
+	/*border: none;*/
 
-figcaption input[type="submit"] {
-	font-size: 1.3rem;
-	border-radius: 25px;
-	margin: 0 5px 20px;
-	padding: 5px;
-	width: 150px;
-	cursor: pointer;
+	padding: 18px 6px 18px;
+	/*top: -4px;*/
+	transition: width .15s ease-in-out, padding .15s ease, top .15s ease, opacity .15s ease, height .15s ease;
 }
 
 figcaption:hover div.rating-title {
-	display: none;
+	display: flex;
+	flex-direction: inline-flex;
 }
 
 label {
 	display: none;
 }
 
-.ratings ul {
-	margin-left: 0;
-	padding-left: 0;
+.average-rating {
+	border: 2px solid transparent;
+	background: rgba(107, 209, 251, 0.85);
+	border-radius: 25px;
+	padding: 10px;
 }
 
-.ratings p span:first-child {
+.average-rating span:first-child {
 	font-weight: bold;
-	/*margin-left: 0;
-	padding-left: 0;*/
 	background: transparent;
-	color: skyblue;
+	color: black;
 }
 
-.ratings p span.average-rating {
-	background-color: transparent;
-	color: yellow;
+.average-rating span:nth-child(2) {
+	color: white;
+	background: black;
+
+}
+
+.book-details-and-ratings {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 10px auto 60px;
+}
+
+.book-details-and-ratings ul {
+	display: flex;
+	flex-direction: column;
+	margin: 10px auto;
+	padding: 0;
+	margin-left: 0;
+}
+
+.rating-number {
+	color: black;
+	font-weight: bold;
 }
 
 .more {
@@ -322,25 +335,20 @@ label {
 
 .see-all {
 	display: inline-flex;
-	height: 20px;
+	height: 24px;
 	width: auto;
-	/*border-radius: 4px;*/
 	padding: 2px 6px;
-}
-
-
-.book-image {
-	/*min-height: 40vw;*/
 }
 
 .book-image img {
 	width: 30vw;
 	height: auto;
+	min-height: 300px;
 }
 
 
 .book-title {
-	background: skyblue;
+	background: rgba(107, 209, 251, 0.85);
 	color: black;
 }
 
@@ -362,13 +370,28 @@ section {
 }
 
 .current-book-section {
-	flex-direction: column;
+	flex-direction: row;
 	justify-content: center;
+	/*max-height: 100%;*/
+}
+
+.current-book-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	width: 50vw;
 }
 
 .current-book-section ul {
-	margin-left: 0;
-	padding: 20px 35vw;
+	padding: 0;
+	display: flex;
+	align-items: center;
+}
+
+.book-title-and-author {
+	width: 100%;
+	margin: 10px auto 20px;
 }
 
 section ul {
@@ -377,11 +400,11 @@ section ul {
 	margin: 10px 5%;
 	width: 100%;
 	text-align: left;
-	/*margin-left: 15vw;*/
+	justify-content: center;
 }
 
 section ul li {
-	margin: 5px;
+	margin: 10px;
 }
 
 section ul li span {
@@ -399,7 +422,7 @@ section ul li span {
 	font-size: 0.6rem;
 }
 
-form {
+.form-wrapper form {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -410,6 +433,20 @@ form {
 	display: flex;
 	flex-direction: column;
 	margin: 5px auto;
+}
+
+.move-add-rating-up {
+	/*width: 110%;*/
+	height: 42px;
+	padding: 10px 2px;
+	opacity: 1;
+	border: none;
+	top: -192px;
+	transition: height 150ms ease, width 150ms ease-in-out, top 150ms ease, padding 150ms ease;
+	border-radius: 25px 25px 0 0;
+	background: white;
+	color: skyblue;
+	box-shadow: 3px -1px 46px -3px rgba(27,92,245,1);
 }
 
 output { 
@@ -464,6 +501,23 @@ output {
 	section {
 		flex-direction: column;
 	}
+
+/*	#logo img {
+		width: 80vw;
+		right: 10vw;
+	}*/
+
+	.current-book-section {
+		flex-direction: column;
+	}
+
+	.current-book-info {
+		width: 100vw;
+	}
+
+	figure {
+		margin: 10px auto;
+	}
 	.search-links a {
 		padding: 10px 0;
 
@@ -478,60 +532,94 @@ output {
 		justify-content: center;
 		/*align-items: center;*/
 	}
-	section ul li {
-		margin: 5px 0;
-	}
 
 	figcaption {
-		margin: 20%;
-		position: relative;
+		width: 98%;
+		margin: 0 auto;
+		/*margin: 20%;
+		position: relative;*/
 	}
 
-	.add-rating {
-		height: 30px;
-	}
-
-	figcaption:hover div.add-rating {
-		display: none;
-	}
-
-	figcaption:hover div.rating-title {
+	figure.book-cover {
+		height: auto;
+		width: 98%;
 		display: flex;
-		flex-direction: column;
-		margin: 5px;
-	}
-
-	figcaption:hover form {
-		width: 95vw;
+		justify-content: center;
+		align-items: center;
 		margin: 0 auto;
-		position: relative;
-		left: -30vw;
-		max-height: 450px;
-	}
-
-	.current-book-section ul, .current-book {
-		width: 100vw;
-		text-align: center;
-		padding: 5px 0;
-		margin: 0 auto;
-	}
-
-	.current-book img {
-		margin: 0 auto;
-		min-height: 200px;
-	}
-
-	.book-cover img {
-		min-height: auto;
 	}
 
 	.book-image img {
-		min-height: 150px;
+		width: 70vw;
+		margin: 0 auto;
+		height: auto;
+		min-height: calc(70vw * 1.35);
+	}
+
+	.add-rating, .form-wrapper form input[type="submit"] {
+		height: 40px;
+		font-size: 1.8rem;
+		padding: 1px 6px;
+		width: auto;
+	}
+
+	/*figcaption:hover .add-rating {
+		display: none;
+	}*/
+
+	/*figcaption:hover div.rating-title {
+		display: flex;
+		flex-direction: column;
+		margin: 5px;
+	}*/
+
+/*	figcaption:hover .form-wrapper form {
+		width: 95vw;
+		margin: 0 auto;
+		position: relative;
+		max-height: 450px;
+	}*/
+
+	.form-wrapper {
+		width: 95vw;
+	}
+
+	.form-show {
+		max-width: 70vw;
+		margin-left: 13vw;
+	}
+
+	.form-wrapper form {
+		width: 100%;
+		margin: 0 auto;
+		position: relative;
+		max-height: 450px;
 	}
 
 	.book-text {
-		font-size: 5vw;
-		/*margin-left: 20vw;*/
+		width: 100vw;
+		text-align: center;
+		padding: 5px 0;
+		margin-left: 0;
+		font-size: 6vw;
+
 	}
 
+	ul:first-child li:first-child, ul:first-child li:nth-child(2) {
+		text-align: center;
+	}
+
+	ul.ratings {
+		margin-left: 15vw;
+	}
+
+	.average-rating {
+		width: 70vw;
+		text-align: center;
+	}
+
+	.current-book img {
+		height: auto;
+		min-height: 250px;
+	}
 }

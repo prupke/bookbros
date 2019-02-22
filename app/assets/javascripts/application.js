@@ -15,7 +15,30 @@
 //= require turbolinks
 //= require_tree .
 
-function inputRating() {
-	var add_rating = document.getElementsByClass("book-cover");
-	console.log("hello");
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+    document.querySelector("#logo img").style.width = "150px";
+    document.querySelector("#logo img").style.opacity = "0.3";
+    document.querySelector("#logo img").style.right = "20px";
+
+  } else {
+    document.querySelector("#logo img").style.width = "400px";
+    document.querySelector("#logo img").style.opacity = "1";
+    document.querySelector("#logo img").style.right = "calc(50% - 200px)";
+
+  }
 }
+
+// count=0
+function getForm(id) {
+	// id[count] = 0;
+	var form = document.getElementById(id)
+	// form.className += "form-show";
+	form.classList.toggle("form-show");
+	button_id = id + "-button";
+	document.getElementById(button_id).classList.toggle("move-add-rating-up");
+	// id[count] += 1;
+}
+

@@ -5,17 +5,18 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono|ZCOOL+KuaiLe" rel="stylesheet"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- <link rel="icon" type="image/icon" href="/assets/favicon.ico"> -->
-	<%= favicon_link_tag '/favicon.ico' %>
+	<%= favicon_link_tag '/bookbros_icon.ico' %>
 	<title><%= @title %></title>
 </head>
 
 <body>
 
 <main>
-	
 	<img id="book-header" src="/assets/books.png" alt="">
 	
-	<h1><%= @title %></h1>
+	<div id="logo">
+		<img src="/assets/bookbros_logo_small.png" alt="Book Bros">
+	</div>
 <!-- <%= @rating_total %> -->
 <%= @count %>
 <!-- <%= @ratings_2 %> -->
@@ -23,31 +24,32 @@
 
 <% @books.reverse.each_with_index do |book, i| %>
 	<% if @books.last == book %>
+		<div class="book-text current-book-text">
+			| Current book |
+		</div>
 		<section class="current-book-section">
-			<div class="book-text current-book">
-				| Current book |
-			</div>
-			<ul class="book-title-and-author">
-				<li>
-					<span class="book-title"><%= book[1] %></span>
-				</li>
-				<li >
-					<span class="by">by</span>
-					<span class="book-author"><%= book[2] %></span>
-				</li>
-			</ul>
-			<figure>
-
-				<div class="current-book">
-					<img src="/assets/<%= book[0] %>.jpg" alt="<%= book[1] %> by <%= book[2] %>">
-				</div>
+			<figure class="book-cover">
+				<span class="book-image current-book">
+					<img src="/assets/<%= book[0] %>.jpg" alt="<%= book[1] %> by <%= book[2] %> (No book cover available)">
+				</span>
 			</figure>
-			<div class="search-links">
-				<a class="button" href="https://www.torontopubliclibrary.ca/search.jsp?Ntt=<%= book[1] %>+<%= book[2] %>"
-				target="_blank">Library search</a>
-				<a class="button" href="https://www.amazon.com/s?k=<%= book[1] %>+<%= book[2] %>"
-				target="_blank">Amazon search</a>
-			</div>	
+			<div class="current-book-info">
+				<ul class="book-title-and-author">
+					<li>
+						<span class="book-title"><%= book[1] %></span>
+					</li>
+					<li >
+						<span class="by">by</span>
+						<span class="book-author"><%= book[2] %></span>
+					</li>
+				</ul>
+				<div class="search-links">
+					<a class="button" href="https://www.torontopubliclibrary.ca/search.jsp?Ntt=<%= book[1] %>+<%= book[2] %>"
+					target="_blank">Library search</a>
+					<a class="button" href="https://www.amazon.com/s?k=<%= book[1] %>+<%= book[2] %>"
+					target="_blank">Amazon search</a>
+				</div>
+			</div>
 		</section>
 		<% if @books.length > 1 %>
 		<div class="book-text previous-books">| Previous books |</div>
@@ -57,19 +59,21 @@
 			<figure class="book-cover previous" id="<%= book[0] %>">
 				
 				<span class="book-image">
-					<img src="/assets/<%= book[0] %>.jpg" alt="<%= book[1] %> by <%= book[2] %>">
+					<img src="/assets/<%= book[0] %>.jpg" alt="<%= book[1] %> by <%= book[2] %> (No book cover available)">
 				</span>
 				<figcaption>
-					<div class="button add-rating">
-						<span>Add rating</span>
-					</div>
+					<button type="button" class="add-rating " id = "form-<%= book[0] %>-button"
+						onclick="getForm('form-<%= book[0] %>')">
+						Add rating
+					</button>
+					<div class="form-wrapper " id="form-<%= book[0] %>">
 						<%= form_for :rating, url: ratings_path do |f| %>
 
-							<div class="rating-title">
-								<em><%= book[1] %></em>
+							<!-- <div class="rating-title">
+								<p><%= book[1] %></p>
 								<span class="by">by</span>
 								<span class="book-author"><%= book[2] %></span>
-							</div>
+							</div> -->
 							<%= f.label :book %>
 							<%= f.hidden_field :book, :value => book[0] %>	
 							<p>	
@@ -83,30 +87,24 @@
 								<input min="0" max="10" type="range" step="0.5" name="rating[rating]" id="rating_rating" 
 								required="true" oninput="output.value=parseFloat(rating_rating.value)">
 							</p>
-							<div class="range-output">
+							<span class="range-output">
 								<output name="output" for = "rating_rating">5</output>
-							</div>
+							</span>
 						</p>
+							<%= f.text_field :notes, placeholder: "Notes (optional)", autocomplete: "off" %>
 						<p>
 							<%= f.submit %>
 						</p>
 
 						<% end %>	
-
+					</div>
 				</figcaption>
 					<!-- <%= image_tag('in_the_skin_of_a_lion.jpg') %> -->
 			</figure>
 			
+			<div class="book-details-and-ratings">
+				<ul>
 
-
-			<ul>
-				<!-- <li>Ratings: 
-					<% @ratings.each_with_index do |rating, i| %>
-						<%= i %>
-						<%= rating.name %>
-					<% end %>
-				</li> -->
-				
 					<li>
 						<span class="book-title"><%= book[1] %></span>
 					</li>
@@ -114,63 +112,63 @@
 						<span class="by">by</span>
 						<span class="book-author"><%= book[2] %></span>
 					</li>
-					<!-- <p>test: <%= book[i] %></p> -->
-					<li>
-					<!-- <a class="add-rating" href="/ratings/new?book=<%= book[0] %>">Add rating</a>	 -->
-
-					</li>
-					<li class="ratings">
-						<% @ratings.each do |rating| %>
-						
-							<% if rating.book == book[0] %>
-								<% if @rating_count < 5 %>
-									<ul>
-										<li>	
-											<%= rating.name %>:
-											<span style=
-												<% if rating.rating > 6.5 %>
-												"background-color: rgb(0, <%= rating.rating * 20 %>, 0)"
-												<% elsif rating.rating > 3 %>
-												"background-color: rgb(252,234, <%= rating.rating * 40 %>)"
-												<% elsif rating.rating > 1 %>
-												"background-color: rgb(<%= (rating.rating * 200) %>, 0, 0)"
-												<% else %>
-												"background-color: rgb(250, 0, 0)"
-												<% end %>
-												><%= rating.rating %></span>
-										</li>
-									</ul>
-								<% end %>
-								
-								<% @rating_count += 1 %>
-								<% @rating_total += rating.rating %>
-							<% end %>							
-						<% end %>	
-						<% if @rating_count > 5 %>
+				</ul>	
+				<ul class="ratings">
+					<% @ratings.each do |rating| %>
+					
+						<% if rating.book == book[0] %>
+							<% if @rating_count < 5 %>
+								<!-- <ul> -->
+									<li>
+										<%= rating.name %>:
+										<span class="rating-number" style=
+											<% if rating.rating > 6.5 %>
+											"background-color: rgba(0, <%= rating.rating * 20 %>, 0, 0.9)"
+											<% elsif rating.rating > 3 %>
+											"background-color: rgba(252,234, <%= rating.rating * 40 %>, 0.9)"
+											<% elsif rating.rating > 1 %>
+											"background-color: rgba(<%= (rating.rating * 200) %>, 0, 0, 0.9)"
+											<% else %>
+											"background-color: rgba(250, 0, 0, 0.9)"
+											<% end %>
+											><%= rating.rating %></span>
+									</li>
+								<!-- </ul> -->
+							<% end %>
+							
+							<% @rating_count += 1 %>
+							<% @rating_total += rating.rating %>
+						<% end %>							
+					<% end %>	
+					<% if @rating_count > 5 %>
+						<li>
 							<span class="more">...<%= @rating_count - 5 %> more</span> 
 							<a href="#" class="see-all">See all</a>
-						<% end %>
-						<% if @rating_total == 0 %>
-							<p><em>No ratings yet</em></p>
-						<% else %>
-						<!-- <input type="number" value='<%= (@rating_total / @rating_count) %>' id="average_output"> -->
-							<p>
-								<span>Average rating:</span>
-								<!-- <output name="average_output" for="average_output" onload="average_output.value=parseFloat(average_output.value)"></output> -->
-								<span class="average-rating" value=><%= (((@rating_total / @rating_count) * 10).floor / 10.0) %></span>
-							</p>
-						<% end %>
+						</li>
+					<% end %>
+					<% if @rating_total == 0 %>
+						<li><em>No ratings yet</em></li>
+					<% else %>
+					<!-- <input type="number" value='<%= (@rating_total / @rating_count) %>' id="average_output"> -->
+						<li class="average-rating">
+							<span>Average rating:</span>
+							<!-- <output name="average_output" for="average_output" onload="average_output.value=parseFloat(average_output.value)"></output> -->
+							<span>
+								<%= (((@rating_total / @rating_count) * 10).floor / 10.0) %>
+							</span>
+						</li>
+					<% end %>
 
 					<% @rating_count = 0 %>
 					<% @rating_total = 0 %>	
-					</li>
-
+				</ul>
+			</div>
 	<!-- 			<li>Dave: <span>8.5</span></li>
 				<li>Mike: <span>6</span></li>
 				<li>Andrew: <span>9</span></li>
 				<li>Paul: <span>7</span></li>
 				<li>Jeff: <span>8</span></li> -->
-			</ul>
+			
 		</section>
 	<% end %>
 

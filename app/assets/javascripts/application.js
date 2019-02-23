@@ -65,38 +65,34 @@ function googleBooksApiResponse(response) {
 		var amazonSearchLink = "https://www.amazon.com/s?k=" + isbn + "&camp=1789&creative=9325&linkCode=xm2"
 			+ "&linkId=48ba27de2a923a70c174c1085d1eb13c&tag=bookbros-20&ref=as_li_qf_sp_sr_il_tl"
 		console.log(item.volumeInfo.description)	
-		if(item.volumeInfo.description === undefined) {
-			description = 'No synopsis available for this book.'
-		}	
-		else {
-			description = item.volumeInfo.description
-		};
 
-		if(item.volumeInfo.publishedDate === undefined) {
-			published = ''
-		}	
-		else {
-			published = "pub. " + item.volumeInfo.publishedDate 
-		};
+		// longhand if statement (replaced below)
+		// if(item.volumeInfo.description === undefined) {
+		// 	description = 'No synopsis available for this book.'
+		// }	
+		// else {
+		// 	description = item.volumeInfo.description
+		// };
 
-		if(item.volumeInfo.printedPageCount === undefined) {
-			pages = ''
-		}	
-		else {
-			pages = "Pages: " + item.volumeInfo.printedPageCount + ", "
-		};
-		
+		// Check if there are values so that "Undefined" does not get put into the app
+		var pages = item.volumeInfo.pageCount === undefined ? '' : ", " + item.volumeInfo.pageCount + " pages"
+		var published = item.volumeInfo.publishedDate === undefined ? published = '' : published = "<br><br>Pub. " + item.volumeInfo.publishedDate
+		var rating = item.volumeInfo.averageRating === undefined ? 'No rating. ' : "<br><br>Avg Google Books rating: " 
+			+ item.volumeInfo.averageRating + "/5 (" + item.volumeInfo.ratingsCount + " people)"
+
+		var description = item.volumeInfo.description === undefined ? description = 'No synopsis available for this book.' : 
+			description = item.volumeInfo.description 
 		// Associate ID: bookbros03-20
 		// As an Amazon Associate I earn from qualifying purchases.
 
 		document.getElementById("book-search-results").innerHTML += 
 			("<li>" 
-				+ "<p class='description'>View details<span class='hidden-description'>" 
+				+ "<a href='" + item.selfLink + "'>link</a><div class='description'>View details<div class='hidden-description'>" 
 						+ "<span>"
 							+ "<a class='rounded-link' target='_blank' href=\"" + amazonSearchLink + "\">Amazon</a>"
 							+ "<a class='rounded-link' target='_blank' href=\"" + item.volumeInfo.previewLink + "\">Google Books</a></span>"
-					+ "<span>" + pages + published + "</span>" + description
-				+ "</span></p>"	
+					+ "<p>" + item.volumeInfo.categories + pages + published + rating + "</p>" + description
+				+ "</div></div>"	
 				+ "<figure><a href=\"" + bookCoverLink +"?fife=w667-h1000\">"
 					+ "<img src=\"" + bookCoverLink + "?fife=w200-h300\"/>"
 					+ "<figcaption class='book-title-and-author'>"

@@ -17,10 +17,9 @@
 	<div id="logo">
 		<img src="/assets/bookbros_logo_small.png" alt="Book Bros">
 	</div>
-<!-- <%= @rating_total %> -->
-<%= @count %>
-<!-- <%= @ratings_2 %> -->
-
+	<div class="search-links align-left">
+		<a class="rounded-link" href="/books">Find a book</a>
+	</div>
 
 <% @books.reverse.each_with_index do |book, i| %>
 	<% if @books.last == book %>
@@ -39,14 +38,13 @@
 						<span class="book-title"><%= book[1] %></span>
 					</li>
 					<li >
-						<span class="by">by</span>
-						<span class="book-author"><%= book[2] %></span>
+						<span class="by">by </span><span class="book-author"><%= book[2] %></span>
 					</li>
 				</ul>
 				<div class="search-links">
-					<a class="button" href="https://www.torontopubliclibrary.ca/search.jsp?Ntt=<%= book[1] %>+<%= book[2] %>"
+					<a class="rounded-link" href="https://www.torontopubliclibrary.ca/search.jsp?Ntt=<%= book[1] %>+<%= book[2] %>"
 					target="_blank">Library search</a>
-					<a class="button" href="https://www.amazon.com/s?k=<%= book[1] %>+<%= book[2] %>"
+					<a class="rounded-link" href="https://www.amazon.com/s?k=<%= book[1] %>+<%= book[2] %>"
 					target="_blank">Amazon search</a>
 				</div>
 			</div>
@@ -62,7 +60,7 @@
 					<img src="/assets/<%= book[0] %>.jpg" alt="<%= book[1] %> by <%= book[2] %> (No book cover available)">
 				</span>
 				<figcaption>
-					<button type="button" class="add-rating " id = "form-<%= book[0] %>-button"
+					<button type="button" class="rounded-link add-rating " id = "form-<%= book[0] %>-button"
 						onclick="getForm('form-<%= book[0] %>')">
 						Add rating
 					</button>
@@ -84,8 +82,12 @@
 							<p>
 								<%= f.label :rating, autocomplete: "off" %>
 								<!-- <%= f.range_field :rating, in:1..10 %>  -->
+								<!-- <span>👎</span> -->
+								
 								<input min="0" max="10" type="range" step="0.5" name="rating[rating]" id="rating_rating" 
 								required="true" oninput="output.value=parseFloat(rating_rating.value)">
+							</span>
+								<!-- <span>👍</span> -->
 							</p>
 							<span class="range-output">
 								<output name="output" for = "rating_rating">?</output>
@@ -120,17 +122,8 @@
 							<% if @rating_count < 5 %>
 								<li class="rating">
 									<%= rating.name %>:
-									<span class="rating-number" style=
-										<% if rating.rating > 6.5 %>
-										"background-color: rgba(0, <%= rating.rating * 20 %>, 0, 0.9)"
-										<% elsif rating.rating > 3 %>
-										"background-color: rgba(252,234, <%= rating.rating * 40 %>, 0.9)"
-										<% elsif rating.rating > 1 %>
-										"background-color: rgba(<%= (rating.rating * 200) %>, 0, 0, 0.9)"
-										<% else %>
-										"background-color: rgba(250, 0, 0, 0.9)"
-										<% end %>
-										><%= rating.rating %>
+									<span class="rating-number rating-<%= Integer(rating.rating) %>">
+										<%= rating.rating %>
 									</span>	
 									<% if rating.notes and rating.notes != '' %>
 										&nbsp;📖
@@ -158,7 +151,7 @@
 						<li class="average-rating">
 							<span>Average rating:</span>
 							<!-- <output name="average_output" for="average_output" onload="average_output.value=parseFloat(average_output.value)"></output> -->
-							<span>
+							<span class="rating-number rating-<%= Integer(((@rating_total / @rating_count) * 10).floor / 10.0) %>">
 								<%= (((@rating_total / @rating_count) * 10).floor / 10.0) %>
 							</span>
 						</li>

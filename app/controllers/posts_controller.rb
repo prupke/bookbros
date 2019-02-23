@@ -24,10 +24,10 @@ class PostsController < ApplicationController
 	end
 
 	def create
-	  @rating = ratings_controller.create(rating_params)
-	  ratings_controller.request = request
-	  ratings_controller.response = response
-	  ratings_controller.post
+		@rating = ratings_controller.create(rating_params)
+		ratings_controller.request = request
+		ratings_controller.response = response
+		ratings_controller.post
 	end
 		# render plain: params[:post].inspect
 		# @post = Post.new(params[:post])

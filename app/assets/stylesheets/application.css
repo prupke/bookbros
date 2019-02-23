@@ -14,38 +14,6 @@
  *= require_self
  */
 
-html {
- 	height: 100%;
- 	overflow-x: hidden;
- }
-
-img {
-	display: inline-flex;
-}
-
-body {
-	position: relative;
-	color: white;
-	font-family: 'Roboto Mono', monospace;
-	margin: 0;
-	padding: 0;
-	width: 100vw;
-}
-
-main {
-	z-index: 1;
-	padding: 0 0 200px;
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	height: 100%;
-	background: url(/books_background.jpg) no-repeat, 
-	linear-gradient(to bottom, rgba(10,10,10,0.9) 0%, rgba(0,0,0,1) 100%);
-	background-size: 70vw;
-	min-height: 100vh;
-	background-position: bottom right, left;
-}
 
 
 /*-------------------------- MEDIA QUERIES --------------------------*/

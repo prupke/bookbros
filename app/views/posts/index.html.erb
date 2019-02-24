@@ -136,7 +136,7 @@
 							<div class="average-rating-text">Average rating:</div>
 							<!-- <output name="average_output" for="average_output" onload="average_output.value=parseFloat(average_output.value)"></output> -->
 							<p class="rating-number rating-<%= Integer(((@rating_total / @rating_count) * 10).floor / 10.0) %>">
-								<%= (((@rating_total / @rating_count) * 10).floor / 10.0) %>
+								<%= (((@rating_total / @rating_count) * 100.00).floor / 100.00) %>
 							</p>
 						</li>
 					<% end %>

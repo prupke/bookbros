@@ -12,13 +12,13 @@
 
 		<form action="/books" method="GET" id="book_search_form">
 			<input type="text" id="book_search" name="book_search" required="true" minlength="3" maxlength="50" 
-			value="<% params[:book_search] %>">
+			value="<%= @search %>">
 			<input type="submit" value="Search books">
 		</form>
 
 		<% if params[:book_search] %>
 			<p class="update">
-				Showing results for '<%= params[:book_search] %>'. Now select a book for your club to read!
+				Showing results for '<%= @search %>'. Now select a book for your club!
 			
 <!-- 			<% if !session['name'] %>
 

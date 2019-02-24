@@ -277,11 +277,12 @@ form {
 	flex-wrap: wrap;
 
 	input, textarea {
+		width: 80%;
 		height: 28px;
 		padding: 4px 10px;
 		font-size: 1.4rem;
 		color: black;
-		width: 300px;
+		max-width: 300px;
 		border-radius: 25px;
 	}
 

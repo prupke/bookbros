@@ -21,7 +21,7 @@ class BooksController < ApplicationController
 	end
 
 	def create
-		# # @search = Book.new(book)
+		@search = Book.new(book)
 		# @search = params[:book_search]
 		# redirect_to books_url(@search = params[:book_search])
 		# # render plain: params[:book_search].inspect
@@ -32,9 +32,9 @@ class BooksController < ApplicationController
 		redirect_to books_url(@search = params[:book_search])
 	end
 
-	private
+	# private
 	
-	def book_params
-		params.require(:book_search).permit(:book_search)	
-	end
+	# def book_params
+	# 	params.require(:book_search).permit(:book_search)	
+	# end
 end

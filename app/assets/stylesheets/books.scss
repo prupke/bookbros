@@ -40,18 +40,18 @@ form {
 		margin: 0 50px 30px;
 		padding: 10px;
 		.description {
-
-			margin: 0;
 			display: flex;
 			position: relative;
 			top: 10px;
 			right: -10px;
+			margin: 0;
+			font-weight: bold;
 			z-index: 1;
 			font-size: 0.8rem;
 			padding: 7px 0 0 10px;
 			text-align: left;
 			height: 20px;
-			width: 110px;
+			width: 65px;
 			color: black;
 			background: skyblue;
 			border-radius: 10px 10px 0 0;
@@ -74,12 +74,12 @@ form {
 				}
 			}
 			.hidden-description {
-				display: none;
+				display: block;
+				overflow: hidden;
 				border-radius: 0 4px 4px 4px;
 				position: absolute;
-				width: 250px;
+				width: 65px;
 				max-height: 300px;
-				overflow: scroll;
 				height: auto;
 				top: 27px;
 				left: 0;
@@ -87,13 +87,41 @@ form {
 				font-style: italic;
 				background: skyblue;
 				color: black;
-				padding: 12px;
+				padding: -20px;
 				z-index: 2;
+				height: 0;
+				transition: height 0.15s ease, padding 0.15s ease, width 0.15s ease;
+
+				p {
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+
+					span {
+						text-align: left;
+						margin: 0;
+					}
+
+					.categories, .pages, .published {
+						display: inline-block;
+					}
+
+					.synopsis {
+						margin-top: 5px;
+					}
+				}
+				.synopsis {
+					font-weight: normal;
+					font-style: italic;
+				}
 			}
 		}
 
 		.description:hover .hidden-description {
-			display: block;
+			padding: 12px;
+			height: 300px;
+			width: 250px;
+			overflow: scroll;
 		}
 		figure {
 			margin: 10px 10px 80px;

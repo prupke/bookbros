@@ -70,23 +70,27 @@ function googleBooksApiResponse(response) {
 		// };
 
 		// Check if there are values so that "Undefined" does not get put into the app
-		var pages = item.volumeInfo.pageCount === undefined ? '' : ", " + item.volumeInfo.pageCount + " pages"
-		var published = item.volumeInfo.publishedDate === undefined ? published = '' : published = "<br><br>Pub. " + item.volumeInfo.publishedDate
-		var rating = item.volumeInfo.averageRating === undefined ? '' : "<br><br>Avg Google Books rating: " 
-			+ item.volumeInfo.averageRating + "/5 (" + item.volumeInfo.ratingsCount + " people)"
+		var categories = item.volumeInfo.categories === undefined ? '' : "<span class='categories'>" + item.volumeInfo.categories + "</span>"
+		var pages = item.volumeInfo.pageCount === undefined ? '' : "<span class='pages'>" + item.volumeInfo.pageCount + " pages</span>"
+		var published = item.volumeInfo.publishedDate === undefined ? 
+			published = '' : published = "<br><br><span class='published'>Published " + item.volumeInfo.publishedDate + "</span>"
 
-		var description = item.volumeInfo.description === undefined ? description = 'No synopsis available for this book.' : 
-			description = item.volumeInfo.description 
+		var plural = item.volumeInfo.ratingsCount === 1 ? " vote)" : " votes)"
+		var rating = item.volumeInfo.averageRating === undefined ? '' : "<br><br>Average rating: " 
+			+ item.volumeInfo.averageRating + "/5 (" + item.volumeInfo.ratingsCount + plural
+
+		var description = item.volumeInfo.description === undefined ? 
+			description = 'No synopsis is available for this book.' : description = item.volumeInfo.description 
 		// Associate ID: bookbros03-20
 
 		document.getElementById("book-search-results").innerHTML += 
 			("<li>" 
 				// "<a href='" + item.selfLink + "'>link</a>
-				+ "<div class='description'>View details<div class='hidden-description'>" 
+				+ "<div class='description'>Details<div class='hidden-description'>" 
 						+ "<span>"
 							+ "<a class='rounded-link' target='_blank' href=\"" + amazonSearchLink + "\">Amazon</a>"
 							+ "<a class='rounded-link' target='_blank' href=\"" + item.volumeInfo.previewLink + "\">Google Books</a></span>"
-					+ "<p>" + item.volumeInfo.categories + pages + published + rating + "<br><br>" + description + "</p>"
+					+ "<p>" + categories + pages + published + rating + "<br><br><span class='synopsis'>" + description + "<span></p>"
 				+ "</div></div>"	
 				+ "<figure><a href=\"" + bookCoverLink +"?fife=w667-h1000\">"
 					+ "<img src=\"" + bookCoverLink + "?fife=w200-h300\"/>"

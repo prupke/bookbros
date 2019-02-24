@@ -39,11 +39,6 @@ function getForm(id) {
 	document.getElementById(button_id).classList.toggle("move-add-rating-up");
 }
 
-
-let forms = document.querySelector("form");
-
-console.log(forms);
-
 // .addEventListener("input[type='range']", sendOutput);
 
 // Sends the current range input value to the output field below it

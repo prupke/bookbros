@@ -21,10 +21,6 @@ body {
 	width: 100vw;
 }
 
-// body:hover #notice {
-// 	opacity: 0;
-// }
-
 main {
 	z-index: 1;
 	padding: 0 0 200px;
@@ -40,10 +36,23 @@ main {
 	background-position: bottom right, left;
 }
 
+h1 {
+	font-size: 2.9rem;
+	padding: 0;
+	margin: 40px 10px;
+	text-align: center;
+	font-family: 'ZCOOL KuaiLe', 'Verdana', sans-serif;
+	text-shadow: -4px 4px 12px rgba(150, 150, 150, 1);
+}
+
 h2 {
 	text-align: center;
 	font-size: 2.5rem;
 	margin: 80px auto 40px;
+}
+
+p {
+	margin: 10px 20px;
 }
 
 #logo img {
@@ -100,17 +109,61 @@ h2 {
 	color: white;
 }
 
-.rounded-link, input[type="submit"], figcaption input[type="submit"] {
+.rounded-link, input[type="submit"] {
+	margin: 5px;
+	padding: 7px 10px;
+	height: auto;
+	font-size: 1.1rem;
 	background: rgba(107, 209, 251, 0.5);
 	text-decoration: none;
-	color: skyblue;
+	color: white;
 	display: inline-block;
 	width: auto;
 	text-align: center;
-	padding: 2px 4px;
-	height: 100%;
+	// height: 100%;
 	border-radius: 25px;
 	border: 2px solid skyblue;
+
+	&:hover {
+		background: skyblue;
+		transition: background 0.15s ease, color 0.15s ease;
+		opacity: 1;
+		cursor: pointer;
+	}
+
+}
+
+.fixed-width-link {
+	width: 200px;
+}
+
+.small-link {
+	height: 18px;
+	padding: 4px 6px;
+	font-size: 0.9rem;
+}
+
+.expanding-link {
+	height: 24px;
+	transition: height 0.2s ease;
+
+	&:hover {
+		position: relative;
+		height: 32px;
+		transition: height 0.2s ease;
+	}
+}
+
+.transparent-link {
+	background: transparent;
+}
+
+.solid-link, input[type="submit"] {
+	background: rgba(107, 209, 251, 0.85);
+	&:hover {
+		background: rgba(107, 209, 251, 1);
+		box-shadow: 0 0 5px 2px rgba(153,181,247,1);
+	}
 }
 
 .search-links {
@@ -119,59 +172,14 @@ h2 {
 	text-align: center;
 	align-items: center;
 	width: 100%;
-
-	a {
-		color: white;
-		width: 200px;
-		margin: 5px 0;
-		padding: 8px 0;
-		font-size: 1.1rem;
-		display: inline-block;
-	}
-
-	// span {
-	// 	position: relative;
-	// 	background: transparent;
-	// 	color: skyblue;
-	// 	height: 100%;
-	// }
 }
 
-a:hover, .add-rating:hover, input[type="submit"]:hover, figcaption input[type="submit"]:hover {
+.add-rating:hover {
 	background: skyblue;
 	color: white;
 	transition: background 0.15s ease, color 0.15s ease;
 	opacity: 1;
 	cursor: pointer;
-}
-
-button, figcaption input[type="submit"] {
-	background: white;
-	border: 2px solid skyblue;
-	color: skyblue;
-	opacity: 0.9;
-	box-shadow: none;
-	height: 42px;
-	padding: 4px 0 10px;
-}
-
-figcaption input[type="submit"] {
-	background: white;
-	color: skyblue;
-	font-size: 1.3rem;
-	border-radius: 25px;
-	margin: 0 5px 20px;
-	width: 150px;
-	cursor: pointer;
-}
-
-h1 {
-	font-size: 2.9rem;
-	padding: 0;
-	margin: 40px 10px;
-	text-align: center;
-	font-family: 'ZCOOL KuaiLe', cursive;
-	text-shadow: -4px 4px 12px rgba(150, 150, 150, 1);
 }
 
 #book-header {
@@ -187,12 +195,11 @@ ul {
 	display: flex;
 	align-items: right;
 	justify-content: top;
-}
-
-ul li {
-	font-size: 1.3rem; 
-	list-style-type: none;
-	display: inline-block;
+	li {
+		font-size: 1.3rem; 
+		list-style-type: none;
+		display: inline-block;
+	}
 }
 
 .book-text {
@@ -223,18 +230,13 @@ ul li {
 	margin: 20px;
 }
 
-.min-height {
-	min-height: 400px; 
-}
-
 figure {
 	display: flex;
 	position: relative;
 	padding: 0;
-}
-
-figure:hover span img {
-	box-shadow: 3px -1px 36px 6px rgba(153,181,247,1);
+	&:hover span img {
+		box-shadow: 3px -1px 36px 6px rgba(153,181,247,1);
+	}
 }
 
 figcaption {
@@ -253,6 +255,7 @@ figcaption {
 	margin: 150px auto 0;
 	height: 32px;
 	font-size: 1.4rem;
+	color: skyblue;
 	width: 130px;
 	max-width: 100%;
 	background: white;
@@ -262,7 +265,39 @@ figcaption {
 	transition: height .15s ease, width .15s ease-in-out, padding .15s ease, top .15s ease, opacity .15s ease;
 }
 
-.form-wrapper {
+
+form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+
+	input, textarea {
+		height: 28px;
+		padding: 4px 10px;
+		font-size: 1.4rem;
+		color: black;
+		width: 300px;
+		border-radius: 25px;
+	}
+
+	textarea {
+		border-radius: 4px;
+		height: 40px;
+		font-size: 0.8rem;
+		overflow: scroll;
+		resize: vertical;
+		
+	}
+
+	input[type="submit"] {
+		height: 38px;
+		width: auto;
+	}
+}
+
+
+.rating-form-wrapper {
 	display: flex;
 	background: linear-gradient(rgba(107, 209, 251, 0.95) 10%, rgba(107, 209, 251, 0.5), rgba(107, 209, 251, 0.01));
 	flex-direction: column;
@@ -271,18 +306,26 @@ figcaption {
 	position: relative;
 	top: 0;
 	bottom: 0;
+	form {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		input:not[type="submit"], textarea {
+			width: 80%;
+			margin: -2px;
+			height: 30px;
+			border-radius: 4px;
+			padding: 2px;
+			font-size: 1.5rem;
+		}
+
+		label {
+			display: none;
+		}
+	}
 }
 
-form input {
-	margin: -2px;
-	height: 30px;
-	border-radius: 4px;
-	// background: white;
-	// color: skyblue;
-	padding: 2px;
-	font-size: 1.5rem;
-	width: 80%;
-}
 
 // ----------------------- Ratings form -----------------------------
 
@@ -300,10 +343,11 @@ figure:hover .add-rating {
 	opacity: 1;
 	height: 42px;
 	/*border: none;*/
-
+	font-size: 1.4rem;
 	/*padding: 18px 6px 18px;*/
 	/*top: -4px;*/
-	transition: width .15s ease-in-out, padding .15s ease, top .15s ease, opacity .15s ease, height .15s ease;
+	transition: width .15s ease-in-out, padding .15s ease, top .15s ease, opacity .15s ease, height .15s ease,
+	font-size .15s ease;
 }
 
 figcaption:hover div.rating-title {
@@ -347,8 +391,18 @@ figcaption:hover div.rating-title {
 	font-weight: bold;	
 	padding: 2px 4px;
 	border-radius: 4px;
+	width: 50px;
+	margin: 0 auto;
+	display: inline;
 }
 
+.average-rating-text {
+	margin: 0;
+	padding: 0;
+	display: inline;
+}
+
+// Sets rating colours on a scale from red to green
 .rating-0 {
 	background: #FF0000;
 }
@@ -404,19 +458,6 @@ figcaption:hover div.rating-title {
 	z-index: 10;
 }
 
-.more {
-	font-size: 0.9rem;
-	color: white;
-	background: transparent;
-}
-
-.see-all {
-	display: inline-flex;
-	height: 24px;
-	width: auto;
-	padding: 2px 6px;
-}
-
 .book-image img {
 	width: 30vw;
 	height: auto;
@@ -449,6 +490,7 @@ figcaption:hover div.rating-title {
 
 section {
 	display: flex;
+	min-height: 500px;
 	ul {
 		display: flex;
 		flex-direction: column;
@@ -473,8 +515,6 @@ section {
 	margin: 10px auto 20px;
 }
 
-
-
 #copyright {
 	position: absolute;
 	bottom: 20px;
@@ -482,12 +522,6 @@ section {
 	color: white;
 	font-size: 0.6rem;
 	margin: 2px 20px;
-}
-
-.form-wrapper form {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
 }
 
 .range-output {
@@ -577,9 +611,9 @@ input[type='range'] {
 		-webkit-appearance: none
 	}
 
-	&:before {
-		content: "👎";
-	}
+	// &:before {
+	// 	content: "👎";
+	// }
 	
 	margin: .25em auto;
 	display: block;

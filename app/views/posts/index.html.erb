@@ -8,6 +8,15 @@
 		<a class="rounded-link" href="/books">Find a book</a>
 	</div>
 
+<!-- 	<ul style="display: flex; flex-direction: column;">
+		<li><a href="#" class="rounded-link">rounded-link</a></li>		
+		<li><a href="#" class="rounded-link solid-link">solid-link</a></li>
+		<li><a href="#" class="rounded-link expanding-link">expanding-link</a></li>
+		<li><a href="#" class="rounded-link transparent-link">transparent-link</a></li>
+		<li><a href="#" class="rounded-link small-link">small-link</a></li>
+		<li><a href="#" class="rounded-link fixed-width-link">fixed-width</a></li>
+	</ul>	 -->
+
 <% @books.reverse.each do |book| %>
 
 	<% if @books.last == book %>
@@ -26,7 +35,7 @@
 						onclick="getForm('form-<%= book.book %>')">
 						Add rating
 					</button>
-					<div class="form-wrapper " id="form-<%= book.book %>">
+					<div class="rating-form-wrapper " id="form-<%= book.book %>">
 						<%= form_for :rating, url: ratings_path do |f| %>
 							<%= f.label :book %>
 							<%= f.hidden_field :book, :value => book.book %>	
@@ -49,7 +58,7 @@
 								<output name="output" for = "rating_rating">?</output>
 							</span>
 						</p>
-							<%= f.text_field :notes, placeholder: "Notes (optional)", autocomplete: "off" %>
+							<%= f.text_area :notes, placeholder: "Notes (optional)", autocomplete: "off" %>
 						<p>
 							<%= f.submit %>
 						</p>
@@ -96,26 +105,26 @@
 					<% if @rating_count > 5 %>
 						<li>
 							<span class="more">...<%= @rating_count - 5 %> more</span> 
-							<a href="#" class="see-all">See all</a>
+							<a href="#" class="rounded-link small-link">See all</a>
 						</li>
 					<% end %>
 					<% if @rating_total == 0 %>
 						<li><em>No ratings yet</em></li>
 						<li>
 							<div class="search-links">
-								<a class="rounded-link" href="https://www.amazon.com/s?k=<%= book.title %>+<%= book.author %>
+								<a class="rounded-link fixed-width-link" href="https://www.amazon.com/s?k=<%= book.title %>+<%= book.author %>
 									&ref=as_li_tl?ie=UTF8&tag=bookbros03-20&camp=15121&creative=330641&linkCode=as2&creativeASIN=1405206276"
 								target="_blank">
 									<img class="icon" src="/assets/amazon_icon.png" alt=""> 
 									<span class="text-after-icon">Amazon search</span>
 								</a>
-								<a class="rounded-link" href="https://books.google.ca/books?id=<%= book.book %>"
+								<a class="rounded-link fixed-width-link" href="https://books.google.ca/books?id=<%= book.book %>"
 								target="_blank">
 									<img class="icon" src="/assets/google_icon.png" alt=""> 
 									<span class="text-after-icon">Google search</span>
 								</a>
 								<% if book.club == 'bookbros' %>
-								<a class="rounded-link" href="https://www.torontopubliclibrary.ca/search.jsp?Ntt=<%= book.title %>+<%= book.author %>" target="_blank">
+								<a class="rounded-link fixed-width-link" href="https://www.torontopubliclibrary.ca/search.jsp?Ntt=<%= book.title %>+<%= book.author %>" target="_blank">
 									<img class="icon library" src="/assets/library_icon.svg" alt=""> 
 									<span class="text-after-icon">Library search</span></a>
 								<% end %>
@@ -124,11 +133,11 @@
 					<% else %>
 					<!-- <input type="number" value='<%= (@rating_total / @rating_count) %>' id="average_output"> -->
 						<li class="average-rating">
-							<span>Average rating:</span>
+							<div class="average-rating-text">Average rating:</div>
 							<!-- <output name="average_output" for="average_output" onload="average_output.value=parseFloat(average_output.value)"></output> -->
-							<span class="rating-number rating-<%= Integer(((@rating_total / @rating_count) * 10).floor / 10.0) %>">
+							<p class="rating-number rating-<%= Integer(((@rating_total / @rating_count) * 10).floor / 10.0) %>">
 								<%= (((@rating_total / @rating_count) * 10).floor / 10.0) %>
-							</span>
+							</p>
 						</li>
 					<% end %>
 

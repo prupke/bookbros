@@ -31,6 +31,8 @@ function scrollFunction() {
 }
 
 
+
+
 // Causes the rating form to appear when the "Add rating" button is clicked (and the button to move up)
 function getForm(id) {
 	var form = document.getElementById(id);
@@ -83,32 +85,31 @@ function googleBooksApiResponse(response) {
 			("<li><form action='/books' accept-charset='UTF-8' method='post'>" 
 				+ "<input name='utf8' type='hidden' value='✓'>"
 				+ "<input type='hidden' name='authenticity_token' value='" + token + "'>"
-				// + "<%= form_authenticity_token %>"
 				+ "<input id='book_book' name='book[book]' type='hidden' value='" + item.id + "'>"		
 				+ "<input id='book_title' name='book[title]' type='hidden' value='" + item.volumeInfo.title + "'>"
 				+ "<input id='book_author' name='book[author]' type='hidden' value='" + item.volumeInfo.authors + "'>"
 				+ "<input id='book_club' name='book[club]' type='hidden' value='bookbros'>"
+				+ "<div class='book-title-and-author'>"
+					+ "<span class='book-title'>" + item.volumeInfo.title + "</span>"
+					+ "<span class='by'> by </span>"
+					+ "<span class='book-author'>" + item.volumeInfo.authors + "</span></div>"
 				+ "<div class='description'>Details"
 					+ "<div class='hidden-description'>" 
 						+ "<span>"
-							+ "<a class='rounded-link' target='_blank' href=\"" + amazonSearchLink + "\">"
+							+ "<a class='rounded-link small-link' target='_blank' href=\"" + amazonSearchLink + "\">"
 								+ "<img class='icon-small' src='/assets/amazon_icon.png'> Amazon</a>"
-							+ "<a class='rounded-link' target='_blank' href=\"" + googleSearchLink+ "\">"
+							+ "<a class='rounded-link small-link' target='_blank' href=\"" + googleSearchLink+ "\">"
 								+ "<img class='icon-small' src='/assets/google_icon.png'> Google</a>"
 						+"</span>"
 						+ "<p>" + categories + pages + published + rating + "<br><br>"
 							+ "<span class='synopsis'>" + description + "<span>"
 						+ "</p>"
-				+ "</div></div>"	
+				+ "</div></div>"
 				+ "<figure>"
 					
 					+ "<input type='submit' name='commit' value='' id = '" + item.id + "' style='background: url(" + bookCoverLink + "?fife=w200-h300)'> "
 					// + "onclick='showElements(this.form);'>"
-						+ "<figcaption class='book-title-and-author'>"
-							+ "<span class='book-title'>" + item.volumeInfo.title + "</span>"
-							+ "<span class='by'> by </span>"
-							+ "<span class='book-author'>" + item.volumeInfo.authors + "</span>"
-					+ "</figcaption></span></figure></form></li>");
+				+ "</figure></form></li>");
 	}
 	return response.items
 }

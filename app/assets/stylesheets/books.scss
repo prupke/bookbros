@@ -75,6 +75,7 @@ form {
 			}
 			.hidden-description {
 				display: none;
+				border-radius: 0 4px 4px 4px;
 				position: absolute;
 				width: 250px;
 				max-height: 300px;
@@ -86,7 +87,7 @@ form {
 				font-style: italic;
 				background: skyblue;
 				color: black;
-				padding: 6px;
+				padding: 12px;
 				z-index: 2;
 			}
 		}

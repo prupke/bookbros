@@ -119,7 +119,7 @@
 					<% @ratings.each do |rating| %>
 					
 						<% if rating.book == book[0] %>
-							<% if @rating_count < 5 %>
+							<% if @rating_count < 15 %>
 								<li class="rating">
 									<%= rating.name %>:
 									<span class="rating-number rating-<%= Integer(rating.rating) %>">
@@ -171,7 +171,7 @@
 	<% end %>
 
 <% end %>
-<span id="copyright">© 2019 Book Bros Inc.</span>
+<span id="copyright">© 2019 Book Bros Inc. As an Amazon Associate, Book Bros earns from qualifying purchases.</span>
 
 </main>
 

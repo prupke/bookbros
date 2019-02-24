@@ -72,21 +72,21 @@ function googleBooksApiResponse(response) {
 		// Check if there are values so that "Undefined" does not get put into the app
 		var pages = item.volumeInfo.pageCount === undefined ? '' : ", " + item.volumeInfo.pageCount + " pages"
 		var published = item.volumeInfo.publishedDate === undefined ? published = '' : published = "<br><br>Pub. " + item.volumeInfo.publishedDate
-		var rating = item.volumeInfo.averageRating === undefined ? 'No rating. ' : "<br><br>Avg Google Books rating: " 
+		var rating = item.volumeInfo.averageRating === undefined ? '' : "<br><br>Avg Google Books rating: " 
 			+ item.volumeInfo.averageRating + "/5 (" + item.volumeInfo.ratingsCount + " people)"
 
 		var description = item.volumeInfo.description === undefined ? description = 'No synopsis available for this book.' : 
 			description = item.volumeInfo.description 
 		// Associate ID: bookbros03-20
-		// As an Amazon Associate I earn from qualifying purchases.
 
 		document.getElementById("book-search-results").innerHTML += 
 			("<li>" 
-				+ "<a href='" + item.selfLink + "'>link</a><div class='description'>View details<div class='hidden-description'>" 
+				// "<a href='" + item.selfLink + "'>link</a>
+				+ "<div class='description'>View details<div class='hidden-description'>" 
 						+ "<span>"
 							+ "<a class='rounded-link' target='_blank' href=\"" + amazonSearchLink + "\">Amazon</a>"
 							+ "<a class='rounded-link' target='_blank' href=\"" + item.volumeInfo.previewLink + "\">Google Books</a></span>"
-					+ "<p>" + item.volumeInfo.categories + pages + published + rating + "</p>" + description
+					+ "<p>" + item.volumeInfo.categories + pages + published + rating + "<br><br>" + description + "</p>"
 				+ "</div></div>"	
 				+ "<figure><a href=\"" + bookCoverLink +"?fife=w667-h1000\">"
 					+ "<img src=\"" + bookCoverLink + "?fife=w200-h300\"/>"

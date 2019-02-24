@@ -24,8 +24,7 @@ class BooksController < ApplicationController
 		@book = Book.new(book_params)
 		@book.save
 		flash[:notice] = 'Added "' + @book.title + '" to your book list!'
-		redirect_to books_url
-		# (:anchor => @book[:book])
+		redirect_to books_url(:anchor => @book[:book])
 		# @search = params[:book_search]
 		# redirect_to books_url(@search = params[:book_search])
 		# # render plain: params[:book_search].inspect

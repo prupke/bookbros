@@ -17,6 +17,7 @@ form {
 
 	> input[type="submit"] {
 		height: 38px;
+		background: white;
 	}
 }
 
@@ -24,18 +25,10 @@ form {
 	text-align: center;
 }
 
-#notice {
-	position: absolute;
-	top: 30px;
-	left: 25vw;
-	background: rgba(107, 209, 251, 0.9);
-	width: 50vw;
-	padding: 15px 20px;
-	margin: 0 auto;
-	border-radius: 25px;
-	text-align: center;
-	font-size: 1.2rem;
-	color: black;
+#name-input {
+	display: block;
+	width: 300px;
+	margin: 0px auto;
 }
 
 #book-search-results {
@@ -56,7 +49,6 @@ form {
 			display: flex;
 			position: relative;
 			top: 8px;
-			right: -8px;
 			margin: 0;
 			font-weight: bold;
 			z-index: 1;
@@ -90,11 +82,11 @@ form {
 				display: block;
 				position: absolute;
 				top: 27px;
-				left: 00px;
+				left: 0px;
 				width: 65px;
 				max-height: 300px;
 				overflow: scroll;
-				border-radius: 0 4px 4px 4px;
+				border-radius: 4px;
 				font-size: 0.8rem;
 				font-style: italic;
 				background: skyblue;

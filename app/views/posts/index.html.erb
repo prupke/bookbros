@@ -9,52 +9,14 @@
 	</div>
 
 <% @books.reverse.each do |book| %>
+
 	<% if @books.last == book %>
 		<div class="book-text current-book-text">
 			| Current book |
 		</div>
-		<section class="current-book-section">
-			<figure class="book-cover">
-				<span class="book-image current-book">
-					<img src="https://books.google.com/books/content/images/frontcover/<%= book.book %>?fife=w200-h300" 
-					alt="<%= book.title %> by <%= book.author %> (No book cover available)">
-				</span>
-			</figure>
-			<div class="current-book-info">
-				<ul class="book-title-and-author">
-					<li class='book-title-wrapper'>
-						<span class="book-title"><%= book.title %></span>
-					</li>
-					<li class='book-author-wrapper'>
-						<span class="by">by </span><span class="book-author"><%= book.author %></span>
-					</li>
-				</ul>
-				<div class="search-links">
-					<a class="rounded-link" href="https://www.amazon.com/s?k=<%= book.title %>+<%= book.author %>"
-					target="_blank">
-						<img class="icon" src="/assets/amazon_icon.png" alt=""> 
-						<span class="text-after-icon">Amazon search</span>
-					</a>
-					<a class="rounded-link" href="https://www.amazon.com/s?k=<%= book.title %>+<%= book.author %>"
-					target="_blank">
-						<img class="icon" src="/assets/google_icon.png" alt=""> 
-						<span class="text-after-icon">Google search</span>
-					</a>
-					<% if book.club == 'bookbros' %>
-					<a class="rounded-link" href="https://www.torontopubliclibrary.ca/search.jsp?Ntt=<%= book.title %>+<%= book.author %>"
-					target="_blank">Library search</a>
-					<% end %>
-
-				</div>
-			</div>
-		</section>
-		<% if @books.length > 1 %>
-		<div class="book-text previous-books">| Previous books |</div>
-		<% end %>
-	<% else %>
+	<% end %>	
 		<section>
-			<figure class="book-cover previous" id="<%= book.book %>">
-				
+			<figure class="book-cover previous" id="<%= book.book %>">			
 				<span class="book-image">
 					<img src="https://books.google.com/books/content/images/frontcover/<%= book.book %>?fife=w200-h300"
 						alt="<%= book.title %> by <%= book.author %> (No book cover available)">
@@ -141,6 +103,26 @@
 					<% end %>
 					<% if @rating_total == 0 %>
 						<li><em>No ratings yet</em></li>
+						<li>
+							<div class="search-links">
+								<a class="rounded-link" href="https://www.amazon.com/s?k=<%= book.title %>+<%= book.author %>
+									&ref=as_li_tl?ie=UTF8&tag=bookbros03-20&camp=15121&creative=330641&linkCode=as2&creativeASIN=1405206276"
+								target="_blank">
+									<img class="icon" src="/assets/amazon_icon.png" alt=""> 
+									<span class="text-after-icon">Amazon search</span>
+								</a>
+								<a class="rounded-link" href="https://books.google.ca/books?id=<%= book.book %>"
+								target="_blank">
+									<img class="icon" src="/assets/google_icon.png" alt=""> 
+									<span class="text-after-icon">Google search</span>
+								</a>
+								<% if book.club == 'bookbros' %>
+								<a class="rounded-link" href="https://www.torontopubliclibrary.ca/search.jsp?Ntt=<%= book.title %>+<%= book.author %>" target="_blank">
+									<img class="icon library" src="/assets/library_icon.svg" alt=""> 
+									<span class="text-after-icon">Library search</span></a>
+								<% end %>
+							</div>
+						</li>	
 					<% else %>
 					<!-- <input type="number" value='<%= (@rating_total / @rating_count) %>' id="average_output"> -->
 						<li class="average-rating">
@@ -163,6 +145,10 @@
 				<li>Jeff: <span>8</span></li> -->
 			
 		</section>
+	<% if @books.last == book %>
+		<% if @books.length > 1 %>
+			<div class="book-text previous-books">| Previous books |</div>
+		<% end %>
 	<% end %>
 
 <% end %>

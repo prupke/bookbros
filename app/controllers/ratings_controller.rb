@@ -18,6 +18,7 @@ class RatingsController < ApplicationController
 		session[:name] = @rating[:name]
 		print(session[:name])
 		@rating.save
+		flash[:notice] = 'Rating saved'
 		redirect_to posts_url(:anchor => @rating[:book])
 	end
 	

@@ -11,14 +11,27 @@
 		<% end %>
 
 		<form action="/books" method="GET" id="book_search_form">
-			<input type="text" id="book_search" name="book_search" value="<% params[:book_search] %>">
+			<input type="text" id="book_search" name="book_search" required="true" minlength="3" maxlength="50" 
+			value="<% params[:book_search] %>">
 			<input type="submit" value="Search books">
 		</form>
 
 		<% if params[:book_search] %>
 			<p class="update">
-				Showing results for '<%= params[:book_search] %>'. Now select a book cover.
-			</p>
+				Showing results for '<%= params[:book_search] %>'. Now select a book for your club to read!
+			
+<!-- 			<% if !session['name'] %>
+
+				Now select a book cover.
+				</p>
+				<input id='name-input' type="hidden" name='chosen_by' value="<%= session['name'] %>">
+
+			<% else %>
+				<p>Name:
+				<input id='name-input' type="text" name="chosen_by" form = '' required="true">
+				</p>
+				
+			<% end %> -->
 		<% end %>
 	<%= form_with model: @book, id: 'template' do |f| %>
 <!-- 		<%= f.hidden_field :book %>

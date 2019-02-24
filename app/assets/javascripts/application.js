@@ -57,18 +57,10 @@ function googleBooksApiResponse(response) {
 		// var amazonSearchLink = "http://www.google.com/search?q=" + isbn + "+amazon.com&btnI"
 		// var amazonSearchLink = "https://duckduckgo.com/?q=!" + item.volumeInfo.title + "+" + item.volumeInfo.authors + "+amazon"
 		
-		var amazonSearchLink = "https://www.amazon.com/s?k=" + isbn + "&camp=1789&creative=9325&linkCode=xm2"
-			+ "&linkId=48ba27de2a923a70c174c1085d1eb13c&tag=bookbros-20&ref=as_li_qf_sp_sr_il_tl"
-		
+		var amazonSearchLink = "https://www.amazon.com/s?k=" + isbn + 
+		"&ref=as_li_tl?ie=UTF8&tag=bookbros03-20&camp=15121&creative=330641&linkCode=as2&creativeASIN=1405206276"
 
-		// longhand if statement (replaced below)
-		// if(item.volumeInfo.description === undefined) {
-		// 	description = 'No synopsis available for this book.'
-		// }	
-		// else {
-		// 	description = item.volumeInfo.description
-		// };
-
+		var googleSearchLink = "https://books.google.ca/books?id=" + item.id
 		// Check if there are values so that "Undefined" does not get put into the app
 		var categories = item.volumeInfo.categories === undefined ? 
 			'' : "<span class='categories'>Category: " + item.volumeInfo.categories + "</span>"
@@ -99,8 +91,10 @@ function googleBooksApiResponse(response) {
 				+ "<div class='description'>Details"
 					+ "<div class='hidden-description'>" 
 						+ "<span>"
-							+ "<a class='rounded-link' target='_blank' href=\"" + amazonSearchLink + "\">Amazon</a>"
-							+ "<a class='rounded-link' target='_blank' href=\"" + item.volumeInfo.previewLink + "\">Google Books</a>"
+							+ "<a class='rounded-link' target='_blank' href=\"" + amazonSearchLink + "\">"
+								+ "<img class='icon-small' src='/assets/amazon_icon.png'> Amazon</a>"
+							+ "<a class='rounded-link' target='_blank' href=\"" + googleSearchLink+ "\">"
+								+ "<img class='icon-small' src='/assets/google_icon.png'> Google</a>"
 						+"</span>"
 						+ "<p>" + categories + pages + published + rating + "<br><br>"
 							+ "<span class='synopsis'>" + description + "<span>"

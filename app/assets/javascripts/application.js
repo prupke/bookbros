@@ -59,7 +59,7 @@ function googleBooksApiResponse(response) {
 		
 		var amazonSearchLink = "https://www.amazon.com/s?k=" + isbn + "&camp=1789&creative=9325&linkCode=xm2"
 			+ "&linkId=48ba27de2a923a70c174c1085d1eb13c&tag=bookbros-20&ref=as_li_qf_sp_sr_il_tl"
-		console.log(item.volumeInfo.description)	
+		
 
 		// longhand if statement (replaced below)
 		// if(item.volumeInfo.description === undefined) {
@@ -70,7 +70,8 @@ function googleBooksApiResponse(response) {
 		// };
 
 		// Check if there are values so that "Undefined" does not get put into the app
-		var categories = item.volumeInfo.categories === undefined ? '' : "<span class='categories'>" + item.volumeInfo.categories + "</span>"
+		var categories = item.volumeInfo.categories === undefined ? 
+			'' : "<span class='categories'>Category: " + item.volumeInfo.categories + "</span>"
 		var pages = item.volumeInfo.pageCount === undefined ? '' : "<span class='pages'>" + item.volumeInfo.pageCount + " pages</span>"
 		var published = item.volumeInfo.publishedDate === undefined ? 
 			published = '' : published = "<br><br><span class='published'>Published " + item.volumeInfo.publishedDate + "</span>"
@@ -82,26 +83,42 @@ function googleBooksApiResponse(response) {
 		var description = item.volumeInfo.description === undefined ? 
 			description = 'No synopsis is available for this book.' : description = item.volumeInfo.description 
 		// Associate ID: bookbros03-20
+		var template_form = document.querySelector('#template')
+		// console.log(template_form.elements)
+		var token = template_form.elements[1].value
 
 		document.getElementById("book-search-results").innerHTML += 
-			("<li>" 
-				// "<a href='" + item.selfLink + "'>link</a>
-				+ "<div class='description'>Details<div class='hidden-description'>" 
+			("<li><form action='/books' accept-charset='UTF-8' method='post'>" 
+				+ "<input name='utf8' type='hidden' value='✓'>"
+				+ "<input type='hidden' name='authenticity_token' value='" + token + "'>"
+				// + "<%= form_authenticity_token %>"
+				+ "<input id='book_book' name='book[book]' type='hidden' value='" + item.id + "'>"		
+				+ "<input id='book_title' name='book[title]' type='hidden' value='" + item.volumeInfo.title + "'>"
+				+ "<input id='book_author' name='book[author]' type='hidden' value='" + item.volumeInfo.authors + "'>"
+				+ "<input id='book_club' name='book[club]' type='hidden' value='bookbros'>"
+				+ "<div class='description'>Details"
+					+ "<div class='hidden-description'>" 
 						+ "<span>"
 							+ "<a class='rounded-link' target='_blank' href=\"" + amazonSearchLink + "\">Amazon</a>"
-							+ "<a class='rounded-link' target='_blank' href=\"" + item.volumeInfo.previewLink + "\">Google Books</a></span>"
-					+ "<p>" + categories + pages + published + rating + "<br><br><span class='synopsis'>" + description + "<span></p>"
+							+ "<a class='rounded-link' target='_blank' href=\"" + item.volumeInfo.previewLink + "\">Google Books</a>"
+						+"</span>"
+						+ "<p>" + categories + pages + published + rating + "<br><br>"
+							+ "<span class='synopsis'>" + description + "<span>"
+						+ "</p>"
 				+ "</div></div>"	
-				+ "<figure><a href=\"" + bookCoverLink +"?fife=w667-h1000\">"
-					+ "<img src=\"" + bookCoverLink + "?fife=w200-h300\"/>"
-					+ "<figcaption class='book-title-and-author'>"
-						+ "<span class='book-title'>" + item.volumeInfo.title + "</span>"
-						+ "<span class='by'> by </span>"
-						+ "<span class='book-author'>" + item.volumeInfo.authors + "</span>"
-					+ "</figcaption></a></figure></li>");
+				+ "<figure>"
+					
+					+ "<input type='submit' name='commit' value='' id = '" + item.id + "' style='background: url(" + bookCoverLink + "?fife=w200-h300)'> "
+					// + "onclick='showElements(this.form);'>"
+						+ "<figcaption class='book-title-and-author'>"
+							+ "<span class='book-title'>" + item.volumeInfo.title + "</span>"
+							+ "<span class='by'> by </span>"
+							+ "<span class='book-author'>" + item.volumeInfo.authors + "</span>"
+					+ "</figcaption></span></figure></form></li>");
 	}
 	return response.items
 }
+
 
 
 

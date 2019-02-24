@@ -13,7 +13,8 @@ class PostsController < ApplicationController
 				author: "Patricia Highsmith"
 			}
 		]
-		@books = (books.map {|book| book.values})
+		# @books = (books.map {|book| book.values})
+		@books = Book.where(club = "club='bookbros'")
 
 		@title = 'Book Bros';
 		@ratings = Rating.all

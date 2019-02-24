@@ -18,11 +18,24 @@ form {
 	> input[type="submit"] {
 		height: 38px;
 	}
-
 }
 
 .update {
 	text-align: center;
+}
+
+#notice {
+	position: absolute;
+	top: 30px;
+	left: 25vw;
+	background: rgba(107, 209, 251, 0.9);
+	width: 50vw;
+	padding: 15px 20px;
+	margin: 0 auto;
+	border-radius: 25px;
+	text-align: center;
+	font-size: 1.2rem;
+	color: black;
 }
 
 #book-search-results {
@@ -42,8 +55,8 @@ form {
 		.description {
 			display: flex;
 			position: relative;
-			top: 10px;
-			right: -10px;
+			top: 8px;
+			right: -8px;
 			margin: 0;
 			font-weight: bold;
 			z-index: 1;
@@ -75,22 +88,21 @@ form {
 			}
 			.hidden-description {
 				display: block;
-				overflow: hidden;
-				border-radius: 0 4px 4px 4px;
 				position: absolute;
+				top: 27px;
+				left: 00px;
 				width: 65px;
 				max-height: 300px;
-				height: auto;
-				top: 27px;
-				left: 0;
+				overflow: scroll;
+				border-radius: 0 4px 4px 4px;
 				font-size: 0.8rem;
 				font-style: italic;
 				background: skyblue;
 				color: black;
-				padding: -20px;
 				z-index: 2;
 				height: 0;
-				transition: height 0.15s ease, padding 0.15s ease, width 0.15s ease;
+				text-overflow: ellipsis;
+				transition: height 0.15s ease, padding 0.15s ease, width 0.1s ease, left 0.1s ease;
 
 				p {
 					display: flex;
@@ -119,9 +131,10 @@ form {
 
 		.description:hover .hidden-description {
 			padding: 12px;
-			height: 300px;
+			height: 280px;
 			width: 250px;
-			overflow: scroll;
+			left: -100px;
+			// overflow: scroll;
 		}
 		figure {
 			margin: 10px 10px 80px;
@@ -129,18 +142,23 @@ form {
 			display: flex;
 			align-items: bottom;
 
-			a {
-				img {
-					display: block;
-					transform: scale(1.0, 1.0);
-					transition: transform 0.15s ease;
-					z-index: 1;
-					&:hover {
-						transform: scale(1.15, 1.15); 
-					}
-				}
+			input {
+				border-radius: 0;
+				border: none;
+				display: block;
+				z-index: 1;
+				width: 200px;
+				height: 300px;
+				transition: transform 0.2s ease;
 			}
 
+			input:hover {
+				transform: scale(1.15, 1.15);
+
+				figcaption {
+					z-index: 10;
+				}
+			}
 			figcaption {
 				text-align: left;
 			}

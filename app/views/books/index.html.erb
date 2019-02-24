@@ -1,27 +1,34 @@
 <main>
 
 	<div class="search-links align-left">
-		<a class="rounded-link" href="/">Home</a>
+		<a class="rounded-link" href="/">Home</a>		
 	</div>
+	<% if notice %>
+	<% end %>
+		<% if !params[:book_search] %>
+			<h2>Find a book</h2>
+			<p class="update">Search by title, author, or both.</p>
+		<% end %>
 
-	<% if !params[:book_search] %>
-		<h2>Find a book</h2>
-		<p class="update">Search by title, author, or both.</p>
+		<form action="/books" method="GET" id="book_search_form">
+			<input type="text" id="book_search" name="book_search" value="<% params[:book_search] %>">
+			<input type="submit" value="Search books">
+		</form>
+
+		<% if params[:book_search] %>
+			<p class="update">
+				Showing results for '<%= params[:book_search] %>'. Now select a book cover.
+			</p>
+		<% end %>
+	<%= form_with model: @book, id: 'template' do |f| %>
+<!-- 		<%= f.hidden_field :book %>
+		<%= f.hidden_field :title %>
+		<%= f.hidden_field :author %>
+		<%= f.hidden_field :club %> -->
+		<!-- <%= f.submit %> -->
 	<% end %>
 
-	<form action="/books" method="GET" id="book_search_form">
-		<input type="text" id="book_search" name="book_search" value="<% params[:book_search] %>">
-		<input type="submit" value="Search books">
-	</form>
-
-	<% if params[:book_search] %>
-		<p class="update">
-			Showing results for '<%= params[:book_search] %>'. Now select a book cover.
-		</p>
-	<% end %>
-
-	<ul id="book-search-results"></ul>
-
+		<ul id="book-search-results"></ul>
 	<script src="https://www.googleapis.com/books/v1/volumes?q=<%= @search %>&callback=googleBooksApiResponse"></script>
 
 </main>

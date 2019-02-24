@@ -52,7 +52,18 @@ h2 {
 	transition: width 0.2s ease-in-out, opacity 0.2s ease, right 0.2s ease;
 }
 
+.icon {
+	width: 24px;
+	height: 24px;
+}
+
+.text-after-icon {
+	position: relative;
+	bottom: 4px;
+}
+
 .rounded-link, input[type="submit"], figcaption input[type="submit"] {
+	background: rgba(107, 209, 251, 0.1);
 	text-decoration: none;
 	color: skyblue;
 	display: inline-block;
@@ -63,6 +74,29 @@ h2 {
 	border-radius: 25px;
 	border: 2px solid skyblue;
 
+}
+
+.search-links {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	align-items: center;
+	width: 100%;
+
+	a {
+		width: 200px;
+		margin: 5px 0;
+		padding: 8px 0;
+		font-size: 1.1rem;
+		display: inline-block;
+	}
+
+	// span {
+	// 	position: relative;
+	// 	background: transparent;
+	// 	color: skyblue;
+	// 	height: 100%;
+	// }
 }
 
 a:hover, .add-rating:hover, input[type="submit"]:hover, figcaption input[type="submit"]:hover {
@@ -144,34 +178,11 @@ ul li {
 .book-cover img {
 	width: 30vw;
 	height: auto;
-	min-height: 350px;
+	// min-height: 350px;
 }
 
 .current-book img {
 	display: flex;
-}
-
-.search-links {
-	display: flex;
-	flex-direction: column;
-	text-align: center;
-	align-items: center;
-	width: 100%;
-
-	a {
-		width: 200px;
-		margin: 5px 0;
-		padding: 8px 0;
-		font-size: 1.1rem;
-		display: inline-block;
-	}
-
-	span {
-		position: relative;
-		background: transparent;
-		color: skyblue;
-		height: 100%;
-	}
 }
 
 .align-left {
@@ -377,6 +388,7 @@ label {
 	background: rgba(107, 209, 251, 0.85);
 	border-radius: 25px;
 	padding: 10px;
+	width: 270px;
 }
 
 .average-rating span:first-child {
@@ -483,6 +495,9 @@ label {
 	min-height: 300px;
 }
 
+.book-title-wrapper, .book-author-wrapper {
+	max-width: 500px;
+}
 
 .book-title {
 	background: rgba(107, 209, 251, 0.85);
@@ -555,9 +570,10 @@ section {
 #copyright {
 	position: absolute;
 	bottom: 20px;
-	right: 50px;
+	right: 10px;
 	color: white;
 	font-size: 0.6rem;
+	margin: 2px 20px;
 }
 
 .form-wrapper form {

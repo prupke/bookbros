@@ -51,9 +51,16 @@
 	figure {
 		margin: 10px auto;
 	}
-	.search-links a {
-		padding: 10px 0;
+	.book-search-links {
+		display: flex;
+		padding: 0;
+		margin: 5px 5px 5px -15vw;
 
+		a {
+			/*padding: 10px 0;*/
+			margin: 5px auto;
+
+		}
 	}
 
 	section ul {
@@ -94,6 +101,11 @@
 		font-size: 1.8rem;
 		padding: 1px 6px;
 		width: auto;
+	}
+
+	figure:hover .add-rating {
+		font-size: 1.8rem;
+		height: 48px;
 	}
 
 	.rating:hover .rating-notes {
@@ -137,7 +149,7 @@
 	}
 
 	.average-rating {
-		width: 60vw;
+		width: 70vw;
 		text-align: center;
 	}
 

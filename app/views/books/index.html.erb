@@ -13,7 +13,7 @@
 		<form action="/books" method="GET" id="book_search_form">
 			<input type="text" id="book_search" name="book_search" required="true" minlength="3" maxlength="50" 
 			value="<%= @search %>">
-			<input type="submit" value="Search books">
+			<input class="rounded-link solid-link" type="submit" value="Search books">
 		</form>
 
 		<% if params[:book_search] %>

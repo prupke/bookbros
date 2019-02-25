@@ -19,18 +19,11 @@ window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
   if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-    document.querySelector("#logo img").style.width = "150px";
-    document.querySelector("#logo img").style.opacity = "0.3";
-    document.querySelector("#logo img").style.right = "20px";
-
+  	document.querySelector("#logo").classList.add("logo-move");
   } else {
-    document.querySelector("#logo img").style.width = "400px";
-    document.querySelector("#logo img").style.opacity = "1";
-    document.querySelector("#logo img").style.right = "calc(50% - 200px)";
+  	document.querySelector("#logo").classList.remove("logo-move");
   }
 }
-
-
 
 
 // Causes the rating form to appear when the "Add rating" button is clicked (and the button to move up)

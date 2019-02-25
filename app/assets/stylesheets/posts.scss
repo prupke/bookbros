@@ -2,16 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
+:root {
+	--main:  rgba(107, 209, 251, 0.85);
+ 	--font1: 'Roboto Mono', monospace;
+ 	--font2: 'ZCOOL KuaiLe', 'Verdana', sans-serif;
+ 	--linkfg: rgba(255,255,255,0.85);
+    --linkbg: rgba(107, 209, 251, 0.5);
+    --opaque: rgba(0, 0, 0, 0.4);
+}
 
 html {
  	height: 100%;
  	overflow-x: hidden;
- 	--main:  #dcfada;
- 	--font1: 'Roboto Mono', monospace;
- 	--font2: 'ZCOOL KuaiLe', 'Verdana', sans-serif;
 	// color: var(--main);
- }
+}
 
 img {
 	display: inline-flex;
@@ -20,7 +24,7 @@ img {
 body {
 	position: relative;
 	box-sizing: border-box; 
-	color: white;
+	color: var(--linkfg);
 	font-family: var(--font1);
 	margin: 0;
 	padding: 0;
@@ -61,14 +65,22 @@ p {
 	margin: 10px 20px;
 }
 
-#logo img {
-	position: fixed;
+#logo {
+	position: absolute;
 	width: 400px;
 	height: auto;
-	top: 20px;
+	top: 120px;
 	right: calc(50% - 200px);
 	opacity: 1;
-	transition: width 0.2s ease-in-out, opacity 0.2s ease, right 0.2s ease;
+	transition: width 0.2s ease-out, opacity 0.2s ease-out, right 0.2s ease-out, top 0.2s ease-out;
+}
+
+.logo-move {
+	position: fixed !important;
+	width: 150px !important;
+	opacity: 0.3 !important;
+	right: 20px !important;
+	top: 20px !important;
 }
 
 #notice {
@@ -112,26 +124,31 @@ p {
 	position: relative;
 	bottom: 4px;
 	background: transparent;
-	color: white;
+	color: var(--linkfg);
 }
+
+// a:link {color:var(--linkfg); background-color:var(--linkbg);}
+//  a:visited {color:var(--linkfg); background-color:var(--linkbg);}
+//  a:hover {color:var(--linkbg); background-color:var(--linkfg);}
+//  a:active {color:var(--linkbg); background-color:var(--linkfg);}
 
 .rounded-link, input[type="submit"] {
 	margin: 5px;
 	padding: 7px 10px;
 	height: auto;
 	font-size: 1.1rem;
-	background: rgba(107, 209, 251, 0.5);
+	background: var(--fglink);
 	text-decoration: none;
-	color: white;
+	color: var(--bglink);
 	display: inline-block;
 	width: auto;
 	text-align: center;
 	// height: 100%;
 	border-radius: 25px;
-	border: 2px solid skyblue;
+	border: 2px solid var(--main);
 
 	&:hover {
-		background: skyblue;
+		background: var(--main);
 		transition: background 0.15s ease, color 0.15s ease;
 		opacity: 1;
 		cursor: pointer;
@@ -165,10 +182,10 @@ p {
 }
 
 .solid-link, input[type="submit"] {
-	background: rgba(107, 209, 251, 0.85);
+	background: var(--opaque);
 	&:hover {
 		background: rgba(107, 209, 251, 1);
-		box-shadow: 0 0 5px 2px rgba(153,181,247,1);
+		// box-shadow: 0 0 5px 2px rgba(153,181,247,1);
 	}
 }
 
@@ -181,8 +198,8 @@ p {
 }
 
 .add-rating:hover {
-	background: skyblue;
-	color: white;
+	background: var(--main);
+	color: var(--linkfg);
 	transition: background 0.15s ease, color 0.15s ease;
 	opacity: 1;
 	cursor: pointer;
@@ -265,10 +282,10 @@ figcaption {
 	margin: 150px auto 0;
 	height: 32px;
 	font-size: 1.4rem;
-	color: skyblue;
+	color: var(--main);
 	width: 130px;
 	max-width: 100%;
-	background: white;
+	background: var(--linkfg);
 	opacity: 0.8;
 	position: relative;
 	top: 0;
@@ -295,9 +312,9 @@ form {
 	textarea {
 		font-family: var(--font1);
 		border-radius: 4px;
-		height: 40px;
+		height: 60px;
 		font-size: 0.9rem;
-		overflow: scroll;
+		// overflow: scroll;
 		resize: vertical;
 		
 	}
@@ -311,7 +328,7 @@ form {
 
 .rating-form-wrapper {
 	display: flex;
-	background: linear-gradient(rgba(107, 209, 251, 0.95) 10%, rgba(107, 209, 251, 0.5), rgba(107, 209, 251, 0.01));
+	background: linear-gradient(rgba(107, 209, 251, 0.95) 10%, var(linkbg), rgba(107, 209, 251, 0.01));
 	flex-direction: column;
 	height: 0;
 	overflow: hidden;
@@ -369,7 +386,7 @@ figcaption:hover div.rating-title {
 
 .average-rating {
 	border: 2px solid transparent;
-	background: rgba(107, 209, 251, 0.85);
+	background: var(--main);
 	border-radius: 25px;
 	padding: 10px;
 	width: 270px;
@@ -401,7 +418,8 @@ figcaption:hover div.rating-title {
 .name {
 	font-family: var(--font2);
 	margin: 0;
-	color: white;
+	color: var(--linkfg);
+	background: var(--opaque);
 	display: inline;
 }
 
@@ -488,21 +506,21 @@ figcaption:hover div.rating-title {
 }
 
 .book-title {
-	background: rgba(107, 209, 251, 0.85);
+	background: var(--main);
 	color: black;
 	padding: 0 1px;
 }
 
 .by {
 	font-size: 0.9rem;
-	background: rgba(0, 0, 0, 0.4);
+	background: var(--opaque);
 	// background: transparent;
-	color: white;
+	color: var(--linkfg);
 }
 
 .book-author {
 	color: yellow;
-	background: rgba(0, 0, 0, 0.4);
+	background: var(--opaque);
 	font-size: 1.0rem;
 	margin: 0;
 }
@@ -538,7 +556,7 @@ section {
 	position: absolute;
 	bottom: 20px;
 	right: 10px;
-	color: white;
+	color: var(--linkfg);
 	font-size: 0.6rem;
 	margin: 2px 20px;
 }
@@ -552,8 +570,8 @@ section {
 
 .move-add-rating-up {
 	/*width: 110%;*/
-	background: white;
-	color: skyblue;
+	background: var(--linkfg);
+	color: var(--main);
 	height: 42px;
 	padding: 10px 2px;
 	opacity: 1;
@@ -561,13 +579,13 @@ section {
 	top: -192px;
 	transition: height 150ms ease, width 150ms ease-in-out, top 150ms ease, padding 150ms ease;
 	border-radius: 25px 25px 0 0;
-	background: white;
-	color: skyblue;
+	background: var(--linkfg);
+	color: var(--main);
 	box-shadow: 3px -1px 46px -3px rgba(27,92,245,1);
 
 	&:hover {
-		background: white;
-		color: skyblue;
+		background: var(--linkfg);
+		color: var(--main);
 		height: 42px;
 	}
 }
@@ -638,10 +656,6 @@ input[type='range'] {
 	&, &::-webkit-slider-thumb {
 		-webkit-appearance: none
 	}
-
-	// &:before {
-	// 	content: "👎";
-	// }
 	
 	margin: .25em auto;
 	display: block;

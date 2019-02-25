@@ -1,9 +1,8 @@
 <main>
 	<img id="book-header" src="/assets/books.png" alt="">
+
+	<img id="logo" src="/assets/bookbros_logo_small.png" alt="Book Bros">
 	
-	<div id="logo">
-		<img src="/assets/bookbros_logo_small.png" alt="Book Bros">
-	</div>
 	<div class="search-links align-left">
 		<a class="rounded-link" href="/books">Find a book</a>
 	</div>
@@ -16,6 +15,11 @@
 		<li><a href="#" class="rounded-link small-link">small-link</a></li>
 		<li><a href="#" class="rounded-link fixed-width-link">fixed-width</a></li>
 	</ul>	 -->
+<% if @books.length == 0 %>
+
+<!-- <h2>Welcome to Book Bros!</h3>	 -->
+
+<% end %>
 
 <% @books.reverse.each do |book| %>
 
@@ -42,7 +46,7 @@
 							<p>	
 								<%= f.label :name%>
 								<%= f.text_field :name, placeholder: "Name", autocomplete: "off", required: "true",
-								value: session['name'] %>
+								value: session['name'], maxLength: 24 %>
 							</p>
 							<p>
 								<%= f.label :rating, autocomplete: "off" %>
@@ -58,7 +62,7 @@
 								<output name="output" for = "rating_rating">?</output>
 							</span>
 						</p>
-							<%= f.text_area :notes, placeholder: "Notes (optional)", autocomplete: "off" %>
+							<%= f.text_area :notes, placeholder: "Notes (optional)", autocomplete: "off", maxLength: 400 %>
 						<p>
 							<%= f.submit %>
 						</p>
@@ -124,7 +128,7 @@
 									<span class="text-after-icon">Google search</span>
 								</a>
 								<% if book.club == 'bookbros' %>
-								<a class="rounded-link fixed-width-link" href="https://www.torontopubliclibrary.ca/search.jsp?Ntt=<%= book.title %>+<%= book.author %>" target="_blank">
+								<a class="rounded-link fixed-width-link solid-link" href="https://www.torontopubliclibrary.ca/search.jsp?Ntt=<%= book.title %>+<%= book.author %>" target="_blank">
 									<img class="icon library" src="/assets/library_icon.svg" alt=""> 
 									<span class="text-after-icon">Library search</span></a>
 								<% end %>

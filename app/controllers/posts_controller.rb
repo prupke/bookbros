@@ -1,19 +1,6 @@
 class PostsController < ApplicationController
 
 	def index
-		books = [
-			{
-				id: "in_the_skin_of_a_lion_michael_ondaatje",
-				name: "In the Skin of a Lion", 
-				author: "Michael Ondaatje"
-			},
-			{
-				id: "strangers_on_a_train_patricia_highsmith",
-				name: "Strangers on a Train", 
-				author: "Patricia Highsmith"
-			}
-		]
-		# @books = (books.map {|book| book.values})
 		@books = Book.where(club = "club='bookbros'")
 
 		@title = 'Book Bros';

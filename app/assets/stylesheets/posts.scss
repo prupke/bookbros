@@ -2,9 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+
 html {
  	height: 100%;
  	overflow-x: hidden;
+ 	--main:  #dcfada;
+ 	--font1: 'Roboto Mono', monospace;
+ 	--font2: 'ZCOOL KuaiLe', 'Verdana', sans-serif;
+	// color: var(--main);
  }
 
 img {
@@ -15,7 +21,7 @@ body {
 	position: relative;
 	box-sizing: border-box; 
 	color: white;
-	font-family: 'Roboto Mono', monospace;
+	font-family: var(--font1);
 	margin: 0;
 	padding: 0;
 	width: 100vw;
@@ -41,7 +47,7 @@ h1 {
 	padding: 0;
 	margin: 40px 10px;
 	text-align: center;
-	font-family: 'ZCOOL KuaiLe', 'Verdana', sans-serif;
+	font-family: var(--font2);
 	text-shadow: -4px 4px 12px rgba(150, 150, 150, 1);
 }
 
@@ -287,9 +293,10 @@ form {
 	}
 
 	textarea {
+		font-family: var(--font1);
 		border-radius: 4px;
 		height: 40px;
-		font-size: 0.8rem;
+		font-size: 0.9rem;
 		overflow: scroll;
 		resize: vertical;
 		
@@ -389,6 +396,13 @@ figcaption:hover div.rating-title {
 	margin: 10px auto;
 	padding: 0;
 	margin-left: 0;
+}
+
+.name {
+	font-family: var(--font2);
+	margin: 0;
+	color: white;
+	display: inline;
 }
 
 .rating-number {
@@ -538,6 +552,8 @@ section {
 
 .move-add-rating-up {
 	/*width: 110%;*/
+	background: white;
+	color: skyblue;
 	height: 42px;
 	padding: 10px 2px;
 	opacity: 1;
@@ -548,6 +564,12 @@ section {
 	background: white;
 	color: skyblue;
 	box-shadow: 3px -1px 46px -3px rgba(27,92,245,1);
+
+	&:hover {
+		background: white;
+		color: skyblue;
+		height: 42px;
+	}
 }
 
 /* this is used with the range input for the ratings*/
@@ -567,6 +589,7 @@ output {
 
 // Codepen to test this out: https://codepen.io/prupke/pen/wNVvJX
 
+
 @mixin range-inputs() { 
 	background: skyblue; 
 	font-size: 13rem;
@@ -578,7 +601,7 @@ output {
 
 // set the width and height of the range input here
 $input-w: 12rem;
-$input-h: 2rem;
+$input-h: 2.0rem;
 $track-h: .625*$input-h;
 $thumb-d: .8125*$input-h;
 $filll-h: .3125*$input-h;
@@ -602,7 +625,7 @@ $sw: 0*$track-h;
 
 @mixin range-input-fill() {
 	height: $filll-h;
-	@include range-input-highlight-boxes(white, .4)
+	@include range-input-highlight-boxes(teal, .4)
 }
 
 @mixin range-input-thumb() {
@@ -624,7 +647,7 @@ input[type='range'] {
 	display: block;
 	width: $input-w; height: $input-h;
 	@include range-input-highlight-boxes;
-	font: 1em verdana sans-serif;
+	font-family: var(--font1);
 	
 	&::-webkit-slider-runnable-track {
 		@include range-input-track()
@@ -656,5 +679,3 @@ input[type='range'] {
 		@include range-input-thumb()
 	}
 }
-
-

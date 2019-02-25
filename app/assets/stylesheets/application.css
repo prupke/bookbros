@@ -108,6 +108,10 @@
 		height: 48px;
 	}
 
+	figure:hover .move-add-rating-up {
+		height: 40px;
+	}
+
 	.rating:hover .rating-notes {
 		margin-top: 5px;
 		position: relative;

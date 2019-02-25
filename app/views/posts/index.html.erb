@@ -85,7 +85,7 @@
 						<% if rating.book == book.book %>
 							<% if @rating_count < 5 %>
 								<li class="rating">
-									<%= rating.name %>:
+									<p class="name"><%= rating.name %></p>:
 									<span class="rating-number rating-<%= Integer(rating.rating) %>">
 										<%= rating.rating %>
 									</span>	

@@ -108,7 +108,6 @@ function googleBooksApiResponse(response) {
 				+ "<figure>"
 					
 					+ "<input type='submit' name='commit' value='' id = '" + item.id + "' style='background: url(" + bookCoverLink + "?fife=w200-h300)'> "
-					// + "onclick='showElements(this.form);'>"
 				+ "</figure></form></li>");
 	}
 	return response.items

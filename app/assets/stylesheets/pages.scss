@@ -3,6 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 nav {
+	position: fixed;
+	z-index: 2;
 	display: inline-flex;
 	height: 50px;
 	background: var(--nav-gradient);
@@ -32,7 +34,7 @@ nav {
 		li {
 			a {
 				// background: var(--gradient);
-				padding: 28px 50px 28px;
+				padding: 16px 50px 16px;
 				text-decoration: none;
 				color: darkblue;
 				transition: background 0.2s ease, color 0.2s ease;

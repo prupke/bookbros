@@ -17,9 +17,14 @@
 	margin: 0px auto;
 }
 
+#book_search_form {
+	margin-top: 95px;
+}
+
 #book_search {
 	text-align: center;
 }
+
 
 #book-search-results {
 	display: flex;
@@ -104,42 +109,42 @@
 					.synopsis {
 						margin-top: 5px;
 					}
-				}
-				.synopsis {
-					font-weight: normal;
-					font-style: italic;
+					}
+					.synopsis {
+						font-weight: normal;
+						font-style: italic;
+					}
 				}
 			}
-		}
 
-		.description:hover .hidden-description {
-			padding: 12px;
-			height: 280px;
-			width: 250px;
-			left: -100px;
-			// overflow: scroll;
-		}
-		figure {
-			margin: 10px 10px 80px;
-			padding: 0;
-			display: flex;
-			align-items: bottom;
-
-			input {
-				position: relative;
-				top: -16px;
-				border-radius: 0;
-				border: none;
-				display: block;
-				z-index: 1;
-				width: 200px;
-				height: 300px;
-				transition: transform 0.2s ease;
+			.description:hover .hidden-description {
+				padding: 12px;
+				height: 280px;
+				width: 250px;
+				left: -100px;
+				// overflow: scroll;
 			}
+			figure {
+				margin: 10px 10px 80px;
+				padding: 0;
+				display: flex;
+				align-items: bottom;
 
-			input:hover {
-				transform: scale(1.15, 1.15);
+				input {
+					position: relative;
+					top: -16px;
+					border-radius: 0;
+					border: none;
+					display: block;
+					z-index: 1;
+					width: 200px;
+					height: 300px;
+					transition: transform 0.2s ease;
+				}
+
+				input:hover {
+					transform: scale(1.15, 1.15);
+				}
 			}
 		}
 	}
-}

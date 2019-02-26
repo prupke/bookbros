@@ -68,7 +68,7 @@ h1 {
 h2 {
 	text-align: center;
 	font-size: 2.5rem;
-	margin: 50px auto;
+	margin: 80px auto 10px;
 }
 
 p {
@@ -76,21 +76,22 @@ p {
 }
 
 #logo {
-	position: absolute;
+	position: fixed;
 	width: 400px;
 	height: auto;
-	top: 40px;
+	top: 120px;
 	right: calc(50% - 200px);
 	opacity: 1;
 	transition: width 0.2s ease-out, opacity 0.2s ease-out, right 0.2s ease-out, top 0.2s ease-out;
 }
 
 .logo-move {
-	position: fixed !important;
-	width: 150px !important;
-	opacity: 0.3 !important;
-	right: 20px !important;
-	top: 20px !important;
+	// position: fixed !important;
+	// width: 150px !important;
+	opacity: 0.15 !important;
+	z-index: 0;
+	// right: 20px !important;
+	// top: 20px !important;
 }
 
 #notice {
@@ -230,7 +231,7 @@ ul {
 }
 
 .current-book-text {
-	margin: 250px auto 30px;
+	margin: 380px auto 30px;
 }
 
 .book-cover {

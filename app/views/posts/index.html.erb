@@ -1,11 +1,7 @@
 <main>
-	<img id="book-header" src="/assets/books.png" alt="">
+	<!-- <img id="book-header" src="/assets/books.png" alt=""> -->
 
 	<img id="logo" src="/assets/bookbros_logo_small.png" alt="Book Bros">
-	
-	<div class="search-links align-left">
-		<a class="rounded-link" href="/books">Find a book</a>
-	</div>
 
 <!-- 	<ul style="display: flex; flex-direction: column;">
 		<li><a href="#" class="rounded-link">rounded-link</a></li>		
@@ -44,9 +40,9 @@
 							<%= f.label :book %>
 							<%= f.hidden_field :book, :value => book.book %>	
 							<p>	
-								<%= f.label :name%>
+								<%= f.label :name %>
 								<%= f.text_field :name, placeholder: "Name", autocomplete: "off", required: "true",
-								value: session['name'], maxLength: 24 %>
+								value: session['name'], maxLength: 24, autofocus: 'true' %>
 							</p>
 							<p>
 								<%= f.label :rating, autocomplete: "off" %>
@@ -128,7 +124,7 @@
 									<span class="text-after-icon">Google search</span>
 								</a>
 								<% if book.club == 'bookbros' %>
-								<a class="rounded-link fixed-width-link solid-link" href="https://www.torontopubliclibrary.ca/search.jsp?Ntt=<%= book.title %>+<%= book.author %>" target="_blank">
+								<a class="rounded-link fixed-width-link" href="https://www.torontopubliclibrary.ca/search.jsp?Ntt=<%= book.title %>+<%= book.author %>" target="_blank">
 									<img class="icon library" src="/assets/library_icon.svg" alt=""> 
 									<span class="text-after-icon">Library search</span></a>
 								<% end %>

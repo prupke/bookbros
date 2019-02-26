@@ -8,7 +8,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|ZCOOL+KuaiLe" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|ZCOOL+KuaiLe|Archivo" rel="stylesheet"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="icon" type="image/icon" href="/assets/favicon.ico"> -->
     <%= favicon_link_tag '/assets/bookbros.ico' %>
@@ -22,6 +22,16 @@
   </head>
 
   <body>
+    <nav>
+        <img class="nav-logo" src="/assets/bookbros_logo_small.png" alt="" \>
+        <ul>
+            <li><%= link_to "Home", home_path %></li>
+            <li><%= link_to "Find books", books_path %></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </nav>
     <% if notice %>
       <p id="notice"><%= notice %></p>
     <% end %>

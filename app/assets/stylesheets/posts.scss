@@ -347,7 +347,7 @@ form {
 		border-radius: 4px;
 		height: 60px;
 		font-size: 0.9rem;
-		// overflow: scroll;
+		overflow: auto;
 		resize: vertical;
 		
 	}
@@ -362,7 +362,7 @@ form {
 
 .rating-form-wrapper {
 	display: flex;
-	background: linear-gradient(rgba(107, 209, 251, 0.95) 10%, var(linkbg), rgba(107, 209, 251, 0.01));
+	background: linear-gradient(rgba(107, 209, 251, 0.95) 10%, rgba(107, 209, 251, 0.01));
 	flex-direction: column;
 	height: 0;
 	overflow: hidden;
@@ -621,6 +621,8 @@ output {
 // Codepen to test this out: https://codepen.io/prupke/pen/wNVvJX
 
 
+
+
 @mixin range-inputs() { 
 	background: skyblue; 
 	font-size: 13rem;
@@ -642,7 +644,7 @@ $sw: 0*$track-h;
 
 @mixin range-input-highlight-boxes($c: white, $a: .9) {
 	box-sizing: border-box;
-	border: 2px solid skyblue;
+	// border: 2px solid skyblue;
 	padding: none;
 	border-radius: 25px;
 	background: currentcolor content-box;
@@ -707,7 +709,4 @@ input[type='range'] {
 		@include range-input-thumb()
 	}
 }
-
-
-
 

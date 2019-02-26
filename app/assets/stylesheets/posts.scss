@@ -89,7 +89,7 @@ p {
 	// position: fixed !important;
 	// width: 150px !important;
 	opacity: 0.15 !important;
-	z-index: 0;
+	z-index: -1;
 	// right: 20px !important;
 	// top: 20px !important;
 }
@@ -204,7 +204,7 @@ p {
 }
 
 #book-header {
-	z-index: -1;
+	z-index: 1 !important;
 	position: absolute;
 	right: 0;
 	width: 95vw;
@@ -642,7 +642,7 @@ $sw: 0*$track-h;
 
 @mixin range-input-highlight-boxes($c: white, $a: .9) {
 	box-sizing: border-box;
-	border: none;
+	border: 2px solid skyblue;
 	padding: none;
 	border-radius: 25px;
 	background: currentcolor content-box;
@@ -656,6 +656,7 @@ $sw: 0*$track-h;
 
 @mixin range-input-fill() {
 	height: $filll-h;
+	border: none;
 	@include range-input-highlight-boxes(teal, .4)
 }
 
@@ -669,7 +670,7 @@ input[type='range'] {
 	&, &::-webkit-slider-thumb {
 		-webkit-appearance: none
 	}
-	
+	border: none !important;
 	margin: .25em auto;
 	display: block;
 	width: $input-w; height: $input-h;
@@ -706,3 +707,7 @@ input[type='range'] {
 		@include range-input-thumb()
 	}
 }
+
+
+
+

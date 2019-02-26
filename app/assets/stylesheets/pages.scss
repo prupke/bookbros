@@ -9,7 +9,7 @@ nav {
 	height: 50px;
 	background: var(--nav-gradient);
 	width: 100vw;
-	box-shadow: var(--shadow);
+	// box-shadow: var(--shadow);
 	font-family: 'Archivo', sans-serif;
 
 	.nav-logo {
@@ -34,7 +34,7 @@ nav {
 		li {
 			a {
 				// background: var(--gradient);
-				padding: 16px 50px 16px;
+				padding: 16px 50px 13px;
 				text-decoration: none;
 				color: darkblue;
 				transition: background 0.2s ease, color 0.2s ease;

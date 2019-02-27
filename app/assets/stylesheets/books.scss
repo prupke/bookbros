@@ -23,6 +23,10 @@
 
 #book_search {
 	text-align: center;
+	background: var(--gradient-light);
+	&:hover, &:active, &:focus {
+		box-shadow: var(--shadow);
+	}
 }
 
 
@@ -56,7 +60,7 @@
 			height: 20px;
 			width: 65px;
 			color: black;
-			background: skyblue;
+			background: var(--gradient2);
 			border-radius: 10px 10px 0 0;
 			z-index: 2;
 			span {
@@ -68,11 +72,10 @@
 				a {
 					border: 1px solid black;
 					color: black;
-					transition: color 0.2s ease, border 0.2s ease;
+					transition: color 0.1s ease;
 					&:hover {
 						color: white;
-						background: skyblue;
-						border: 1px solid white;
+						// border: 1px solid skyblue;
 
 					}
 				}
@@ -85,10 +88,10 @@
 				width: 65px;
 				max-height: 300px;
 				overflow-y: auto;
-				border-radius: 4px;
+				border-radius: 25px;
 				font-size: 0.8rem;
 				font-style: italic;
-				background: skyblue;
+				background: var(--gradient3);
 				color: black;
 				z-index: 2;
 				height: 0;

@@ -21,6 +21,66 @@
 
 @media screen and (max-width: 800px) {
 
+	nav {
+		position: fixed;
+	}
+
+	nav ul {
+		position: relative;
+	}
+
+	#hamburger-menu {
+		position: fixed;
+		display: block;
+		font-size: 3rem;
+		top: 0;
+		right: 10px;
+	}
+
+	.nav-links:hover ul li {
+		display: block;
+	}
+
+	.nav-links ul li:hover #hamburger-menu {
+		display: none;
+	}
+
+	nav ul li.nav-links ul {
+		position: fixed;
+		top: 0;
+		right: 0;
+		left: 0;
+		width: 100vw;
+		flex-direction: column;
+		/*position: absolute;*/
+		/*right: 200px;*/
+		align-items: baseline;
+		height: auto;
+		justify-content: space-around;
+		background: skyblue;
+	}
+
+	nav ul li.nav-links ul li {
+		width: 300px;
+		margin: 0 auto;
+		padding: 30px;
+		width: 100%;
+		/*position: absolute;*/
+		display: none;
+		/*text-align: left !important;*/
+	}
+
+	nav ul li.nav-links ul li a {
+		position: relative;
+		left: -20vw;
+		text-align: left !important;
+		width: 100%;
+		padding: 30px 55vw;
+		overflow-x: hidden;
+		white-space: pre;
+		/*position: absolute;*/
+	}
+
 	main {
 		margin-left: 0;
 	}

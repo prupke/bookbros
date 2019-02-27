@@ -61,7 +61,7 @@ function googleBooksApiResponse(response) {
 			'' : "<span class='categories'>Category: " + item.volumeInfo.categories + "</span>"
 		var pages = item.volumeInfo.pageCount === undefined ? '' : "<span class='pages'>" + item.volumeInfo.pageCount + " pages</span>"
 		var published = item.volumeInfo.publishedDate === undefined ? 
-			published = '' : published = "<br><br><span class='published'>Published " + item.volumeInfo.publishedDate + "</span>"
+			published = '' : published = "<span class='published'>Published " + item.volumeInfo.publishedDate + "</span>"
 
 		var plural = item.volumeInfo.ratingsCount === 1 ? " vote)" : " votes)"
 		var rating = item.volumeInfo.averageRating === undefined ? '' : "<br><br>Average rating: " 
@@ -94,7 +94,7 @@ function googleBooksApiResponse(response) {
 							+ "<a class='rounded-link small-link' target='_blank' href=\"" + googleSearchLink+ "\">"
 								+ "<img class='icon-small' src='/assets/google_icon.png'> Google</a>"
 						+"</span>"
-						+ "<p>" + categories + pages + published + rating + "<br><br>"
+						+ "<p>" + categories + pages + published + rating + ""
 							+ "<span class='synopsis'>" + description + "<span>"
 						+ "</p>"
 				+ "</div></div>"

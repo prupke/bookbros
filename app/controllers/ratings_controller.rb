@@ -1,15 +1,20 @@
 class RatingsController < ApplicationController
 
 	def index
-		@ratings = Rating.all
+		@ratings = Rating.all.order('rating DESC')
 	end
 
 	def new
 
 	end
 
-	def show
+	def edit
 		@rating = Rating.find(params[:id])
+		if @rating.name == session[:name]
+			@book = Book.find_by(book: @rating.book)
+		else
+			redirect_to posts_url
+		end
 	end
 
 	def create
@@ -20,6 +25,17 @@ class RatingsController < ApplicationController
 		@rating.save
 		flash[:notice] = 'Rating saved'
 		redirect_to posts_url(:anchor => @rating[:book])
+	end
+
+	def update
+		@rating = Rating.find(params[:id])
+		if (@rating.update(rating_params))
+			@book = Book.find_by(book: @rating.book)
+			flash[:notice] = 'Rating updated'
+			redirect_to ('/posts/' + (@book.id).to_s)
+		else
+			render edit
+		end
 	end
 	
 	private

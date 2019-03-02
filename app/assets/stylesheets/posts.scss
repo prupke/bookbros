@@ -25,7 +25,7 @@
 #notice {
 	opacity: 1;
 	position: fixed;
-	top: 5vh;
+	top: 80px;
 	left: 25vw;
 	background: rgba(107, 209, 251, 0.9);
 	width: 50vw;
@@ -154,10 +154,15 @@ ul {
 	color: yellow;
 	text-align: center;
 	margin: 100px 0 30px;
+	background: rgba(107, 209, 251, 0.5);
+	display: block;
+	width: auto;
+	padding: 5px;
 }
 
 .current-book-text {
-	margin: 380px auto 30px;
+	margin-top: 380px;
+	margin-bottom: 30px;
 }
 
 .book-cover {
@@ -172,6 +177,9 @@ ul {
 	height: auto;
 }
 
+.book-cover-link {
+	z-index: 1;
+}
 .align-left {
 	display: flex;
 	justify-content: left;
@@ -209,6 +217,7 @@ figcaption {
 	opacity: 0.85;
 	transform: none;
 	transition: all .15s ease;
+	z-index: 2;
 }
 
 .move-add-rating-up {
@@ -221,6 +230,7 @@ figcaption {
 	transition: all 150ms ease;
 	border-radius: 25px 25px 0 0;
 	box-shadow: 3px -1px 46px -3px rgba(27,92,245,1);
+	z-index: 2;
 	&:hover {
 		height: 42px;
 
@@ -295,6 +305,7 @@ form {
 	position: relative;
 	top: 0;
 	bottom: 0;
+	z-index: 2;
 	form {
 		display: flex;
 		flex-direction: column;
@@ -361,6 +372,7 @@ figcaption:hover div.rating-title {
 
 .book-details-and-ratings {
 	// background: rgba(107, 209, 251, 0.4);
+	position: static;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -438,6 +450,15 @@ figcaption:hover div.rating-title {
 
 .rating-notes {
 	display: none;
+	font-style: italic;
+	position: absolute;
+
+	background: rgba(107, 209, 251, 0.94);
+	margin-top: -28px;
+	width: 25vw;
+	padding: 5px;
+	left: 150px;
+	z-index: 10;
 }
 
 .rating {
@@ -445,15 +466,7 @@ figcaption:hover div.rating-title {
 }
 
 .rating:hover .rating-notes {
-	font-style: italic;
-	position: absolute;
 	display: block;
-	background: rgba(107, 209, 251, 0.94);
-	margin-top: -28px;
-	width: 25vw;
-	padding: 5px;
-	left: 150px;
-	z-index: 10;
 }
 
 .book-image img {

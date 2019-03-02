@@ -1,0 +1,137 @@
+<main class="show-book">
+	<div class="show-book-page-cover">
+		<section>
+			<figure class="book-cover" id="<%= @book.book %>">
+				<span class="book-image">
+					<img src="https://books.google.com/books/content/images/frontcover/<%= @book.book %>?fife=w1200-h800"
+						alt="<%= @book.title %> by <%= @book.author %> (No book cover available)">
+				</span>	
+			
+				<figcaption>
+							
+						<button type="button" class="rounded-link add-rating " id = "form-<%= @book.book %>-button"
+							onclick="getForm('form-<%= @book.book %>')">
+							Add rating
+						</button>
+
+						<div class="rating-form-wrapper " id="form-<%= @book.book %>">
+							<%= form_for :rating, url: ratings_path do |f| %>
+								<%= f.label :book %>
+								<%= f.hidden_field :book, :value => @book.book %>	
+								<p>	
+									<%= f.label :name %>
+									<%= f.text_field :name, placeholder: "Name", autocomplete: "off", required: "true",
+									value: session['name'], maxLength: 24, autofocus: 'true' %>
+								</p>
+								<p>
+									<%= f.label :rating, autocomplete: "off" %>
+									<!-- <%= f.range_field :rating, in:1..10 %>  -->
+									<!-- <span>👎</span> -->
+									
+									<input min="0" max="10" type="range" step="0.5" name="rating[rating]" id="rating_rating" 
+									required="true" oninput="output.value=parseFloat(rating_rating.value)">
+								</span>
+									<!-- <span>👍</span> -->
+								</p>
+								<span class="range-output">
+									<output name="output" for = "rating_rating">?</output>
+								</span>
+								</p>
+									<%= f.text_area :notes, placeholder: "Notes (optional)", autocomplete: "off", maxLength: 400 %>
+								<p>
+									<%= f.submit %>
+								</p>
+
+							<% end %>	
+						</div>
+
+				</figcaption>
+
+			</figure>
+		</section>
+		<div id="book-search-results"></div>
+	</div>
+
+	<div class="book-details-and-ratings">
+
+		<ul>
+			<li class='book-title-wrapper'>
+				<span class="book-title"><%= @book.title %></span>
+			</li>
+			<li class='book-author-wrapper'>
+				<span class="by"> by</span>
+				<span class="book-author"><%= @book.author %></span>
+			</li>
+		</ul>	
+
+		<ul class="ratings show-page-ratings">
+			<!-- <li><h2>Ratings:</h2> </li> -->
+			<% @ratings.each do |rating| %>
+			
+				<li class="rating">
+					<p class="name"><%= rating.name %></p>:
+					<p class="rating-number rating-<%= Integer(rating.rating) %>">
+						<%= rating.rating %>
+					</p>
+
+					<% if rating.name == session['name'] %>	
+					<span>
+						<a href="<%= edit_rating_path(@rating.id), class: 'edit-rating' %>/edit">Edit</a>
+					</span>
+
+					<% end %>
+
+					<% if rating.notes and rating.notes != '' %>
+						<p class="rating-notes-show">
+							<%= rating.notes %>
+						</p>	
+					<% end %>
+				</li>
+				
+				<% @rating_count += 1 %>
+				<% @rating_total += rating.rating %>
+					
+			<% end %>	
+
+			<% if @rating_total == 0 %>
+
+				<li><em>No ratings yet</em></li>
+				<li>
+					<div class="search-links book-search-links">
+						<a class="rounded-link fixed-width-link" href="https://www.amazon.com/s?k=<%= @book.title %>+<%= @book.author %>
+							&ref=as_li_tl?ie=UTF8&tag=bookbros03-20&camp=15121&creative=330641&linkCode=as2&creativeASIN=1405206276"
+						target="_blank">
+							<img class="icon" src="/assets/amazon_icon.png" alt=""> 
+							<span class="text-after-icon">Amazon search</span>
+						</a>
+						<a class="rounded-link fixed-width-link" href="https://books.google.ca/books?id=<%= @book.book %>"
+						target="_blank">
+							<img class="icon" src="/assets/google_icon.png" alt=""> 
+							<span class="text-after-icon">Google search</span>
+						</a>
+						<% if @book.club == 'bookbros' %>
+						<a class="rounded-link fixed-width-link" href="https://www.torontopubliclibrary.ca/search.jsp?Ntt=<%= @book.title %>+<%= @book.author %>" target="_blank">
+							<img class="icon library" src="/assets/library_icon.svg" alt=""> 
+							<span class="text-after-icon">Library search</span></a>
+						<% end %>
+					</div>
+				</li>	
+
+			<% else %>
+			
+				<li class="average-rating fixed-average-rating">
+					<div class="average-rating-text">Average rating:</div>
+			
+					<p class="rating-number rating-<%= Integer(((@rating_total / @rating_count) * 10).floor / 10.0) %>">
+						<%= (((@rating_total / @rating_count) * 100.00).floor / 100.00) %>
+					</p>
+				</li>
+
+			<% end %>
+
+			<% @rating_count = 0 %>
+			<% @rating_total = 0 %>	
+		</ul>
+	</div>
+	<script src="https://www.googleapis.com/books/v1/volumes?q=<%= @book.book %>&callback=googleBooksApiResponse"></script>
+</main>	

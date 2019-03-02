@@ -27,8 +27,24 @@
             <li class="nav-logo-container"><img class="nav-logo" src="/assets/bookbros_logo_small.png" alt="" \></li> 
             <li class="nav-links">
                 <ul>
-                    <li><%= link_to "Home", home_path %></li>
-                    <li><%= link_to "Find a book", books_path %></li>
+                    <li>
+                        <%= link_to "Home", home_path %>
+                    </li>
+                    <li>
+                        <%= link_to "Find a book", books_path %>
+                            
+                    </li>
+                    <li>
+                        <% if !session['club'] %>
+
+                        <%= link_to "Join a club", new_club_path %>
+
+                        <% else %>
+
+                        <%= link_to "My Club", club_path %>
+
+                        <% end %>
+                    </li>
                 </ul>
                 <span id="hamburger-menu">≡</span>
             </li>

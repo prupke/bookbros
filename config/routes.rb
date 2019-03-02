@@ -5,7 +5,12 @@ root 'posts#index', as: 'home'
 
 # get 'rating' => 'pages#rating'
 
-resources :posts
+resources :posts 
+# do
+#   collection do
+#     get 'paginate'
+#   end
+# end
 
 resources :ratings
 

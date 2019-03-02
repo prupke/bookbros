@@ -1,0 +1,27 @@
+<main class="edit-rating-page">
+
+<h2>Edit rating for <%= @book.title %></h2>
+
+	<%= form_for :rating, url: rating_path(@rating), method: :patch do |f| %>
+		<%= f.label :book %>
+		<%= f.hidden_field :book, :value => @rating.book %>	
+		<%= f.label :name %>
+		<%= f.hidden_field :name, value: session['name'], maxLength: 24 %>
+		<p>
+			<%= f.label :rating %>			
+			<input min="0" max="10" type="range" step="0.5" name="rating[rating]" id="rating_rating" value="<%= @rating.rating %>"
+			required="true" oninput="output.value=parseFloat(rating_rating.value)">
+		</p>
+		<span class="range-output">
+			<output name="output" for = "rating_rating">
+				<%= @rating.rating %>
+			</output>
+		</span>
+		</p>
+			<%= f.text_area :notes, placeholder: "Notes (optional)", autocomplete: "off", maxLength: 400,
+			value: @rating.notes %>
+		<p>
+			<%= f.submit %>
+		</p>
+	<% end %>
+</main>

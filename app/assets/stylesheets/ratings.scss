@@ -2,3 +2,84 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.show-book {
+	padding-top: 40px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: top;
+	flex-wrap: wrap;
+	div {
+		// width: calc(50vw - 20px);
+		// margin: 50px 10px;
+		padding: 0;
+	}
+}
+
+.show-book-page-cover {
+	// margin-top: 10px;
+	.book-image img {		
+		// padding-top: 120px;
+		height: 600px;
+		width: auto;
+	}
+
+	ul {
+		flex-direction: column;
+	}
+}
+
+.show-page-ratings {
+	top: 10vh;
+	left: 42vw;
+	display: flex;
+	margin-left: 350px;
+	margin: 10px;
+	padding: 15px 5px;
+	display: flex;
+	justify-content: center;
+	align-items: left;
+	color: black;
+}
+
+.rating {
+	p {
+		display: inline-block;
+		margin: 10px 10px 5px 5px;
+	}
+	p.rating-notes-show {
+		margin-bottom: 15px;
+		display: block;
+		background: var(--gradient);
+		max-width: 47vw;
+		padding: 5px;
+		border-radius: 4px;
+	}
+}
+
+.rating:hover .rating-notes {
+	display: inline-block;
+}
+
+
+.fixed-average-rating {
+	position: absolute;
+	// top: 500px;
+	left: 80px;
+	top: 710px;
+	text-align: center;
+}
+
+.edit-rating-page {
+	display: flex;
+	flex-direction: column;
+	justify-content: top;
+	align-items: center;
+	flex-wrap: wrap;
+	form {
+		flex-direction: column;
+		label {
+			display: none;
+		}
+	}
+}

@@ -34,17 +34,7 @@
                         <%= link_to "Find a book", books_path %>
                             
                     </li>
-                    <li>
-                        <% if !session['club'] %>
 
-                        <%= link_to "Join a club", new_club_path %>
-
-                        <% else %>
-
-                        <%= link_to "My Club", club_path %>
-
-                        <% end %>
-                    </li>
                 </ul>
                 <span id="hamburger-menu">≡</span>
             </li>

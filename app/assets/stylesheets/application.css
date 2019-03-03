@@ -45,6 +45,10 @@
 		display: block;
 	}
 
+	.nav-links:hover ul li.club-nav {
+		display: none;
+	}
+
 	.nav-links ul li:hover #hamburger-menu {
 		display: none;
 	}
@@ -112,10 +116,18 @@
 		display: flex;
 		padding: 0;
 		margin: 5px 5px 5px -15vw;
+	}
 
-		a {
-			margin: 5px auto;
-		}
+	.book-search-links a {
+		margin: 5px auto;
+	}
+
+	.show-book-search-links {
+		margin: 0;
+	}
+
+	.book-details-and-ratings ul:first-child {
+		margin: 5px auto;
 	}
 
 	section ul {
@@ -142,6 +154,11 @@
 		justify-content: center;
 		align-items: center;
 		margin: 0 auto;
+	}
+
+	.show-book-page-cover section {
+		width: 100vw;
+		margin-top: 50px;
 	}
 
 	.book-image img {
@@ -208,9 +225,22 @@
 		margin-left: 15vw;
 	}
 
+	ul.show-page-ratings {
+		margin-left: 0;
+	}
+
 	.average-rating {
 		width: 70vw;
 		text-align: center;
+	}
+
+	.fixed-average-rating {
+		top: 400px;
+		left: 15vw;
+		width: 67.5vw;
+		padding-left: 1vw;
+		padding-right: 1vw;
+		min-width: 320px;
 	}
 
 	.current-book img {

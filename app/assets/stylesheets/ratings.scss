@@ -33,13 +33,13 @@
 	top: 10vh;
 	left: 42vw;
 	display: flex;
-	margin-left: 350px;
+	margin-left: 0;
 	margin: 10px;
 	padding: 15px 5px;
 	display: flex;
 	justify-content: center;
 	align-items: left;
-	color: black;
+	// color: black;
 }
 
 .rating {
@@ -51,7 +51,7 @@
 		margin-bottom: 15px;
 		display: block;
 		background: var(--gradient);
-		max-width: 47vw;
+		width: 87vw;
 		padding: 5px;
 		border-radius: 4px;
 	}
@@ -64,7 +64,6 @@
 
 .fixed-average-rating {
 	position: absolute;
-	// top: 500px;
 	left: 80px;
 	top: 710px;
 	text-align: center;

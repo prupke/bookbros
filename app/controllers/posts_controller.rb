@@ -9,8 +9,12 @@ class PostsController < ApplicationController
 		# @total_books = Book.count
 		# print("TOTAL BOOKS: " + @total_books.to_s)
 		# @books = Book.order('created_at DESC').page(params[:page])
+		session[:club] = 'bookbros'
+		
 		default_per_page = 5
 		# total_pages = Book.page(1).total_pages
+		# session[:club] = 'bookbros2'
+
 		@books = Book.where(club: session[:club]).order('id DESC').limit(5)
 		@ratings = Rating.all
 		@rating_total = 0

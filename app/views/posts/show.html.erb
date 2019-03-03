@@ -75,10 +75,9 @@
 					</p>
 
 					<% if rating.name == session['name'] %>	
-					<span>
-						<a href="<%= edit_rating_path(@rating.id), class: 'edit-rating' %>/edit">Edit</a>
-					</span>
-
+						<span>
+							<a href="<%= edit_rating_path(rating.id) %>" class="edit-rating">Edit</a>
+						</span>
 					<% end %>
 
 					<% if rating.notes and rating.notes != '' %>

@@ -81,7 +81,7 @@ function googleBooksApiResponse(response) {
 				+ "<input id='book_book' name='book[book]' type='hidden' value='" + item.id + "'>"		
 				+ "<input id='book_title' name='book[title]' type='hidden' value='" + item.volumeInfo.title + "'>"
 				+ "<input id='book_author' name='book[author]' type='hidden' value='" + item.volumeInfo.authors + "'>"
-				+ "<input id='book_club' name='book[club]' type='hidden' value='bookbros'>"
+				// + "<input id='book_club' name='book[club]' type='hidden' value=''>"
 				+ "<div class='book-title-and-author'>"
 					+ "<span class='book-title'>" + item.volumeInfo.title + "</span>"
 					+ "<span class='by'> by </span>"

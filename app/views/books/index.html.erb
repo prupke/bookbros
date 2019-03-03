@@ -31,15 +31,15 @@
 			<% end %> -->
 		<% end %>
 	<%= form_with model: @book, id: 'template' do |f| %>
-<!-- 		<%= f.hidden_field :book %>
-		<%= f.hidden_field :title %>
-		<%= f.hidden_field :author %>
-		<%= f.hidden_field :club %> -->
-		<!-- <%= f.submit %> -->
+
 	<% end %>
 
 		<ul id="book-search-results"></ul>
 	<script src="https://www.googleapis.com/books/v1/volumes?q=<%= @search %>&callback=googleBooksApiResponse"></script>
+	<script>
+		var club_id = document.getElementById("club").value
+		console.log(club_id);
+	</script>
 
 </main>
 

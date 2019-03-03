@@ -20,8 +20,8 @@
 	// margin-top: 10px;
 	.book-image img {		
 		// padding-top: 120px;
-		height: 600px;
-		width: auto;
+		height: auto;
+		width: 400px;
 	}
 
 	ul {
@@ -68,6 +68,11 @@
 	left: 80px;
 	top: 710px;
 	text-align: center;
+}
+
+.edit-rating {
+	background: var(--gradient2);
+	border-radius: 4px;
 }
 
 .edit-rating-page {

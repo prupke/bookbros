@@ -24,7 +24,8 @@ class RatingsController < ApplicationController
 		print(session[:name])
 		@rating.save
 		flash[:notice] = 'Rating saved'
-		redirect_to posts_url(:anchor => @rating[:book])
+		# redirect_to posts_url(:anchor => @rating[:book])
+		redirect_back(fallback_location: posts_url(:anchor => @rating[:book]))
 	end
 
 	def update
@@ -37,16 +38,17 @@ class RatingsController < ApplicationController
 			render edit
 		end
 	end
+
 	
 	private
 
-	def rating_params
-		params.require(:rating).permit(:book, :name, :rating, :notes)	
-	end
+		def rating_params
+			params.require(:rating).permit(:book, :name, :rating, :notes)	
+		end
 
 	private
 
-	def check_book
-	    redirect_to posts_url unless params[:book].present?
-	end
+		def check_book
+		    redirect_to posts_url unless params[:book].present?
+		end
 end

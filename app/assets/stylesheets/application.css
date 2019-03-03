@@ -29,6 +29,10 @@
 		position: relative;
 	}
 
+	.club-nav {
+		display: none;
+	}
+
 	#hamburger-menu {
 		position: fixed;
 		display: block;

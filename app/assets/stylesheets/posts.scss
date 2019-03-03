@@ -406,6 +406,10 @@ figcaption:hover div.rating-title {
 	display: inline;
 }
 
+.more {
+	background: var(--gradient2);
+}
+
 .average-rating-text {
 	margin: 0;
 	padding: 0;
@@ -452,9 +456,8 @@ figcaption:hover div.rating-title {
 	display: none;
 	font-style: italic;
 	position: absolute;
-
 	background: rgba(107, 209, 251, 0.94);
-	margin-top: -28px;
+	margin-top: 40px;
 	width: 25vw;
 	padding: 5px;
 	left: 150px;

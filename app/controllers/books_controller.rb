@@ -1,8 +1,7 @@
 class BooksController < ApplicationController
+	
+
 	def index
-		# @search = "war+and+peace"
-		# @books = Book.all
-		# @search = Book.find(params[:book_search])
 		if params[:book_search]
 			@search = params[:book_search]
 		end	
@@ -10,6 +9,7 @@ class BooksController < ApplicationController
 
 	def create
 		@book = Book.new(book_params)
+		@book.club = session['club']
 		@book.save
 		flash[:notice] = 'Added "' + @book.title + '" to your book list!'
 		redirect_to books_url(:anchor => @book[:book])
@@ -25,6 +25,6 @@ class BooksController < ApplicationController
 	private
 
 	def book_params
-		params.require(:book).permit(:book, :title, :author, :club)
+		params.require(:book).permit(:book, :title, :author)
 	end
 end

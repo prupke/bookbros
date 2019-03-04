@@ -1,6 +1,6 @@
 <main class="edit-rating-page">
 
-<h2>Edit rating for <%= @book.title %></h2>
+<h2>Edit rating for <span class="book-title"><%= @book.title %></span></h2>
 
 	<%= form_for :rating, url: rating_path(@rating), method: :patch do |f| %>
 		<%= f.label :book %>

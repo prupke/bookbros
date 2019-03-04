@@ -1,3 +1,29 @@
 // Place all the styles related to the Clubs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.new-club-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin: 0;
+	width: 324px;
+	padding: 10px 0;
+
+	li {
+		padding: 5px 0;
+		margin: 5px 0;
+		width: 100%;
+		input {
+			width: 324px;
+		}
+	}
+
+	li.actions {
+		display: flex;
+		// flex-direction: column;
+		justify-content: center;
+		// flex-wrap: wrap;
+	}
+}

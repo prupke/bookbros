@@ -8,6 +8,11 @@
 				</span>	
 			
 				<figcaption>
+						<% if session['name'] == 'admin' and @book.club == session['club'] %>
+							<p>
+								<%= link_to 'Delete', @book, method: :delete, data: { confirm: 'Are you sure?' }, class: 'rounded-link small-link delete' %>
+							</p>
+						<% end %>
 							
 						<button type="button" class="rounded-link add-rating " id = "form-<%= @book.book %>-button"
 							onclick="getForm('form-<%= @book.book %>')">
@@ -54,10 +59,10 @@
 	<div class="book-details-and-ratings">
 
 		<ul>
-			<li class='book-title-wrapper'>
+			<li class='book-title-wrapper center'>
 				<span class="book-title"><%= @book.title %></span>
 			</li>
-			<li class='book-author-wrapper'>
+			<li class='book-author-wrapper center'>
 				<span class="by"> by</span>
 				<span class="book-author"><%= @book.author %></span>
 			</li>
@@ -81,12 +86,14 @@
 							<%= link_to 'Delete', rating, method: :delete, data: { confirm: 'Are you sure?' }, class: 'rounded-link small-link delete' %>
 						</span>
 					<% end %>
+				
 
 					<% if rating.notes and rating.notes != '' %>
 						<p class="rating-notes-show">
 							<%= rating.notes %>
 						</p>	
 					<% end %>
+
 				</li>
 				
 				<% @rating_count += 1 %>

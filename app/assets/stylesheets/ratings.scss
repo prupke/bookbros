@@ -42,7 +42,15 @@
 	// color: black;
 }
 
+.book-details-and-ratings ul:first-child {
+	margin: 5px auto;
+	text-align: center;
+}
+
 .rating {
+	.center {
+		text-align: center;
+	}
 	p {
 		display: inline-block;
 		margin: 10px 10px 5px 5px;
@@ -86,8 +94,12 @@
 	flex-wrap: wrap;
 	form {
 		flex-direction: column;
+		width: 80vw;
 		label {
 			display: none;
+		}
+		textarea {
+			max-width: 600px;
 		}
 	}
 }

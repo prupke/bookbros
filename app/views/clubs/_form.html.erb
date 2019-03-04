@@ -1,17 +1,36 @@
+<!-- # <%= form_with(model: club, local: true) do |form| %>
+#   <% if club.errors.any? %>
+#     <div id="error_explanation">
+#       <h2><%= pluralize(club.errors.count, "error") %> prohibited this club from being saved:</h2>
+
+#       <ul>
+#       <% club.errors.full_messages.each do |message| %>
+#         <li><%= message %></li>
+#       <% end %>
+#       </ul>
+#     </div>
+#   <% end %>
+
+#   <div class="actions">
+#     <%= form.submit %>
+#   </div>
+# <% end %> -->
+
 <%= form_with(model: club, local: true) do |form| %>
-  <% if club.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(club.errors.count, "error") %> prohibited this club from being saved:</h2>
 
-      <ul>
-      <% club.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <ul class="new-club-form">
+        <li>
+            <%= form.label :name, 'Club Name' %>
+            <%= form.text_field :name %>    
+        </li>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+        <li>
+            <%= form.label :password %>
+            <%= form.password_field :password %>
+        </li>
+
+        <li class="actions">
+            <%= form.submit %>
+        </li>
+    </ul>
 <% end %>

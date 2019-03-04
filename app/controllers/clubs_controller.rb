@@ -12,6 +12,7 @@ class ClubsController < ApplicationController
   def show
   end
 
+
   # GET /clubs/new
   def new
     @club = Club.new
@@ -25,11 +26,13 @@ class ClubsController < ApplicationController
   # POST /clubs.json
   def create
     @club = Club.new(club_params)
-
+    @club.save
     respond_to do |format|
       if @club.save
         format.html { redirect_to @club, notice: 'Club was successfully created.' }
         format.json { render :show, status: :created, location: @club }
+        session[:club] = @club[:name]
+
       else
         format.html { render :new }
         format.json { render json: @club.errors, status: :unprocessable_entity }
@@ -64,11 +67,12 @@ class ClubsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_club
-      @club = Club.find(params[:id])
+      @club = Club.find(club_params)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def club_params
-      params.fetch(:club, {})
+      # params.fetch(:club, {})
+      params.require(:name, :password).permit(:name, :password)
     end
 end

@@ -18,6 +18,9 @@
     --gradient2: linear-gradient(to top left, rgba(198,231,241,1) 0%, rgba(126,218,241,0.97) 17%, rgba(47,198,228,0.93) 49%, rgba(198,231,241,0.87) 88%, rgba(198,231,241,0.85) 100%);
     --gradient3: linear-gradient(to top left, rgba(198,231,241,1) 0%, rgba(126,218,241,0.99) 17%, rgba(47,198,228,0.98) 49%, rgba(198,231,241,0.99) 88%, rgba(198,231,241,1) 100%);
 	
+    --edit: linear-gradient(to top left, rgba(98,218,141,0.7) 0%, rgba(126,238,141,0.67) 17%, rgba(147,258,141,0.63) 49%, rgba(126,238,141,0.57) 88%, rgba(98,218,141,0.55) 100%); 
+    --delete: linear-gradient(to top left, rgba(198,118,141,0.7) 0%, rgba(226,138,141,0.67) 17%, rgba(247,158,141,0.63) 49%, rgba(226,138,141,0.57) 88%, rgba(198,218,141,0.55) 100%); 
+
 	--hover: rgba(198,231,241, 1);
     --nav-gradient: linear-gradient(to top, rgba(18,161,251,1) 0%, rgba(26,188,281,0.97) 17%, rgba(47,198,228,0.93) 49%, rgba(26,188,281,0.87) 88%, rgba(18,161,251,0.85) 100%);
 
@@ -38,9 +41,10 @@ body {
 	box-sizing: border-box; 
 	color: var(--linkfg);
 	font-family: var(--font1);
-	margin: 0;
+	margin: 0 !important;
 	padding: 0;
 	width: 100vw;
+	color: white;
 }
 
 main {
@@ -99,6 +103,18 @@ a {
 	text-decoration: none;
 	&:hover {
 		background: var(--gradient);
+	}
+	&.edit {
+		background: var(--edit);
+	}
+	&.delete {
+		background: var(--delete);
+		border: 1px solid pink;
+		transition: background 0s ease;
+		&:hover {
+			transition: background 0s ease;
+			background: darken(red, 20%);
+		}
 	}
 }
 

@@ -10,13 +10,6 @@ class ClubsController < ApplicationController
   # GET /clubs/1
   # GET /clubs/1.json
   def show
-    if @book.club == session['club']
-      @book = Club.find(params[:id])
-    elsif !session['club']
-      redirect_to clubs_url(session['club'])
-    else  
-      redirect_to posts_url 
-    end
   end
 
   # GET /clubs/new

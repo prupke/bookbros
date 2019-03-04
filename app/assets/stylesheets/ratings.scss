@@ -21,7 +21,7 @@
 	.book-image img {		
 		// padding-top: 120px;
 		height: auto;
-		width: 400px;
+		// width: 400px;
 	}
 
 	ul {
@@ -46,12 +46,13 @@
 	p {
 		display: inline-block;
 		margin: 10px 10px 5px 5px;
+		max-width: 55vw;
 	}
 	p.rating-notes-show {
 		margin-bottom: 15px;
 		display: block;
 		background: var(--gradient);
-		width: 87vw;
+		width: 100%;
 		padding: 5px;
 		border-radius: 4px;
 	}
@@ -64,9 +65,11 @@
 
 .fixed-average-rating {
 	position: absolute;
-	left: 80px;
-	top: 710px;
+	width: 28vw;
+	left: 3vw;
+	top: 510px;
 	text-align: center;
+	min-width: 270px;
 }
 
 .edit-rating {

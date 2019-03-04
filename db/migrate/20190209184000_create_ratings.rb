@@ -4,7 +4,7 @@ class CreateRatings < ActiveRecord::Migration[5.2]
       t.string :book
       t.string :name
       t.float :rating
-      t.notes :notes
+      t.string :notes
       t.timestamps
     end
   end

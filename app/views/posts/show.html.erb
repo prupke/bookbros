@@ -49,7 +49,6 @@
 
 			</figure>
 		</section>
-		<div id="book-search-results"></div>
 	</div>
 
 	<div class="book-details-and-ratings">
@@ -76,7 +75,10 @@
 
 					<% if rating.name == session['name'] %>	
 						<span>
-							<a href="<%= edit_rating_path(rating.id) %>" class="edit-rating">Edit</a>
+							<a href="<%= edit_rating_path(rating.id) %>" class="rounded-link small-link edit">Edit</a>
+						</span>
+						<span>
+							<%= link_to 'Delete', rating, method: :delete, data: { confirm: 'Are you sure?' }, class: 'rounded-link small-link delete' %>
 						</span>
 					<% end %>
 

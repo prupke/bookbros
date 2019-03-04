@@ -17,6 +17,23 @@ class RatingsController < ApplicationController
 		end
 	end
 
+	def destroy
+		@rating = Rating.find(params[:id])
+		@post = Book.find_by(book: @rating.book)
+		if @rating.name == session['name'] and @post.club = session['club']
+			@rating.destroy
+		else
+			redirect_back(fallback_location: posts_url(@post), notice: 'You do not have permission to delete this.')
+		end		
+	    respond_to do |format|
+	      # format.html { redirect_to posts_url, notice: 'Rating was successfully destroyed.' }
+	      format.html { redirect_back(fallback_location: posts_url(@post), notice: 'Rating deleted.') }
+
+	      format.json { head :no_content }
+	    end
+		# redirect_back(fallback_location: posts_url(:anchor => @rating[:book]))
+	end
+
 	def create
 		# render plain: params[:rating].inspect
 		@rating = Rating.new(rating_params)

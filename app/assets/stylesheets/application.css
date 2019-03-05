@@ -153,6 +153,19 @@
 		margin: 0 auto;
 	}
 
+	#book-synopsis {
+		width: 80vw;
+		margin: 20px auto;
+	}
+
+	#book-synopsis p {
+		font-size: 1.2rem;
+	}
+
+	#book-synopsis p span.synopsis {
+		font-size: 0.9rem;
+	}
+
 	.show-book-page-cover section {
 		width: 100vw;
 		margin-top: 50px;

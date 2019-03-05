@@ -18,7 +18,7 @@
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
-  if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+  if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
   	document.querySelector("#logo").classList.add("logo-move");
   } else {
   	document.querySelector("#logo").classList.remove("logo-move");
@@ -41,6 +41,25 @@ function sendOutput() {
 	document.querySelector("output").value = parseFloat(rating.value);
 }
 
+function googleBooksGetOneBook(response) {
+	for (var i = 0; i < 1; i++) {
+		var item = response.items[i];
+		var categories = item.volumeInfo.categories === undefined ? 
+			'' : "<span class='categories'>Category: " + item.volumeInfo.categories + "</span>"
+		var pages = item.volumeInfo.pageCount === undefined ? '' : "<span class='pages'>" + item.volumeInfo.pageCount + " pages</span>"
+		var published = item.volumeInfo.publishedDate === undefined ? 
+			published = '' : published = "<span class='published'>Published " + item.volumeInfo.publishedDate + "</span>"
+
+		var plural = item.volumeInfo.ratingsCount === 1 ? " vote)" : " votes)"
+		var rating = item.volumeInfo.averageRating === undefined ? '' : "<br><br>Average rating: " 
+			+ item.volumeInfo.averageRating + "/5 (" + item.volumeInfo.ratingsCount + plural
+		var description = item.volumeInfo.description === undefined ? 
+			description = 'No synopsis is available for this book.' : description = item.volumeInfo.description 
+		document.getElementById("book-synopsis").innerHTML += ("<p>" + categories + pages + published + rating
+							+ "<span class='synopsis'>" + description + "<span>"
+						+ "</p>");
+		}
+
 // " + item.volumeInfo.imageLinks.thumbnail + "
 function googleBooksApiResponse(response) {
 	for (var i = 0; i < 5; i++) {
@@ -48,6 +67,7 @@ function googleBooksApiResponse(response) {
 		var bookCoverLink = "https://books.google.com/books/content/images/frontcover/" + item.id
 		var one = escape(1);
 		var isbn = item.volumeInfo.industryIdentifiers[1].identifier
+	}
 
 		// var amazonSearchLink = "http://www.google.com/search?q=" + isbn + "+amazon.com&btnI"
 		// var amazonSearchLink = "https://duckduckgo.com/?q=!" + item.volumeInfo.title + "+" + item.volumeInfo.authors + "+amazon"

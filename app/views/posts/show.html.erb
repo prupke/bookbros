@@ -53,6 +53,9 @@
 				</figcaption>
 
 			</figure>
+			<div id="book-synopsis" class="hidden-description"></div>
+
+
 		</section>
 	</div>
 
@@ -142,5 +145,5 @@
 			<% @rating_total = 0 %>	
 		</ul>
 	</div>
-	<script src="https://www.googleapis.com/books/v1/volumes?q=<%= @book.book %>&callback=googleBooksApiResponse"></script>
+	<script src="https://www.googleapis.com/books/v1/volumes?q=<%= @book.book %>&callback=googleBooksGetOneBook"></script>
 </main>	

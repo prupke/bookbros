@@ -86,7 +86,8 @@ p.rating-notes-show {
 }
 
 .edit-delete-links {
-       display: inline-flex;
+    display: block;
+    margin-bottom: 20px;
 }
 
 .rating:hover .rating-notes {

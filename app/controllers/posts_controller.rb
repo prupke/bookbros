@@ -27,7 +27,7 @@ class PostsController < ApplicationController
 		if @book.club == session[:club]
 			@rating_total = 0
 			@rating_count = 0
-			@ratings = Rating.where(book: @book.book).order('id DESC')
+			@ratings = Rating.where(book: @book.book).order('rating DESC')
 		else
 			flash[:notice] = "You are not in this club."
 			redirect_to posts_url(club: session[:club])
@@ -53,21 +53,6 @@ class PostsController < ApplicationController
 		# @post.save
 		# redirect_to @post
 
-	def destroy
-		@post = Post.find(params[:id])
-		if @post.name == session['name'] and @post.club = session['club']
-			@rating.destroy
-		else
-			redirect_back(fallback_location: posts_url(@post), notice: 'You do not have permission to delete this.')
-		end		
-	    respond_to do |format|
-	      # format.html { redirect_to posts_url, notice: 'Rating was successfully destroyed.' }
-	      format.html { redirect_back(fallback_location: posts_url(@post), notice: 'Post deleted.') }
-
-	      format.json { head :no_content }
-	    end
-		# redirect_back(fallback_location: posts_url(:anchor => @rating[:book]))
-	end
 	# private 
 
 	# def post_params

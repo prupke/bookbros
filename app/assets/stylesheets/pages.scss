@@ -55,6 +55,7 @@ main {
 	flex-direction: column;
 	width: 100%;
 	height: 100%;
+	background: skyblue; // fallback
 	background-color: rgba(198,231,241,1);
 	background: url(/assets/books_background_tinted.png) no-repeat, 
 	// linear-gradient(to bottom, rgba(16,79,137,0.9) 0%, rgba(0,0,0,1) 100%);
@@ -102,13 +103,14 @@ a {
 	padding: 2px 4px;
 	text-decoration: none;
 	&:hover {
-		background: var(--gradient);
+
+		background: var(--gradient, skyblue);
 	}
 	&.edit {
-		background: var(--edit);
+		background: var(--edit, green);
 	}
 	&.delete {
-		background: var(--delete);
+		background: var(--delete, red);
 		border: 1px solid pink;
 		transition: background 0s ease;
 		&:hover {
@@ -165,7 +167,7 @@ nav {
 			&.club-nav {
 				font-size: 1rem;
 				position: absolute;
-				right: 80px;
+				right: 25px;
 				top: 5px;
 			}
 
@@ -181,7 +183,7 @@ nav {
 						padding: 16px 30px 13px;
 						text-decoration: none;
 						color: rgba(0,0,0,1);
-						letter-spacing: 0.2rem;
+						letter-spacing: 0.3rem;
 						transition: background 0.2s ease, color 0.05s ease;
 						text-shadow: 0px 0 1px black;
 						&:hover {

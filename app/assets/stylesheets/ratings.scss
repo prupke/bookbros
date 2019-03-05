@@ -29,12 +29,22 @@
 	}
 }
 
+
+
+.book-details-and-ratings  {
+	width: 50vw;
+	
+	ul:first-child {
+		margin: 5px auto;
+		text-align: center;
+	}
+}
+
 .show-page-ratings {
 	top: 10vh;
 	left: 42vw;
 	display: flex;
-	margin-left: 0;
-	margin: 10px;
+	margin: 10px auto;
 	padding: 15px 5px;
 	display: flex;
 	justify-content: center;
@@ -42,8 +52,11 @@
 	// color: black;
 }
 
-.book-details-and-ratings ul:first-child {
-	margin: 5px auto;
+.book-search-links a, .show-book-search-links a {
+	margin: 10px auto;
+}
+
+.ratings li {
 	text-align: center;
 }
 
@@ -56,14 +69,24 @@
 		margin: 10px 10px 5px 5px;
 		max-width: 55vw;
 	}
-	p.rating-notes-show {
-		margin-bottom: 15px;
-		display: block;
-		background: var(--gradient);
-		width: 100%;
-		padding: 5px;
-		border-radius: 4px;
-	}
+}
+
+.rating-notes {
+	background: var(--main, skyblue);
+
+}
+
+p.rating-notes-show {
+	margin-bottom: 15px;
+	display: block;
+	background: var(--gradient);
+	width: 100%;
+	padding: 5px;
+	border-radius: 4px;
+}
+
+.edit-delete-links {
+       display: inline-flex;
 }
 
 .rating:hover .rating-notes {

@@ -385,7 +385,7 @@ figcaption:hover div.rating-title {
 	flex-direction: column;
 	margin: 10px auto;
 	padding: 0;
-	margin-left: 0;
+	align-items: center;
 }
 
 .name {
@@ -479,7 +479,7 @@ figcaption:hover div.rating-title {
 }
 
 .book-title-wrapper, .book-author-wrapper {
-	max-width: 500px;
+	// max-width: 500px;
 }
 
 .book-title {

@@ -80,10 +80,10 @@
 
 	nav ul li.nav-links ul li a {
 		position: relative;
-		left: -20vw;
+		left: -30vw;
 		text-align: left !important;
 		width: 100%;
-		padding: 30px 55vw;
+		padding: 30px 60vw;
 		overflow-x: hidden;
 		white-space: pre;
 		/*position: absolute;*/
@@ -115,11 +115,11 @@
 	.book-search-links {
 		display: flex;
 		padding: 0;
-		margin: 5px 5px 5px -15vw;
+		margin: 0;
 	}
 
-	.book-search-links a {
-		margin: 5px auto;
+	.book-search-links a, .show-book-search-links a {
+		margin: 10px auto;
 	}
 
 	.show-book-search-links {
@@ -139,6 +139,7 @@
 	figcaption {
 		width: 98%;
 		margin: 0 auto;
+		
 		/*margin: 20%;
 		position: relative;*/
 	}
@@ -189,8 +190,12 @@
 		margin-top: 5px;
 		position: relative;
 		display: block;
-		width: 60vw;
+		width: 80vw;
 		left: 0;
+	}
+
+	p.rating-notes-show {
+		width: 90%;
 	}
 
 	.form-wrapper {
@@ -221,16 +226,32 @@
 		text-align: center;
 	}
 
-	ul.ratings {
-		margin-left: 15vw;
+	.book-details-and-ratings {
+		width: 100vw;
+		margin: 0 1vw;
+	}
+
+	.book-details-and-ratings ul {
+		align-items: center;
+	}
+
+/*	.edit-delete-links {
+		flex-direction: column;
+		position: absolute;
+		bottom: -15px;
+	}*/
+
+	li.rating {
+		text-align: center;
+		margin: 20px 5px 5px;
 	}
 
 	ul.show-page-ratings {
-		margin-left: 0;
+		margin: 10px auto;
 	}
 
 	.average-rating {
-		width: 70vw;
+		width: 280px;
 		text-align: center;
 	}
 
@@ -238,12 +259,16 @@
 		top: 400px;
 		left: 15vw;
 		width: 67.5vw;
-		padding-left: 1vw;
-		padding-right: 1vw;
 	}
 
 	.current-book img {
 		height: auto;
 		min-height: 250px;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.fixed-average-rating {
+		left: 10vw;
 	}
 }

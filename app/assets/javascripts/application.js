@@ -19,9 +19,9 @@ window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
   if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
-  	document.querySelector("#logo").classList.add("logo-move");
+  	document.querySelector("#logo").classList.remove("logo-appear");
   } else {
-  	document.querySelector("#logo").classList.remove("logo-move");
+  	document.querySelector("#logo").classList.add("logo-appear");
   }
 }
 
@@ -50,8 +50,8 @@ function googleBooksGetOneBook(response) {
 		var published = item.volumeInfo.publishedDate === undefined ? 
 			published = '' : published = "<span class='published'>Published " + item.volumeInfo.publishedDate + "</span>"
 
-		var plural = item.volumeInfo.ratingsCount === 1 ? " vote)" : " votes)"
-		var rating = item.volumeInfo.averageRating === undefined ? '' : "<br><br>Average rating: " 
+		var plural = item.volumeInfo.ratingsCount === 1 ? " vote)</em>" : " votes)</em>"
+		var rating = item.volumeInfo.averageRating === undefined ? '' : "<em>Average rating on Google Books: " 
 			+ item.volumeInfo.averageRating + "/5 (" + item.volumeInfo.ratingsCount + plural
 		var description = item.volumeInfo.description === undefined ? 
 			description = 'No synopsis is available for this book.' : description = item.volumeInfo.description 
@@ -59,6 +59,7 @@ function googleBooksGetOneBook(response) {
 							+ "<span class='synopsis'>" + description + "<span>"
 						+ "</p>");
 		}
+	}
 
 // " + item.volumeInfo.imageLinks.thumbnail + "
 function googleBooksApiResponse(response) {
@@ -67,7 +68,7 @@ function googleBooksApiResponse(response) {
 		var bookCoverLink = "https://books.google.com/books/content/images/frontcover/" + item.id
 		var one = escape(1);
 		var isbn = item.volumeInfo.industryIdentifiers[1].identifier
-	}
+	
 
 		// var amazonSearchLink = "http://www.google.com/search?q=" + isbn + "+amazon.com&btnI"
 		// var amazonSearchLink = "https://duckduckgo.com/?q=!" + item.volumeInfo.title + "+" + item.volumeInfo.authors + "+amazon"

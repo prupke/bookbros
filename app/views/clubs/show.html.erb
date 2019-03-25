@@ -35,27 +35,39 @@
 					<% end %>	
 				<% end %>	
 
-				<% if @user_rating_count != 0 %>
-
 				<div class="average-rating">
 					<div class="average-rating-text small-text">Avg. rating given:</div>
-					<p class="rating-number rating-<%= Integer(((@rating_total / @rating_count) * 10).floor / 10.0) %>">
+
+					<% if @user_rating_count != 0 %>
+					<p class="rating-number rating-<%= Integer(((@user_rating_total / @user_rating_count) * 10).floor / 10.0) %>">
 						<%= (((@user_rating_total / @user_rating_count) * 100.00).floor / 100.00) %>
 					</p>
+
+					<% else %>
+
+					<p class="rating-number rating-1">N/A</p>
+
+					<% end %>
 				</div>
 
-				<% end %>
 
-				<% if @rating_count != 0 %>
 				
 				<div class="average-rating">
 					<div class="average-rating-text small-text">Avg. rating received:</div>
+
+					<% if @rating_count != 0 %>
+
 					<p class="rating-number rating-<%= Integer(((@rating_total / @rating_count) * 10).floor / 10.0) %>">
 						<%= (((@rating_total / @rating_count) * 100.00).floor / 100.00) %>
 					</p>
-				</div>
 
-				<% end %>
+					<% else %>
+
+					<p class="rating-number rating-1">N/A</p>
+
+					<% end %>
+
+				</div>
 
 				<% @rating_count = 0 %>
 				<% @rating_total = 0 %>	

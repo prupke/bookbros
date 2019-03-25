@@ -1,37 +1,40 @@
 <main>
-	
-	<h2><%= @club.name %></h2>
 
 		<% @user_books.each do |user| %>
 
 		<section class="club-stats">
 			<div class="club-stat-books">
-					<p class="name big-name"><%= user.user %></p>
+				<p class="big-name">
+					<span class="name"><%= user.user %>'s</span> books
+				</p>
 
-					<% @books.each do |book| %>
-						<% if user.user == book.user %>
-							<p><a href="/posts/<%= book.id %>"><%= book.title %></a></p>
+				<% @books.each do |book| %>
+					<% if user.user == book.user %>
+						<p><a href="/posts/<%= book.id %>"><%= book.title %></a></p>
 
-							<% @ratings.each do |rating| %>
+						<% @ratings.each do |rating| %>
 
-								<% if rating.book == book.book %>
-									<% @rating_count += 1 %>
-									<% @rating_total += rating.rating %>
+							<% if rating.book == book.book %>
+								<% @rating_count += 1 %>
+								<% @rating_total += rating.rating %>
 
-									<% if rating.name == user.user %>
-									<% @self_rating_count += 1 %>
-									<% @self_rating_total += rating.rating %>
-									<% end %>
+								<% if rating.name == user.user %>
+								<% @self_rating_count += 1 %>
+								<% @self_rating_total += rating.rating %>
 								<% end %>
-
 							<% end %>
 
 						<% end %>
+
 					<% end %>
+				<% end %>
 
 			</div>	
 
 			<div class="club-stat-averages">
+				<p class="big-name">
+					<span class="name"><%= user.user %>'s</span> stats
+				</p>
 
 				<% @ratings.each do |rating| %>
 					<% if user.user == rating.name %>
@@ -96,8 +99,9 @@
 				<% @self_rating_count = 0 %>
 				<% @self_rating_total = 0 %>
 			</div>	
-			<% end %>
 		</section>
+
+		<% end %>
 
 <!-- 
 <%= link_to 'Edit', edit_club_path(@club) %> |

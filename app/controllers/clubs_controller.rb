@@ -30,7 +30,7 @@ class ClubsController < ApplicationController
     @user_books = @books.distinct.select(:user)
 
     @ratings = Rating.where(club: params[:id])
-    @user_ratings = @ratings.distinct.pluck(:user)
+    # @user_ratings = @ratings.distinct.pluck(:name)
 
     @rating_count = 0
     @rating_total = 0

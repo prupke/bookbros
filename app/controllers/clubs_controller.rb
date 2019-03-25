@@ -35,7 +35,9 @@ class ClubsController < ApplicationController
     @rating_count = 0
     @rating_total = 0
     @user_rating_count = 0
-    @user_rating_total = 0    
+    @user_rating_total = 0   
+    @self_rating_count = 0
+    @self_rating_total = 0        
     # render plain: @club.inspect
 
 

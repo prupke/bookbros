@@ -188,6 +188,9 @@ ul {
 
 .book-cover-link {
 	z-index: 1;
+	&:hover {
+		background: none;
+	}
 }
 .align-left {
 	display: flex;

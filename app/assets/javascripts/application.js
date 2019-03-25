@@ -123,7 +123,7 @@ function googleBooksApiResponse(response) {
 							+ "<span class='synopsis'>" + description + "<span>"
 						+ "</p>"
 				+ "</div></div>"
-				+ "<a href='/books/" + item.id + "'>" 
+				+ "<a class='book-cover-link' href='/books/" + item.id + "'>" 
 					+ "<figure>"
 						+ "<div id = '" + item.id + "' style='background: url(" + bookCoverLink + "?fife=w200-h300)'></div>"
 					

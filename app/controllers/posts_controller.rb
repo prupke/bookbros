@@ -13,7 +13,7 @@ class PostsController < ApplicationController
 		
 		default_per_page = 5
 		# total_pages = Book.page(1).total_pages
-		session[:club] = 'bookbros'
+		session[:club] = 'default'
 
 		@books = Book.where(club: session[:club]).order('id DESC').limit(5)
 

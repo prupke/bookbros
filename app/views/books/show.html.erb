@@ -1,0 +1,21 @@
+<main>
+	<div class="add-book">
+		<section>
+			<div class="book-cover">
+				<span class="book-image">
+					<img src="https://books.google.com/books/content/images/frontcover/<%= @book %>?fife=w200-h300">
+				</span>	
+			</div>
+			<div id="book-synopsis" class="small-synopsis">
+			</div>
+		</section>
+		<section>
+			<div class='instructions'>
+				Confirm your name to add this book to your club's book list.
+			</div>
+			<%= render 'form', book: @book %>
+		</section>
+	</div>
+	<script src="https://www.googleapis.com/books/v1/volumes?q=<%= @book %>&callback=googleBooksGetOneBook"></script>
+
+</main>

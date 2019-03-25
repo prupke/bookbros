@@ -29,7 +29,6 @@
 	}
 }
 
-
 #book-search-results {
 	display: flex;
 	flex-wrap: wrap;
@@ -138,7 +137,7 @@
 				display: flex;
 				align-items: bottom;
 
-				input {
+				div {
 					position: relative;
 					top: -16px;
 					border-radius: 0;
@@ -150,11 +149,40 @@
 					transition: transform 0.2s ease;
 				}
 
-				input:hover {
+				div:hover {
 					transform: scale(1.15, 1.15);
 				}
 			}
 		
+	}
+}
+
+.add-book {
+	margin: 70px auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	section {
+		flex-direction: column;
+	}
+}
+
+.instructions {
+	text-align: center;
+}
+
+.small-synopsis {
+	max-height: 300px;
+	overflow-y: auto;
+	
+}
+
+.new-book-form {
+	width: 350px;
+	.actions {
+		margin: 20px auto;
 	}
 }
 

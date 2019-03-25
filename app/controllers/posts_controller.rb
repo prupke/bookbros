@@ -9,25 +9,30 @@ class PostsController < ApplicationController
 		# @total_books = Book.count
 		# print("TOTAL BOOKS: " + @total_books.to_s)
 		# @books = Book.order('created_at DESC').page(params[:page])
-		session[:club] = 'bookbros'
+		# session[:club] = 'bookbros'
 		
 		default_per_page = 5
 		# total_pages = Book.page(1).total_pages
-		# session[:club] = 'bookbros2'
+		session[:club] = 'bookbros'
 
 		@books = Book.where(club: session[:club]).order('id DESC').limit(5)
-		@ratings = Rating.all
+
+		# @books = Book.joins("LEFT JOIN ratings r ON r.book = books.book").select('books.*, r.*').where(club: session[:club).order('id DESC').limit(5)
+
+		print("CLUB:" + session['club'].to_s)
+		@ratings = Rating.where(club: session[:club]).order('rating DESC')
 		@rating_total = 0
 		@rating_count = 0
 	end
 
 	def show
-		session[:club] = 'bookbros'
+		# session[:club] = 'bookbros'
 		@book = Book.find(params[:id])
-		if @book.club == session[:club]
+		# print("book.club: " + @book.club.to_s + ", session.club: " + session[:club].to_s)
+		if @book.club.to_s == session[:club].to_s
 			@rating_total = 0
 			@rating_count = 0
-			@ratings = Rating.where(book: @book.book).order('rating DESC')
+			@ratings = Rating.where(book: @book.book, club: session[:club]).order('rating DESC')
 		else
 			flash[:notice] = "You are not in this club."
 			redirect_to posts_url(club: session[:club])

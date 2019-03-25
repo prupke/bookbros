@@ -1,4 +1,73 @@
-<p id="notice"><%= notice %></p>
+<main>
+	
+	<h2><%= @club.name %></h2>
 
+		<% @user_books.each do |user| %>
+
+		<section class="club-stats">
+			<div class="club-stat-books">
+					<p class="name big-name"><%= user.user %></p>
+
+					<% @books.each do |book| %>
+						<% if user.user == book.user %>
+							<p><a href="/posts/<%= book.id %>"><%= book.title %></a></p>
+
+							<% @ratings.each do |rating| %>
+
+								<% if rating.book == book.book %>
+									<% @rating_count += 1 %>
+									<% @rating_total += rating.rating %>
+								<% end %>
+
+							<% end %>
+
+						<% end %>
+					<% end %>
+
+			</div>	
+
+			<div class="club-stat-averages">
+
+				<% @ratings.each do |rating| %>
+					<% if user.user == rating.name %>
+						<% @user_rating_count += 1 %>
+						<% @user_rating_total += rating.rating %>
+					<% end %>	
+				<% end %>	
+
+				<% if @user_rating_count != 0 %>
+
+				<div class="average-rating">
+					<div class="average-rating-text small-text">Avg. rating given:</div>
+					<p class="rating-number rating-<%= Integer(((@rating_total / @rating_count) * 10).floor / 10.0) %>">
+						<%= (((@user_rating_total / @user_rating_count) * 100.00).floor / 100.00) %>
+					</p>
+				</div>
+
+				<% end %>
+
+				<% if @rating_count != 0 %>
+				
+				<div class="average-rating">
+					<div class="average-rating-text small-text">Avg. rating received:</div>
+					<p class="rating-number rating-<%= Integer(((@rating_total / @rating_count) * 10).floor / 10.0) %>">
+						<%= (((@rating_total / @rating_count) * 100.00).floor / 100.00) %>
+					</p>
+				</div>
+
+				<% end %>
+
+				<% @rating_count = 0 %>
+				<% @rating_total = 0 %>	
+				<% @user_rating_count = 0 %>
+				<% @user_rating_total = 0 %>
+			</div>	
+			<% end %>
+		</section>
+
+<!-- 
 <%= link_to 'Edit', edit_club_path(@club) %> |
 <%= link_to 'Back', clubs_path %>
+ -->
+
+</main>

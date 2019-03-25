@@ -19,4 +19,6 @@ resources :books, as: 'books'
 
 resources :clubs
 
+resources :users
+
 end

@@ -1,0 +1,18 @@
+
+
+<%= form_for @book, url: '/books' do |form| %>
+
+    <ul class="new-book-form">
+        <li id="book_info">
+            <%= form.hidden_field :book, value: @book, name: 'book[book]' %>                 	
+        </li>
+        <li>
+            <%= form.label :user, 'Name' %>
+            <%= form.text_field :user, name: 'book[user]', value: session['name'], required: "true", autofocus: "true" %>
+        </li>
+
+        <li class="actions">
+            <%= form.submit 'Add this book' %>
+        </li>
+    </ul>
+<% end %>

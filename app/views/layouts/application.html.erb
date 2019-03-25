@@ -12,13 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="icon" type="image/icon" href="/assets/favicon.ico"> -->
     <%= favicon_link_tag '/assets/bookbros.ico' %>
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-9738432228413832",
-        enable_page_level_ads: true
-        });
-    </script>
+
   </head>
 
   <body>
@@ -34,11 +28,16 @@
                         <%= link_to "Find a book", books_path %>
                             
                     </li>
-                    <li class="club-nav">
-                        Club: <br><%= session['club'] %>
-                    </li>
+                    <!-- <li class="club-nav">
+                        Club: <br><%= session['club'] %>, id: <%= session['id'] %> <br> user: <%= session['name'] %>
+                    </li> -->
                     <li>
-                        <%= link_to "Start a club", new_club_path %>
+                        <% if session['club'] %>
+                        <%= link_to "My Club", club_path(session['club']) %>
+                        <% else %>
+                        <!-- <%= link_to "Clubs", new_club_path %> -->
+                        <%= link_to "Clubs", clubs_path %>
+                        <% end %>
                     </li>
 
                 </ul>

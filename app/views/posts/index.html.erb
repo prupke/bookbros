@@ -14,8 +14,11 @@
 <% if @books.length == 0 %>
 
 	<% if session['club'] %>
+	<div class="empty">
+		<div>Your club hasn't added any books yet!</div>
+		<div><%= link_to "Find a book", books_path, class: "rounded-link" %></div>
+	</div>
 
-	Your club hasn't added any books yet!
  
 	<% else %>
 
@@ -37,12 +40,16 @@
 		</div>
 	<% end %>	
 	<section>
-		<figure class="book-cover" id="<%= book.book %>">	<a href="/posts/<%= book.id %>" class="book-cover-link">
-			<span class="book-image">
-				<img src="https://books.google.com/books/content/images/frontcover/<%= book.book %>?fife=w1200-h800"
-					alt="<%= book.title %> by <%= book.author %> (No book cover available)">
-			</span>
-				</a>	
+		<figure class="book-cover" id="<%= book.book %>">	
+			<a href="/posts/<%= book.id %>" class="book-cover-link">
+				<span class='selected-by'>
+					Selected by <span class='name'><%= book.user %></span>
+				</span>
+				<span class="book-image">
+					<img src="https://books.google.com/books/content/images/frontcover/<%= book.book %>?fife=w1200-h800"
+						alt="<%= book.title %> by <%= book.author %> (No book cover available)">
+				</span>
+			</a>	
 		
 			<figcaption>
 						
@@ -62,13 +69,11 @@
 							</p>
 							<p>
 								<%= f.label :rating, autocomplete: "off" %>
-								<!-- <%= f.range_field :rating, in:1..10 %>  -->
-								<!-- <span>👎</span> -->
+							
 								
 								<input min="0" max="10" type="range" step="0.5" name="rating[rating]" id="rating_rating" 
 								required="true" oninput="output.value=parseFloat(rating_rating.value)">
 							</span>
-								<!-- <span>👍</span> -->
 							</p>
 							<span class="range-output">
 								<output name="output" for = "rating_rating">?</output>
@@ -101,6 +106,7 @@
 			<ul class="ratings">
 				<% @ratings.each do |rating| %>
 				
+				
 					<% if rating.book == book.book %>
 						<% if @rating_count < 5 %>
 							<li class="rating">
@@ -121,34 +127,16 @@
 						<% @rating_total += rating.rating %>
 					<% end %>							
 				<% end %>	
-				<% if @rating_count > 5 %>
 					<li>
+						<% if @rating_count > 5 %>
+
 						<span class="more">...<%= @rating_count - 5 %> more</span> 
 						<a href="/posts/<%= book.id %>" class="rounded-link small-link">See all</a>
+						
+						<% end %>
 					</li>
-				<% end %>
 				<% if @rating_total == 0 %>
-					<li><em>No ratings yet</em></li>
-					<li>
-						<div class="search-links book-search-links">
-							<a class="rounded-link fixed-width-link" href="https://www.amazon.com/s?k=<%= book.title %>+<%= book.author %>
-								&ref=as_li_tl?ie=UTF8&tag=bookbros03-20&camp=15121&creative=330641&linkCode=as2&creativeASIN=1405206276"
-							target="_blank">
-								<img class="icon" src="/assets/amazon_icon.png" alt=""> 
-								<span class="text-after-icon">Amazon search</span>
-							</a>
-							<a class="rounded-link fixed-width-link" href="https://books.google.ca/books?id=<%= book.book %>"
-							target="_blank">
-								<img class="icon" src="/assets/google_icon.png" alt=""> 
-								<span class="text-after-icon">Google search</span>
-							</a>
-							<% if book.club == 'bookbros' %>
-							<a class="rounded-link fixed-width-link" href="https://www.torontopubliclibrary.ca/search.jsp?Ntt=<%= book.title %>+<%= book.author %>" target="_blank">
-								<img class="icon library" src="/assets/library_icon.svg" alt=""> 
-								<span class="text-after-icon">Library search</span></a>
-							<% end %>
-						</div>
-					</li>	
+					<li><em>No ratings yet</em></li>	
 				<% else %>
 				<!-- <input type="number" value='<%= (@rating_total / @rating_count) %>' id="average_output"> -->
 					<li class="average-rating">
@@ -159,6 +147,27 @@
 						</p>
 					</li>
 				<% end %>
+
+				<li>
+					<div class="search-links book-search-links">
+						<a class="rounded-link fixed-width-link" href="https://www.amazon.com/s?k=<%= book.title %>+<%= book.author %>
+							&ref=as_li_tl?ie=UTF8&tag=bookbros03-20&camp=15121&creative=330641&linkCode=as2&creativeASIN=1405206276"
+						target="_blank">
+							<img class="icon" src="/assets/amazon_icon.png" alt=""> 
+							<span class="text-after-icon">Amazon search</span>
+						</a>
+						<a class="rounded-link fixed-width-link" href="https://books.google.ca/books?id=<%= book.book %>"
+						target="_blank">
+							<img class="icon" src="/assets/google_icon.png" alt=""> 
+							<span class="text-after-icon">Google search</span>
+						</a>
+						<% if book.club == 'bookbros' %>
+						<a class="rounded-link fixed-width-link" href="https://www.torontopubliclibrary.ca/search.jsp?Ntt=<%= book.title %>+<%= book.author %>" target="_blank">
+							<img class="icon library" src="/assets/library_icon.svg" alt=""> 
+							<span class="text-after-icon">Library search</span></a>
+						<% end %>
+					</div>
+				</li>
 
 				<% @rating_count = 0 %>
 				<% @rating_total = 0 %>	
@@ -178,6 +187,6 @@
 	<% end %>
 
 <% end %>
-<span id="copyright">© 2019 Book Bros Inc. As an Amazon Associate, Book Bros earns from qualifying purchases.</span>
+<span id="copyright">© 2019 Book Bros Inc.</span>
 
 </main>

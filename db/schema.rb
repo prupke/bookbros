@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_04_022426) do
+ActiveRecord::Schema.define(version: 2019_03_24_205117) do
 
   create_table "books", force: :cascade do |t|
     t.string "book"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(version: 2019_03_04_022426) do
     t.string "club"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.string "user"
+    t.index ["user_id"], name: "index_books_on_user_id"
   end
 
   create_table "clubs", force: :cascade do |t|
@@ -43,6 +46,14 @@ ActiveRecord::Schema.define(version: 2019_03_04_022426) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "club"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.integer "club_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_users_on_club_id"
   end
 
 end

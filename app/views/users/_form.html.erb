@@ -1,10 +1,11 @@
 
 
-<%= form_for @club do |form| %>
+<%= form_for @user do |form| %>
 
-    <ul class="new-club-form">
 
-        <% if club.errors.any? %>
+    <ul class="new-user-form">
+
+        <% if user.errors.any? %>
 
         <li id="error_explanation">
             <!-- <h2><%= pluralize(club.errors.count, "error") %>:</h2> -->
@@ -18,15 +19,15 @@
 
         <% end %>
 
-        <li>
-            <%= form.label :name, 'Club Name' %>
-            <%= form.text_field :name %>    
+   		<li>
+            <%= form.label :name, 'Name' %>
+            <%= form.text_field :name, value: session['name']  %>
         </li>
 
         <li>
-            <%= form.label :password %>
-            <%= form.password_field :password %>
+            <%= form.hidden_field :club, value: session['club']  %>
         </li>
+
 
         <li class="actions">
             <%= form.submit %>

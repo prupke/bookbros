@@ -278,6 +278,26 @@
 		height: auto;
 		min-height: 250px;
 	}
+
+	.club-stats {
+		flex-direction: column;
+	}
+
+	.club-stats div {
+		width: 80vw;
+		margin: 10px auto;
+	}
+
+	.club-stats div .average-rating {
+		width: 80vw;
+		margin: 10px auto;
+		min-width: 270px;
+	}
+
+	.club-stats .club-stat-averages {
+		width: auto;
+	}
+
 }
 
 @media screen and (max-width: 500px) {

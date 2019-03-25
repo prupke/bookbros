@@ -1,0 +1,12 @@
+<main>
+	<%= render 'form', user: @user %>
+
+
+<% @users.each do |user| %>
+
+	<h3><%= user.name %></h3>
+	<p><%= user.club %></p>
+	<p><%= user.id %></p>
+
+<% end %>
+</main>

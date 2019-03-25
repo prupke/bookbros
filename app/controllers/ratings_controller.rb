@@ -38,7 +38,10 @@ class RatingsController < ApplicationController
 		# render plain: params[:rating].inspect
 		@rating = Rating.new(rating_params)
 		session[:name] = @rating[:name]
+		@rating.club = session[:club]
 		print(session[:name])
+		print(session[:club])
+
 		@rating.save
 		flash[:notice] = 'Rating saved'
 		# redirect_to posts_url(:anchor => @rating[:book])
@@ -60,7 +63,7 @@ class RatingsController < ApplicationController
 	private
 
 		def rating_params
-			params.require(:rating).permit(:book, :name, :rating, :notes)	
+			params.require(:rating).permit(:book, :name, :rating, :notes, :club)	
 		end
 
 	private

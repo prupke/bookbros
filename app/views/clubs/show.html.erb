@@ -10,7 +10,20 @@
 
 				<% @books.each do |book| %>
 					<% if user.user == book.user %>
-						<p><a class="opaque-background" href="/posts/<%= book.id %>"><%= book.title %></a></p>
+						<p>
+							<a class="opaque-background" href="/posts/<%= book.id %>">
+								<!-- <%= book.title %></a>  -->
+								
+								<span class='book-title-wrapper'>
+									<span class="book-title"><%= book.title %></span>
+								</span>
+								<span class='book-author-wrapper'>
+									<span class="by">by</span>
+									<span class="book-author"><%= book.author %></span>
+								</span>
+							</a>
+								
+						</p>
 
 						<% @ratings.each do |rating| %>
 
@@ -44,7 +57,7 @@
 				<% end %>	
 
 				<div class="average-rating">
-					<div class="average-rating-text small-text">Ratings given:</div>
+					<div class="average-rating-text">Ratings given:</div>
 
 					<% if @user_rating_count != 0 %>
 					<p class="rating-number average-rating-number rating-<%= Integer(((@user_rating_total / @user_rating_count) * 10).floor / 10.0) %>">
@@ -59,7 +72,7 @@
 				</div>
 			
 				<div class="average-rating">
-					<div class="average-rating-text small-text">Ratings received:</div>
+					<div class="average-rating-text">Ratings received:</div>
 
 					<% if @rating_count != 0 %>
 
@@ -76,7 +89,7 @@
 				</div>
 
 				<div class="average-rating">
-					<div class="average-rating-text small-text">Own book ratings:</div>
+					<div class="average-rating-text">Own book ratings:</div>
 
 					<% if @self_rating_count != 0 %>
 

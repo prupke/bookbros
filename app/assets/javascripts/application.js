@@ -99,18 +99,12 @@ function googleBooksApiResponse(response) {
 		var token = template_form.elements[1].value
 
 		document.getElementById("book-search-results").innerHTML += 
-			// ("<li><form action='/books/new' accept-charset='UTF-8' method='post'>" 
 			("<li>"
-				// + "<input name='utf8' type='hidden' value='✓'>"
-				// + "<input type='hidden' name='authenticity_token' value='" + token + "'>"
-				// + "<input id='book_book' name='book[book]' type='hidden' value='" + item.id + "'>"		
-				// + "<input id='book_title' name='book[title]' type='hidden' value='" + item.volumeInfo.title + "'>"
-				// + "<input id='book_author' name='book[author]' type='hidden' value='" + item.volumeInfo.authors + "'>"
-				// + "<input id='book_club' name='book[club]' type='hidden' value=''>"
 				+ "<div class='book-title-and-author'>"
 					+ "<span class='book-title'>" + item.volumeInfo.title + "</span>"
 					+ "<span class='by'> by </span>"
-					+ "<span class='book-author'>" + item.volumeInfo.authors + "</span></div>"
+					+ "<span class='book-author'>" + item.volumeInfo.authors + "</span>"
+				+ "</div>"
 				+ "<div class='description'>Details"
 					+ "<div class='hidden-description'>" 
 						+ "<span>"
@@ -122,14 +116,14 @@ function googleBooksApiResponse(response) {
 						+ "<p>" + categories + pages + published + rating + ""
 							+ "<span class='synopsis'>" + description + "<span>"
 						+ "</p>"
-				+ "</div></div>"
+					+ "</div>"
+				+ "</div>"
 				+ "<a class='book-cover-link' href='/books/" + item.id + "'>" 
 					+ "<figure>"
 						+ "<div id = '" + item.id + "' style='background: url(" + bookCoverLink + "?fife=w200-h300)'></div>"
-					
-						// + "<input type='submit' name='commit' value='' id = '" + item.id + "' style='background: url(" + bookCoverLink + "?fife=w200-h300)'> "
-				// + "</figure></form></li>");
-				+ "</figure></a></li>");
+					+ "</figure>"
+				+ "</a>"
+			+ "</li>");
 
 	}
 	return response.items

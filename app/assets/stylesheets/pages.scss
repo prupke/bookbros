@@ -216,3 +216,19 @@ nav {
 		}
 	}
 }
+
+footer {
+	// height: 20px;
+	background: transparent;
+
+	#copyright {
+		position: absolute;
+		bottom: 20px;
+		right: 10px;
+		z-index: 10;
+		color: var(--linkfg);
+		font-size: 0.6rem;
+		margin: 2px 20px;
+	}
+}
+

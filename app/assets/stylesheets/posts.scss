@@ -202,7 +202,7 @@ ul {
 }
 
 .selected-by {
-	z-index: 5;
+	z-index: 1;
 	position: absolute;
 	background: var(--gradient2, grey);
 	color: black;
@@ -564,15 +564,6 @@ section {
 .book-title-and-author {
 	width: 100%;
 	margin: 10px auto 20px;
-}
-
-#copyright {
-	position: absolute;
-	bottom: 20px;
-	right: 10px;
-	color: var(--linkfg);
-	font-size: 0.6rem;
-	margin: 2px 20px;
 }
 
 .range-output {

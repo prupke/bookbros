@@ -4,13 +4,13 @@
 
 		<section class="club-stats">
 			<div class="club-stat-books">
-				<p class="big-name">
+				<p class="big-name tinted-background"> 
 					<span class="name"><%= user.user %>'s</span> books
 				</p>
 
 				<% @books.each do |book| %>
 					<% if user.user == book.user %>
-						<p><a href="/posts/<%= book.id %>"><%= book.title %></a></p>
+						<p><a class="opaque-background" href="/posts/<%= book.id %>"><%= book.title %></a></p>
 
 						<% @ratings.each do |rating| %>
 
@@ -32,8 +32,8 @@
 			</div>	
 
 			<div class="club-stat-averages">
-				<p class="big-name">
-					<span class="name"><%= user.user %>'s</span> stats
+				<p class="big-name tinted-background">
+					<span class="name"><%= user.user %>'s</span> averages
 				</p>
 
 				<% @ratings.each do |rating| %>
@@ -44,49 +44,49 @@
 				<% end %>	
 
 				<div class="average-rating">
-					<div class="average-rating-text small-text">Avg. rating given:</div>
+					<div class="average-rating-text small-text">Ratings given:</div>
 
 					<% if @user_rating_count != 0 %>
-					<p class="rating-number rating-<%= Integer(((@user_rating_total / @user_rating_count) * 10).floor / 10.0) %>">
+					<p class="rating-number average-rating-number rating-<%= Integer(((@user_rating_total / @user_rating_count) * 10).floor / 10.0) %>">
 						<%= (((@user_rating_total / @user_rating_count) * 100.00).floor / 100.00) %>
 					</p>
 
 					<% else %>
 
-					<p class="rating-number rating-1">N/A</p>
+					<p class="rating-number average-rating-number rating-1">N/A</p>
 
 					<% end %>
 				</div>
 			
 				<div class="average-rating">
-					<div class="average-rating-text small-text">Avg. rating received:</div>
+					<div class="average-rating-text small-text">Ratings received:</div>
 
 					<% if @rating_count != 0 %>
 
-					<p class="rating-number rating-<%= Integer(((@rating_total / @rating_count) * 10).floor / 10.0) %>">
+					<p class="rating-number average-rating-number rating-<%= Integer(((@rating_total / @rating_count) * 10).floor / 10.0) %>">
 						<%= (((@rating_total / @rating_count) * 100.00).floor / 100.00) %>
 					</p>
 
 					<% else %>
 
-					<p class="rating-number rating-1">N/A</p>
+					<p class="rating-number average-rating-number rating-1">N/A</p>
 
 					<% end %>
 
 				</div>
 
 				<div class="average-rating">
-					<div class="average-rating-text small-text">Avg. rating own books:</div>
+					<div class="average-rating-text small-text">Own book ratings:</div>
 
 					<% if @self_rating_count != 0 %>
 
-					<p class="rating-number rating-<%= Integer(((@self_rating_total / @self_rating_count) * 10).floor / 10.0) %>">
+					<p class="rating-number average-rating-number rating-<%= Integer(((@self_rating_total / @self_rating_count) * 10).floor / 10.0) %>">
 						<%= (((@self_rating_total / @self_rating_count) * 100.00).floor / 100.00) %>
 					</p>
 
 					<% else %>
 
-					<p class="rating-number rating-1">N/A</p>
+					<p class="rating-number average-rating-number rating-1">N/A</p>
 
 					<% end %>
 

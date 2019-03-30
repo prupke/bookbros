@@ -80,9 +80,10 @@
 			
 				<li class="rating">
 					<p class="name"><%= rating.name %></p>:
-					<p class="rating-number rating-<%= Integer(rating.rating) %>">
+					<p class="rating-number average-rating-number rating-<%= Integer(rating.rating) %>">
 						<%= rating.rating %>
-					</p>
+					</p>	
+					
 
 					<% if rating.name == session['name'] %>	
 						<span class="edit-delete-links">
@@ -137,7 +138,7 @@
 				<li class="average-rating fixed-average-rating">
 					<div class="average-rating-text">Average rating:</div>
 			
-					<p class="rating-number rating-<%= Integer(((@rating_total / @rating_count) * 10).floor / 10.0) %>">
+					<p class="rating-number average-rating-number rating-<%= Integer(((@rating_total / @rating_count) * 10).floor / 10.0) %>">
 						<%= (((@rating_total / @rating_count) * 100.00).floor / 100.00) %>
 					</p>
 				</li>

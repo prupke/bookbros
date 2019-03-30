@@ -47,7 +47,7 @@
 	align-items: top;
 	flex-wrap: wrap;
 	min-height: 200px;
-	border-bottom: 2px solid white;
+	// border-bottom: 2px solid white;
 
 	&:first-child {
 		margin-top: 110px;
@@ -57,26 +57,23 @@
 		line-height: 30px;
 	}
 	div {
-		margin: 2px 2px 2px 0;
 		padding: 5px 10px;
-
-		.average-rating {
-			margin: 15px 2px;
-			max-width: 270px;
-		}
-	}
-	.club-stat-books {
-		width: 50vw;
 	}
 
-	.club-stat-averages {
-		width: 35vw;
+	.average-rating {
+		margin: 15px auto;
+		max-width: 270px;
+	}
+
+	.club-stat-books, .club-stat-averages {
+		width: 44vw;
+		display: flex;
+		flex-direction: column;
 	}
 }
 
 .small-text {
-	font-size: 0.9rem;
-	text-align: center;
+	font-size: 1.1rem;
 }
 
 .big-name {

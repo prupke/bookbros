@@ -4,7 +4,7 @@
 	<% end %>
 		<% if !params[:book_search] %>
 			<h2>Find a book</h2>
-			<p class="update">Search by title, author, or both.</p>
+			<p class="tinted-background">Search by title, author, or both.</p>
 		<% end %>
 
 		<form action="/books" method="GET" id="book_search_form">
@@ -16,7 +16,7 @@
 		<p><%= @goodreads %></p>
 
 		<% if params[:book_search] %>
-			<p class="update">
+			<p class="tinted-background">
 				Showing results for '<%= @search %>'. Now select a book for your club!
 			
 <!-- 			<% if !session['name'] %>

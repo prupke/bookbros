@@ -43,7 +43,7 @@
 		<figure class="book-cover" id="<%= book.book %>">	
 			<a href="/posts/<%= book.id %>" class="book-cover-link">
 				<span class='selected-by'>
-					Selected by <span class='name'><%= book.user %></span>
+					Selected by <span class='name opaque-background'><%= book.user %></span>
 				</span>
 				<span class="book-image">
 					<img src="https://books.google.com/books/content/images/frontcover/<%= book.book %>?fife=w1200-h800"
@@ -110,7 +110,7 @@
 					<% if rating.book == book.book %>
 						<% if @rating_count < 5 %>
 							<li class="rating">
-								<p class="name"><%= rating.name %></p>:
+								<p class="name opaque-background"><%= rating.name %></p>:
 								<span class="rating-number rating-<%= Integer(rating.rating) %>">
 									<%= rating.rating %>
 								</span>	
@@ -142,7 +142,7 @@
 					<li class="average-rating">
 						<div class="average-rating-text">Average rating:</div>
 						<!-- <output name="average_output" for="average_output" onload="average_output.value=parseFloat(average_output.value)"></output> -->
-						<p class="rating-number rating-<%= Integer(((@rating_total / @rating_count) * 10).floor / 10.0) %>">
+						<p class="rating-number average-rating-number rating-<%= Integer(((@rating_total / @rating_count) * 10).floor / 10.0) %>">
 							<%= (((@rating_total / @rating_count) * 100.00).floor / 100.00) %>
 						</p>
 					</li>

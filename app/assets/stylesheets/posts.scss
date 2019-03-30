@@ -381,17 +381,33 @@ figcaption:hover div.rating-title {
 }
 
 .average-rating {
+	display: block;
+	height: 30px;
 	border: 2px solid transparent;
 	background: var(--main);
 	border-radius: 25px;
 	padding: 10px;
 	width: 270px;
+	float: left;
+	clear: both;
 }
 
 .average-rating span:first-child {
 	font-weight: bold;
 	background: transparent;
 	color: black;
+}
+
+.average-rating-text {
+	margin: 0; 
+	padding: 0;
+	font-size: 1.1rem;
+	// display: inline;
+	float: left;
+}
+
+.average-rating-number {
+	float: right;
 }
 
 .book-details-and-ratings {
@@ -416,8 +432,11 @@ figcaption:hover div.rating-title {
 	font-family: var(--font2);
 	margin: 0;
 	color: var(--linkfg);
-	background: var(--opaque);
 	display: inline;
+}
+
+.opaque-background {
+	background: var(--opaque);
 }
 
 .rating-number {
@@ -427,17 +446,11 @@ figcaption:hover div.rating-title {
 	border-radius: 4px;
 	width: 50px;
 	margin: 0 auto;
-	display: inline;
+	text-align: center;
 }
 
 .more {
 	background: var(--gradient2);
-}
-
-.average-rating-text {
-	margin: 0;
-	padding: 0;
-	display: inline;
 }
 
 // Sets rating colours on a scale from red to green

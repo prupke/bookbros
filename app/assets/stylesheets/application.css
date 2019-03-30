@@ -279,23 +279,37 @@
 		min-height: 250px;
 	}
 
+	.big-name {
+		width: 100vw;
+	}
+
 	.club-stats {
 		flex-direction: column;
 	}
 
 	.club-stats div {
-		width: 80vw;
-		margin: 10px auto;
+		margin: 0 auto;
 	}
 
 	.club-stats div .average-rating {
 		width: 80vw;
-		margin: 10px auto;
-		min-width: 270px;
 	}
 
 	.club-stats .club-stat-averages {
 		width: auto;
+		margin: 0;
+		padding: 10px 0;
+	}
+
+	.club-stats .club-stat-books {
+		width: 100vw;
+		margin: 0;
+		padding: 10px 0;
+		text-align: center;
+	}
+
+	.club-stat-books > p a, .club-stat-averages > div {
+		margin: 5px 5vw;
 	}
 
 }

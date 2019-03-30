@@ -417,15 +417,21 @@ figcaption:hover div.rating-title {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin: 60px auto;
-}
+	width: 50vw;
+	margin-top: 40px auto;
 
-.book-details-and-ratings ul {
-	display: flex;
-	flex-direction: column;
-	margin: 10px auto;
-	padding: 0;
-	align-items: center;
+	ul:first-child {
+		margin: 5px auto;
+		text-align: center;
+	}
+
+	ul {
+		display: flex;
+		flex-direction: column;
+		margin: 10px auto;
+		padding: 0;
+		align-items: center;
+	}
 }
 
 .name {

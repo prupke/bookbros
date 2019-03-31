@@ -155,6 +155,7 @@ ul {
 		font-size: 1.3rem; 
 		list-style-type: none;
 		display: inline-block;
+		mix-blend-mode: hard-light;
 	}
 }
 
@@ -167,6 +168,7 @@ ul {
 	display: block;
 	width: auto;
 	padding: 5px;
+	mix-blend-mode: hard-light;
 }
 
 .current-book-text {
@@ -242,6 +244,18 @@ figcaption {
 	transform: none;
 	transition: all .15s ease;
 	z-index: 2;
+	filter: contrast(140%);
+	mix-blend-mode: luminosity;
+	border: 2px solid blue;
+
+	&:hover {
+		border: 1px hidden;
+	}
+
+	span {
+		text-shadow: 0 0 4px black;
+		letter-spacing: 2.5px;
+	}
 }
 
 .move-add-rating-up {
@@ -386,8 +400,8 @@ figcaption:hover div.rating-title {
 	border: 2px solid transparent;
 	background: var(--main);
 	border-radius: 25px;
-	padding: 10px;
-	width: 270px;
+	padding: 10px 15px;
+	width: 260px;
 	float: left;
 	clear: both;
 }

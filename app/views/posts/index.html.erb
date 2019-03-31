@@ -11,6 +11,10 @@
 		<li><a href="#" class="rounded-link small-link">small-link</a></li>
 		<li><a href="#" class="rounded-link fixed-width-link">fixed-width</a></li>
 	</ul>	 -->
+	<% if session['bookbabes'] %>
+		<h1>Bookbabes</h1>
+	<% end %>
+	
 <% if @books.length == 0 %>
 
 	<% if session['club'] %>
@@ -18,7 +22,6 @@
 		<div>Your club hasn't added any books yet!</div>
 		<div><%= link_to "Find a book", books_path, class: "rounded-link" %></div>
 	</div>
-
  
 	<% else %>
 
@@ -55,7 +58,7 @@
 						
 					<button type="button" class="rounded-link add-rating " id = "form-<%= book.book %>-button"
 						onclick="getForm('form-<%= book.book %>')">
-						Add rating
+						<span>Add rating</span>
 					</button>
 
 					<div class="rating-form-wrapper " id="form-<%= book.book %>">

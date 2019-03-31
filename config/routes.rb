@@ -4,6 +4,8 @@ Rails.application.routes.draw do
  
 root 'posts#index', as: 'home'
 
+get 'bookbabes' => 'posts#bookbabes'
+
 # get 'rating' => 'pages#rating'
 
 resources :posts 

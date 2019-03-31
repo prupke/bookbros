@@ -10,6 +10,14 @@ class PostsController < ApplicationController
 		# print("TOTAL BOOKS: " + @total_books.to_s)
 		# @books = Book.order('created_at DESC').page(params[:page])
 		# session[:club] = 'bookbros'
+
+		url = url_for()
+
+		if url.include? '0.0.0.0:3000'
+			print("URL is 0.0.0.0:3000")
+		else
+			print("URL is not 0.0.0.0:3000")
+		end		
 		
 		default_per_page = 5
 		# total_pages = Book.page(1).total_pages
@@ -23,6 +31,11 @@ class PostsController < ApplicationController
 		@ratings = Rating.where(club: session[:club]).order('rating DESC')
 		@rating_total = 0
 		@rating_count = 0
+	end
+
+	def bookbabes
+		session['bookbabes'] = true
+		redirect_to posts_url
 	end
 
 	def show

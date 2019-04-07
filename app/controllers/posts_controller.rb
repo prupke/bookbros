@@ -11,13 +11,15 @@ class PostsController < ApplicationController
 		# @books = Book.order('created_at DESC').page(params[:page])
 		# session[:club] = 'bookbros'
 
-		url = url_for()
+		# url = url_for()
 
-		if url.include? '0.0.0.0:3000'
-			print("URL is 0.0.0.0:3000")
-		else
-			print("URL is not 0.0.0.0:3000")
-		end		
+		# if url.include? '0.0.0.0:3000'
+		# 	session['bookbabes'] = true
+		# end		
+
+		if !session['brand']
+			session['brand'] = 'Book Bros'
+		end
 		
 		default_per_page = 5
 		# total_pages = Book.page(1).total_pages
@@ -33,10 +35,24 @@ class PostsController < ApplicationController
 		@rating_count = 0
 	end
 
-	def bookbabes
-		session['bookbabes'] = true
-		redirect_to posts_url
+	def switch
+		if session['brand'] == 'Book Babes'
+			session['brand'] = 'Book Bros'
+		else
+			session['brand'] = 'Book Babes'
+		end	
+
+		redirect_back(fallback_location: posts_url)
+	end	
+
+	def about
+
 	end
+
+	# def bookbabes
+	# 	session['bookbabes'] = true
+	# 	redirect_to posts_url
+	# end
 
 	def show
 		# session[:club] = 'bookbros'

@@ -1,24 +1,57 @@
 <!DOCTYPE html>
 <html lang = 'en'>
   <head>
-    <title>Book Bros</title>
+    <title><%= session['brand'] %> - <%= yield(:title) %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|ZCOOL+KuaiLe|Archivo" rel="stylesheet"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="icon" type="image/icon" href="/assets/favicon.ico"> -->
+
+    <% if session['brand'] == 'Book Babes' %>
+
+    <%= favicon_link_tag '/assets/bookbabes.ico' %>
+
+    <% else %>
+
     <%= favicon_link_tag '/assets/bookbros.ico' %>
+
+    <% end %>
 
   </head>
 
   <body>
     <nav>
         <ul>
-            <li class="nav-logo-container"><img class="nav-logo" src="/assets/bookbros_logo_small.png" alt="" \></li> 
+            <li class="nav-logo-container">
+                <a href="/about" class="nav-logo">
+                    <% if session['brand'] == 'Book Babes' %>
+                    <img src="/assets/bookbabes_logo_small.png" alt="" \>
+                    <% else %>
+                    <img src="/assets/bookbros_logo_small.png" alt="" \>
+                    <% end %>
+                </a>    
+                <ul class='sub-menu'>
+                    <li>
+                        <a href="/about">
+                        About <%= session['brand'] %>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/switch">
+                        <% if session['brand'] == 'Book Babes' %>
+                        Switch to Book Bros
+                        <% else %>
+                        Switch to Book Babes
+                        <% end %>
+                        </a>
+                    </li>
+                </ul>
+            </li> 
             <li class="nav-links">
                 <ul>
                     <li>

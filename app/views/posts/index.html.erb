@@ -1,8 +1,21 @@
+<% content_for :title, "Posts" %>
+
 <main>
 	<!-- <img id="book-header" src="/assets/books.png" alt=""> -->
 
+	<% if session['brand'] == 'Book Babes' %>
+
+	<img id="logo" src="/assets/bookbabes_logo.png" alt="Book Babes">
+
+	<% else %>
+
 	<img id="logo" src="/assets/bookbros_logo.png" alt="Book Bros">
 
+	<% end %>
+
+	<div class='what-is'>
+		<a href="/about">What is <%= session['brand'] %>?</a>
+	</div>
 <!-- 	<ul style="display: flex; flex-direction: column;">
 		<li><a href="#" class="rounded-link">rounded-link</a></li>		
 		<li><a href="#" class="rounded-link solid-link">solid-link</a></li>
@@ -11,9 +24,6 @@
 		<li><a href="#" class="rounded-link small-link">small-link</a></li>
 		<li><a href="#" class="rounded-link fixed-width-link">fixed-width</a></li>
 	</ul>	 -->
-	<% if session['bookbabes'] %>
-		<h1>Bookbabes</h1>
-	<% end %>
 	
 <% if @books.length == 0 %>
 
@@ -25,15 +35,11 @@
  
 	<% else %>
 
-	<h2>Welcome to Book Bros!</h3>	
+	<h2>Welcome to <%= session['brand'] %>!</h2>
 
 	<% end %>
 
 <% end %>
-<h1>
-
-<h2>
-</h1>
 
 <% @books.each_with_index do |book, count| %>
 

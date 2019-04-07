@@ -29,6 +29,10 @@
 		position: relative;
 	}
 
+	nav ul li {
+		mix-blend-mode: unset;
+	}
+
 	.club-nav {
 		display: none;
 	}

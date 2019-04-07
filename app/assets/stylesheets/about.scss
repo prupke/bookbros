@@ -1,0 +1,44 @@
+.heading {
+	text-align: center;
+	padding: 5px;
+	margin: 20px 0;
+	font-size: 1.7rem;
+
+	// background: var(--gradient);
+
+}
+
+.about {
+	font-size: 1.5rem;
+	background: var(--gradient);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin: 20px 0;
+	padding: 0;
+	li {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: row;
+		padding: 0;
+		margin: 0 5vw 5px;
+		div, p {
+			// height: 100px;
+		}
+		div {
+			display: inline-block;
+			// position: relative;
+			// top: 10px;
+			font-size: 2.8rem;
+			width: 5vw;
+			margin: 0 10px;
+		}
+		p {
+			display: inline-block;
+			width: 70vw;
+			// margin: 0 1vw;
+		}
+	}
+}

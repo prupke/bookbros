@@ -5,10 +5,10 @@ class ClubsController < ApplicationController
   # GET /clubs.json
   def index
     # session['club'] = 'demo'
-    if session['club']
+    if session['club'] != 'demo'
       return redirect_to :action => "show", id: session['club']
     else
-      return redirect_to new_clubs_url
+      return redirect_to new_club_url
     end  
 
     # if !session['club']
@@ -20,14 +20,30 @@ class ClubsController < ApplicationController
   # GET /clubs/1
   # GET /clubs/1.json
   def show
-    # print("CLUB: " + session['club'])
-    # print("PARAM: " + params[:name])
-    if session['club'] != params[:id]
-      redirect_back(fallback_location: posts_url, notice: 'You are not a member of this club.')
+    print("CLUB: " + session['club'].to_s)
+    print("PARAM: " + params[:id].to_s)
+
+    @club = Club.find_by_id(params[:id])
+
+
+    # @user_club = Club.find(session[:club])
+
+    # print("club: " + @club.to_s)
+
+    # print("User club: " + @user_club.name.to_s)
+
+    # print("CLUB: " + @club[:id].to_s)
+    if session['club'].to_s != params[:id].to_s
+      redirect_back(fallback_location: posts_url, notice: 'You are not logged into this club.')
     end 
-    @club = Club.where(name: params[:id])
     @books = Book.where(club: params[:id])
     @user_books = @books.distinct.select(:user)
+
+    if session['club'] != 'demo'
+      @club_link = "http://www.bookbros.club?club=" + @club.password
+    end
+
+    @password = @club.password
 
     @ratings = Rating.where(club: params[:id])
     # @user_ratings = @ratings.distinct.pluck(:name)
@@ -51,13 +67,20 @@ class ClubsController < ApplicationController
 
   # GET /clubs/1/edit
   def edit
+    @club = Club.find_by_id(params[:id])
+
   end
 
   # POST /clubs
   # POST /clubs.json
   def create
-    render plain: params[:club].inspect
+    # render plain: params[:club].inspect
     @club = Club.create(club_params)
+    require 'securerandom'
+    random_string = SecureRandom.hex
+
+    @club.password = random_string
+
     @club.save
     # @club.update(:users_attributes => {:name => params['name']})
 
@@ -69,26 +92,34 @@ class ClubsController < ApplicationController
     # @club.users = {:user=>"admin2"}
     # @user = User.new(params['user'], @club.id)
     # @user.save
-    respond_to do |format|
+    # respond_to do |format|
       if @club.save
         session['club'] = @club.id
+        @key = @club.password.to_s
+        print("KEY: " + @club.password.to_s) 
+        print(session['club'].to_s)
         # session['user'] = @club
-        format.html { render clubs_url, notice: 'Your club has been created.' }
-        format.json { render :show, status: :created, location: @club }
+        # format.html { 
+          redirect_to @club, notice: 'Your club has been created.', key: @key
+        # }
+        # format.json { render :show, status: :created, location: @club }
 
       else
         format.html { render :index }
-        format.json { render json: @club.errors, status: :unprocessable_entity }
+        # format.json { render json: @club.errors, status: :unprocessable_entity }
       end
-    end
+    # end
   end
 
   # PATCH/PUT /clubs/1
   # PATCH/PUT /clubs/1.json
   def update
+    @club = Club.find_by_id(params[:id])
+
     respond_to do |format|
       if @club.update(club_params)
-        format.html { redirect_to @club, notice: 'Your club was successfully updated.' }
+        format.html { 
+          redirect_to @club, notice: 'Your club was successfully updated.' }
         format.json { render :show, status: :ok, location: @club }
       else
         format.html { render :edit }
@@ -125,6 +156,6 @@ class ClubsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def club_params
       # params.fetch(:club, {})
-      params.require(:club).permit(:name, :password, :user)
+      params.require(:club).permit(:name, :password)
     end
 end

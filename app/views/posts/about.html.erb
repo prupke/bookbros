@@ -4,23 +4,29 @@
 	<h1>About <%= session['brand'] %></h1>
 
 	<div class='heading'>
-		<%= session['brand'] %> is a place that makes book clubs fun.
+		<%= session['brand'] %> is a place that makes book clubs more fun.
 	</div>
 	<ul class='about'>
 		<li>
-			<div>📖</div><p>Quickly find and add your club's next book</p>
+			<div>📖</div><p>Quickly find and add your club's books</p>
 		</li>
 		<li>
 			<div>✎</div><p>Write notes and reviews to promote discussion</p>
 		</li>
 		<li>
-			<div>⭐</div><p>Add ratings for your books</p>
+			<div>⭐</div><p>Add ratings to your club's books</p>
 		</li>
 		<li>
 			<div>📈</div><p>Keep track of statistics, such as whose books get the highest ratings</p>
 		</li>
 		<li>
-			<div>😃</div><p>Dead simple to use - no passwords required</p>
+			<div>😃</div><p>Easy to use & no passwords required</p>
 		</li>
+
+		<% if session['club'] == 'demo' %>
+		<li>
+   			<%= link_to 'Start a club now', new_club_path %>	
+		</li>
+		<% end %>
 	</div>
 </main>

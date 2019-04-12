@@ -28,6 +28,37 @@
 	}
 }
 
+.club-links {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: baseline;
+	flex-wrap: wrap;
+	margin-top: 50px;
+	text-align: left;
+	font-size: 0.7rem;
+
+	.share-link {
+		background: skyblue;
+		color: black;
+		padding: 2px;
+		max-width: 80vw;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+		display: inline-block;
+	}
+	// padding: 10px 10vw;
+	.button-group {
+		margin: 40px 20px 0;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: end;
+		flex-wrap: wrap;
+	}
+}
+
 .clubs-list {
 	display: flex;
 	flex-direction: row;
@@ -38,6 +69,37 @@
 		display: block;
 	}
 }
+
+.copied::after {
+	position: absolute;
+	top: 12%;
+	right: 110%;
+	display: block;
+	content: "copied";
+	font-size: 0.75em;
+	padding: 2px 3px;
+	color: #fff;
+	background-color: #22a;
+	border-radius: 3px;
+	opacity: 0;
+	will-animate: opacity, transform;
+	animation: showcopied 1.5s ease;
+}
+
+@keyframes showcopied {
+	0% {
+	opacity: 0;
+	transform: translateX(100%);
+	}
+	70% {
+	opacity: 1;
+	transform: translateX(0);
+	}
+	100% {
+	opacity: 0;
+	}
+}
+
 
 .club-stats {
 	margin: 0 5px;

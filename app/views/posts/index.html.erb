@@ -27,7 +27,7 @@
 	
 <% if @books.length == 0 %>
 
-	<% if session['club'] %>
+	<% if session['club'] != 'demo' %>
 	<div class="empty">
 		<div>Your club hasn't added any books yet!</div>
 		<div><%= link_to "Find a book", books_path, class: "rounded-link" %></div>
@@ -169,11 +169,10 @@
 							<img class="icon" src="/assets/google_icon.png" alt=""> 
 							<span class="text-after-icon">Google search</span>
 						</a>
-						<% if book.club == 'bookbros' %>
 						<a class="rounded-link fixed-width-link" href="https://www.torontopubliclibrary.ca/search.jsp?Ntt=<%= book.title %>+<%= book.author %>" target="_blank">
 							<img class="icon library" src="/assets/library_icon.svg" alt=""> 
-							<span class="text-after-icon">Library search</span></a>
-						<% end %>
+							<span class="text-after-icon">Library search</span>
+						</a>
 					</div>
 				</li>
 

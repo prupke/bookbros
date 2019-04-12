@@ -24,29 +24,29 @@
 
   </head>
 
-  <body>
+  <body> 
     <nav>
         <ul>
             <li class="nav-logo-container">
-                <a href="/about" class="nav-logo">
+                <div class="nav-logo">
                     <% if session['brand'] == 'Book Babes' %>
                     <img src="/assets/bookbabes_logo_small.png" alt="" \>
                     <% else %>
                     <img src="/assets/bookbros_logo_small.png" alt="" \>
                     <% end %>
-                </a>    
-                <ul class='sub-menu'>
-                    <li>
+                </div>    
+                <ul class='sub-menu adjust-left'>
+                    <li tabindex="1">
                         <a href="/about">
                         About <%= session['brand'] %>
                         </a>
                     </li>
                     <li>
-                        <a href="/switch">
+                        <a href="/switch" tabindex="2">
                         <% if session['brand'] == 'Book Babes' %>
-                        Switch to Book Bros
+                        <span>Switch to Book Bros</span>
                         <% else %>
-                        Switch to Book Babes
+                        <span>Switch to Book Babes</span>
                         <% end %>
                         </a>
                     </li>
@@ -65,11 +65,27 @@
                         Club: <br><%= session['club'] %>, id: <%= session['id'] %> <br> user: <%= session['name'] %>
                     </li> -->
                     <li>
-                        <% if session['club'] %>
+                        <% if session['club'] != 'demo' %>
                         <%= link_to "My Club", club_path(session['club']) %>
+                        <!-- <ul class="sub-menu">
+                            <li>
+                                <%= link_to session['club'], club_path(session['club']) %>
+                            </li>
+                            <li>
+                                <%= link_to "New Club", new_club_path %>     
+                            </li>
+                        </ul> -->
                         <% else %>
                         <!-- <%= link_to "Clubs", new_club_path %> -->
                         <%= link_to "Clubs", clubs_path %>
+                        <!-- <ul class="sub-menu">
+                            <li>
+                                <%= link_to session['club'], club_path(session['club']) %>
+                            </li>
+                            <li>
+                                <%= link_to "New Club", new_club_path %>     
+                            </li>
+                        </ul> -->
                         <% end %>
                     </li>
 
@@ -81,6 +97,7 @@
     <% if notice %>
       <p id="notice"><%= notice %></p>
     <% end %>
+
     <%= yield %>
     <footer>
         <p id="copyright">

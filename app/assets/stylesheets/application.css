@@ -93,6 +93,11 @@
 		/*position: absolute;*/
 	}
 
+	.about {
+		width: 94vw;
+		padding: 0 3vw;
+	}
+
 	main {
 		margin-left: 0;
 	}

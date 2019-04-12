@@ -13,7 +13,7 @@
 				</span>	
 			
 				<figcaption>
-						<% if @book.user == session['name'] and @book.club == session['club'] %>
+						<% if @book.user == session['name'] and Integer(@book.club) == session['club'] %>
 							<p class="margin-top-40">
 								<%= link_to 'Delete', @book, method: :delete, data: { confirm: 'Are you sure?' }, class: 'rounded-link small-link delete' %>
 							</p>

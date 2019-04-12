@@ -4,19 +4,20 @@
 	margin: 20px 0;
 	font-size: 1.7rem;
 
-	// background: var(--gradient);
+	background: var(--gradient);
 
 }
 
 .about {
 	font-size: 1.5rem;
-	background: var(--gradient);
+	// background: var(--gradient);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	flex-wrap: wrap;
 	margin: 20px 0;
-	padding: 0;
+	padding: 0 20vw;
+	width: 60vw;
 	li {
 		display: flex;
 		justify-content: center;
@@ -24,6 +25,7 @@
 		flex-direction: row;
 		padding: 0;
 		margin: 0 5vw 5px;
+		max-width: 100%;
 		div, p {
 			// height: 100px;
 		}

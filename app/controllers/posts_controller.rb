@@ -17,13 +17,17 @@ class PostsController < ApplicationController
 		# 	session['bookbabes'] = true
 		# end		
 
-		if !session['brand']
-			session['brand'] = 'Book Bros'
+		if params[:club]
+			@club_candidate = Club.find_by_password(params[:club])
+			if !@club_candidate.nil?
+				print("Club: " + @club_candidate.name)
+				session['club'] = @club_candidate.id
+			end
 		end
 		
 		default_per_page = 5
 		# total_pages = Book.page(1).total_pages
-		session[:club] = 'default'
+		# session[:club] = 'default'
 
 		@books = Book.where(club: session[:club]).order('id DESC').limit(5)
 
@@ -36,10 +40,10 @@ class PostsController < ApplicationController
 	end
 
 	def switch
-		if session['brand'] == 'Book Babes'
-			session['brand'] = 'Book Bros'
-		else
+		if session['brand'] == 'Book Bros'
 			session['brand'] = 'Book Babes'
+		else
+			session['brand'] = 'Book Bros'
 		end	
 
 		redirect_back(fallback_location: posts_url)
@@ -49,15 +53,11 @@ class PostsController < ApplicationController
 
 	end
 
-	# def bookbabes
-	# 	session['bookbabes'] = true
-	# 	redirect_to posts_url
-	# end
-
 	def show
-		# session[:club] = 'bookbros'
-		@book = Book.find(params[:id])
-		# print("book.club: " + @book.club.to_s + ", session.club: " + session[:club].to_s)
+		@book = Book.find_by_id(params[:id])
+
+		print("book.club: " + @book.club.to_s + ", session.club: " + session[:club].to_s)
+		print("session name: " + session['name'].to_s + ", book.user: " + @book.user.to_s)
 		if @book.club.to_s == session[:club].to_s
 			@rating_total = 0
 			@rating_count = 0

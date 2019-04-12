@@ -3,7 +3,7 @@
 <main>
 	<div class="club-links">
 
-		<% if session['club'] != 'default' %>
+		<% if session['club'] != 0 %>
 
 		<div>
 			<p>
@@ -14,37 +14,60 @@
 				<!-- <a data-copytarget="#share-link" id="share-link-button" class="rounded-link small-link">Copy</a> -->
 			</p> 
 		</div>
-
+		<% else %>
+		<div></div>
 		<% end %>
 
 		<ul class="button-group">
-
-			<% if session['club'] != 'default' %>
+			<% if session['club'] != 0 %>
 
 			<li>
 	    		<%= link_to 'Edit club', edit_club_path(session['club']), class: 'rounded-link small-link' %>
 			</li>
-
-			<% end %>
-			<li>
-
-	   			<%= link_to 'Switch clubs', new_club_path, class: 'rounded-link small-link' %>
-			</li>
 			<li>
 	   			<%= link_to 'Start a new club', new_club_path, class: 'rounded-link small-link' %>
 			</li>
+
+			<% end %>
 		</ul>
 
 	</div>
 
 	<% if @user_books.length == 0 %>
+
+		<% if session['club'] == 0 %>
+
+		<div class="empty">
+			<div>You aren't part of a club yet.</div>
+			<p class="small-text">Once you join a club, you will see the club members on this page.</p>
+			<div class="button-group">
+				<%= link_to "Start a club now", clubs_path, class: "rounded-link" %>
+				<%= link_to "Try a quick demo", books_path, class: "rounded-link" %>
+			</div>
+		</div>
+
+		<% else %>
+
 		<div class="empty">
 			<div>Your club hasn't added any books yet!</div>
 			<p class="small-text">As soon as users select a book for your club, their names will appear on this page.</p>
 			<div><%= link_to "Add a book now", books_path, class: "rounded-link" %></div>
 		</div>
+
+		<% end %>
+
 	<% else %>
-		<h2><%= @club.name %></h2>	
+		<h2>
+			<% if session['club'] == 0 %> 
+			Demo
+
+			<% else %>
+
+			<%= @club.name %>
+
+			<% end %>
+			
+		</h2>	
 	<% end %>
 
 	<% @user_books.each do |user| %>

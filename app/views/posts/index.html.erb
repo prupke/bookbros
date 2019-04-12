@@ -27,19 +27,28 @@
 	
 <% if @books.length == 0 %>
 
-	<% if session['club'] != 'demo' %>
+	<% if session['club'] != 0 %>
+
 	<div class="empty">
 		<div>Your club hasn't added any books yet!</div>
 		<div><%= link_to "Find a book", books_path, class: "rounded-link" %></div>
 	</div>
  
-	<% else %>
-
-	<h2>Welcome to <%= session['brand'] %>!</h2>
-
 	<% end %>
 
 <% end %>
+
+<% if session['club'] == 0 %>
+
+	<div class="empty">
+		<h2>Welcome to <%= session['brand'] %>!</h2>
+		<div class="button-group">
+			<%= link_to "Start a club now", clubs_path, class: "rounded-link" %>
+			<%= link_to "Try a quick demo", books_path, class: "rounded-link" %>		
+		</div>
+	</div>
+
+<% end %>	
 
 <% @books.each_with_index do |book, count| %>
 

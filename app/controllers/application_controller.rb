@@ -15,8 +15,12 @@ class ApplicationController < ActionController::Base
 
 	def check_club
 		if !session['club']
-			session['club'] = 'demo'
+			session['club'] = 0
 		end
+
+		if !session['name']
+			session['name'] = 'Demo'
+		end 
 	end
 
 end

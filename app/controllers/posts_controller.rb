@@ -15,7 +15,8 @@ class PostsController < ApplicationController
 
 		# if url.include? '0.0.0.0:3000'
 		# 	session['bookbabes'] = true
-		# end		
+		# end	
+		@nav = "home"	
 
 		if params[:club]
 			@club_candidate = Club.find_by_password(params[:club])

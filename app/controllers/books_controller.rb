@@ -5,6 +5,7 @@ class BooksController < ApplicationController
 	
 
 	def index
+		@nav = "find_a_book"
 		# @goodreads = client.search_books("The Lord Of The Rings")
 		if params[:book_search]
 			@search = params[:book_search] 

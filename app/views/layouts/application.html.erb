@@ -42,7 +42,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/switch" tabindex="2">
+                        <a href="/switch">
                         <% if session['brand'] == 'Book Babes' %>
                         <span>Switch to Book Bros</span>
                         <% else %>
@@ -55,29 +55,29 @@
             <li class="nav-links">
                 <ul>
                     <li>
-                        <%= link_to "Home", home_path %>
+                        <% if @nav == "home" %> 
+                            <%= link_to "Home", home_path, id: "active-link" %>
+                        <% else %>
+                            <%= link_to "Home", home_path %>
+                        <% end %>
                     </li>
                     <li>
-                        <%= link_to "Find a book", books_path %>
-                            
+                        <% if @nav == "find_a_book" %> 
+                            <%= link_to "Find a book", books_path, id: "active-link" %>
+                        <% else %>
+                            <%= link_to "Find a book", books_path %>
+                        <% end %>    
                     </li>
                     <!-- <li class="club-nav">
                         Club: <br><%= session['club'] %>, id: <%= session['id'] %> <br> user: <%= session['name'] %>
                     </li> -->
                     <li>
-                        <% if session['club'] != 'demo' %>
-                        <%= link_to "My Club", club_path(session['club']) %>
-                        <!-- <ul class="sub-menu">
-                            <li>
-                                <%= link_to session['club'], club_path(session['club']) %>
-                            </li>
-                            <li>
-                                <%= link_to "New Club", new_club_path %>     
-                            </li>
-                        </ul> -->
+
+                        <% if @nav == "club" %> 
+                            <%= link_to "My Club", club_path(session['club']), id: "active-link" %>
                         <% else %>
-                        <!-- <%= link_to "Clubs", new_club_path %> -->
-                        <%= link_to "Clubs", clubs_path %>
+                            <%= link_to "My Club", club_path(session['club']) %>
+                        <% end %> 
                         <!-- <ul class="sub-menu">
                             <li>
                                 <%= link_to session['club'], club_path(session['club']) %>
@@ -86,7 +86,7 @@
                                 <%= link_to "New Club", new_club_path %>     
                             </li>
                         </ul> -->
-                        <% end %>
+
                     </li>
 
                 </ul>

@@ -19,8 +19,9 @@ class ClubsController < ApplicationController
   # GET /clubs/1
   # GET /clubs/1.json
   def show
-    print("CLUB: " + session['club'].to_s)
-    print("PARAM: " + params[:id].to_s)
+    @nav = "club"
+    # print("CLUB: " + session['club'].to_s)
+    # print("PARAM: " + params[:id].to_s)
 
     @club = Club.find_by_id(params[:id])
 

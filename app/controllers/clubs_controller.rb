@@ -66,8 +66,11 @@ class ClubsController < ApplicationController
 
   # GET /clubs/1/edit
   def edit
-    @club = Club.find_by_id(params[:id])
+    if params[:id] == 0 or params[:id] != session['club']
+      redirect_back(fallback_location: club_url)
+    end
 
+    @club = Club.find_by_id(params[:id])
   end
 
   # POST /clubs

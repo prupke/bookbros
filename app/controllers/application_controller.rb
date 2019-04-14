@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 		end
 
 		if !session['name']
-			session['name'] = 'Demo'
+			session['name'] = ''
 		end 
 	end
 

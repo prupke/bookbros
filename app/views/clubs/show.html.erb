@@ -11,7 +11,7 @@
 			</p>
 			<p>
 				<span class="share-link" id="share-link"><%= @club_link %></span>
-				<!-- <a data-copytarget="#share-link" id="share-link-button" class="rounded-link small-link">Copy</a> -->
+				<a data-copytarget="#share-link" id="share-link-button" class="rounded-link small-link copied">Copy</a>
 			</p> 
 		</div>
 		<% else %>
@@ -24,11 +24,13 @@
 			<li>
 	    		<%= link_to 'Edit club', edit_club_path(session['club']), class: 'rounded-link small-link' %>
 			</li>
+			
+			<% end %>
+
 			<li>
 	   			<%= link_to 'Start a new club', new_club_path, class: 'rounded-link small-link' %>
 			</li>
 
-			<% end %>
 		</ul>
 
 	</div>

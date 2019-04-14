@@ -12,10 +12,9 @@ get 'switch' => 'posts#switch'
 
 get '/404' => 'errors#not_found'
 
-get '/422' => 'errors#unacceptable'
+# get '/422' => 'errors#unacceptable'
 
 get '/500' => 'errors#internal_error'
-
 
 # get 'rating' => 'pages#rating'
 
@@ -33,5 +32,7 @@ resources :books, as: 'books'
 resources :clubs
 
 resources :users
+
+get '*path', to: 'errors#not_found'
 
 end

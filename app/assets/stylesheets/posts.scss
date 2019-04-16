@@ -23,7 +23,7 @@
 #notice {
 	opacity: 1;
 	position: fixed;
-	top: 80px;
+	top: -130px;
 	left: 25vw;
 	background: rgba(107, 209, 251, 0.9);
 	width: 50vw;
@@ -36,6 +36,18 @@
 	z-index: 10;
 	transition: opacity 1s ease, z-index 2s ease;
 	transition-delay: 3s;
+	-webkit-animation-name: moveMessage;
+    -webkit-animation-duration: 3s; 
+    animation-name: moveMessage;
+}
+
+@keyframes moveMessage {
+    0%   {top: 80px;}
+    80%  {top: 80px;}
+    100% {top: -130px;
+    display: none;
+    visibility: none;
+    }
 }
 
 // @keyframes notice-disappear {
@@ -152,13 +164,17 @@
 
 .empty {
 	font-size: 1.6rem;
-	margin: 200px auto -200px;
+	margin: 250px auto -200px;
 	padding: 10px 20px;
 	text-align: center;
 	div {
 		text-align: center;
 		margin: 10px auto 40px;
 	}
+}
+
+.empty-short {
+	margin: 100px auto -200px;
 }
 
 ul {

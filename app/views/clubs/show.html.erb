@@ -7,9 +7,7 @@
 
 		<div>
 			<p>
-			Link to your club:
-			</p>
-			<p>
+				Link to your club:
 				<span class="share-link" id="share-link"><%= @club_link %></span>
 				<a data-copytarget="#share-link" id="share-link-button" class="rounded-link small-link copied">Copy</a>
 			</p> 
@@ -39,7 +37,7 @@
 
 		<% if session['club'] == 0 %>
 
-		<div class="empty">
+		<div class="empty empty-short">
 			<div>You aren't part of a club yet.</div>
 			<p class="small-text">Once you join a club, you will see the club members on this page.</p>
 			<div class="button-group">
@@ -50,9 +48,10 @@
 
 		<% else %>
 
-		<div class="empty">
+		<div class="empty empty-short">
 			<div>Your club hasn't added any books yet!</div>
 			<p class="small-text">As soon as users select a book for your club, their names will appear on this page.</p>
+			<p class="small-text">You will also see their book statistics here!</p>
 			<div><%= link_to "Add a book now", books_path, class: "rounded-link" %></div>
 		</div>
 

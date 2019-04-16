@@ -24,7 +24,11 @@ class BooksController < ApplicationController
 		session['name']	= @book.user
 		@book.club = session['club']
 		@book.save
-		flash[:notice] = 'Added "' + @book.title + '" to your book list!'
+		if @book.title
+			flash[:notice] = 'Added "' + @book.title + '" to your book list!'
+		else
+			flash[:notice] = 'Added this book to your book list!'	
+		end	
 		redirect_to posts_url(:anchor => @book[:book])
 		# @search = params[:book_search]
 		# redirect_to books_url(@search = params[:book_search])
@@ -40,17 +44,16 @@ class BooksController < ApplicationController
 		@book_title = @book.title
 		if (session['name'] == 'admin' and @book.club = session['club']) or @book.user = ''
 			@book.destroy
-			respond_to do |format|
-		      # format.html { redirect_to posts_url, notice: 'Rating was successfully destroyed.' }
-		      format.html { redirect_to posts_url, notice: "Deleted '" + @book_title + "' from your book list." }
-
-		      format.json { head :no_content }
-		    end
+			if @book_title
+				flash[:notice] = 'Removed "' + @book_title + '" from your book list.'
+			else
+				flash[:notice] = 'Removed from your book list.'	
+			end	
 		else
 			redirect_back(fallback_location: posts_url, notice: 'You do not have permission to delete this.')
 		end		
 
-		# redirect_back(fallback_location: posts_url(:anchor => @rating[:book]))
+		redirect_to posts_url
 	end
 
 

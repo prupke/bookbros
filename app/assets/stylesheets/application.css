@@ -300,6 +300,16 @@
 		padding: 2px 3vw;
 	}
 
+	.club-links p {
+		margin: 1vw;
+		width: 98vw;
+	}
+
+	.button-group {
+		margin: 1vw 0;
+		width: 98vw;
+	}
+
 	.club-stats {
 		flex-direction: column;
 	}

@@ -29,7 +29,7 @@
 
 	<% if session['club'] != 0 %>
 
-	<div class="empty">
+	<div class="empty empty-short">
 		<div>Your club hasn't added any books yet!</div>
 		<div><%= link_to "Find a book", books_path, class: "rounded-link" %></div>
 	</div>
@@ -40,7 +40,7 @@
 
 <% if session['club'] == 0 %>
 
-	<div class="empty">
+	<div class="empty empty-short">
 		<h2>Welcome to <%= session['brand'] %>!</h2>
 		<div class="button-group">
 			<%= link_to "Start a club now", clubs_path, class: "rounded-link" %>

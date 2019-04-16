@@ -15,7 +15,9 @@
 //= require turbolinks
 //= require_tree .
 
-window.onscroll = function() {scrollFunction()};
+window.onscroll = function() {
+	scrollFunction()
+};
 
 function scrollFunction() {
   if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
@@ -33,8 +35,6 @@ function getForm(id) {
 	button_id = id + "-button";
 	document.getElementById(button_id).classList.toggle("move-add-rating-up");
 }
-
-// .addEventListener("input[type='range']", sendOutput);
 
 // Sends the current range input value to the output field below it
 function sendOutput() {

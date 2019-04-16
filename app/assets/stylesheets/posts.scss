@@ -10,7 +10,7 @@
 	max-width: 98vw;
 	height: auto;
 	top: 120px;
-	right: calc(50% - 200px);
+	right: calc(50vw - 200px);
 	opacity: 0.15;
 	transition: width 0.2s ease-out, opacity 0.2s ease-out, right 0.2s ease-out, top 0.2s ease-out;
 }
@@ -34,9 +34,23 @@
 	font-size: 1.2rem;
 	color: black;
 	z-index: 10;
-	transition: opacity 1s ease;
+	transition: opacity 1s ease, z-index 2s ease;
 	transition-delay: 3s;
 }
+
+// @keyframes notice-disappear {
+// 	0% {
+// 	opacity: 0;
+// 	transform: translateX(100%);
+// 	}
+// 	70% {
+// 	opacity: 1;
+// 	transform: translateX(0);
+// 	}
+// 	100% {
+// 	opacity: 0;
+// 	}
+// }
 
 .icon {
 	width: 24px;

@@ -109,6 +109,9 @@
 		flex-direction: column;
 	}
 
+	#logo {
+		right: calc(50vw - 190px);
+	}
 	#logo img {
 		width: 50vw;
 	}

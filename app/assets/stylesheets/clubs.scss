@@ -39,11 +39,16 @@
 	font-size: 0.7rem;
 
 	p {
-		margin: 5px auto;
+		margin: 5px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		max-width: 95vw;
+
+		#share-link {
+			height: 15px;
+			width: 280px;
+		}
 	}
 
 	.share-link {
@@ -78,33 +83,42 @@
 	}
 }
 
+#share-link-button {
+	position: relative;
+}
+
 .copied::after {
 	position: absolute;
-	top: 12%;
-	right: 110%;
+	z-index: 10;
+	right: 70px;
+	bottom: -20px;
 	display: block;
 	content: "copied";
-	font-size: 0.75em;
-	padding: 2px 3px;
-	color: #fff;
-	background-color: #22a;
-	border-radius: 3px;
+	font-size: 0.8rem;
+	padding: 4px;
+	color: white;
+	background-color: var(--gradient);
+	border-radius: 4px;
 	opacity: 0; 
 	will-animate: opacity, transform;
-	animation: showcopied 1.5s ease;
+	animation: showcopied 2s ease;
 }
 
 @keyframes showcopied {
 	0% {
-	opacity: 0;
-	transform: translateX(100%);
+		opacity: 0;
+		transform: translateX(100%);
 	}
-	70% {
-	opacity: 1;
-	transform: translateX(0);
+	20% {
+		opacity: 0.7;
+	}
+	50% {
+		opacity: 1;
+		transform: translateX(30%);
 	}
 	100% {
-	opacity: 0;
+		opacity: 0;
+		transform: translateX(0%);
 	}
 }
 

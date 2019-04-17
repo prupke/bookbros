@@ -41,6 +41,37 @@ function sendOutput() {
 	document.querySelector("output").value = parseFloat(rating.value);
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// Used on the Clubs page to copy the Club URL to the clipboard
+async function copyToClipboard() {
+  const el = document.createElement('textarea');  // Create a <textarea> element
+  link = document.querySelector("#share-link").textContent;
+  // console.log("Link: " + link);
+  el.value = link;                                // Set its value to the string that you want copied
+  el.setAttribute('readonly', '');                // Make it readonly to be tamper-proof
+  el.style.position = 'absolute';                 
+  el.style.left = '-9999px';                      // Move outside the screen to make it invisible
+  document.body.appendChild(el);                  // Append the <textarea> element to the HTML document
+  const selected =            
+    document.getSelection().rangeCount > 0        // Check if there is any content selected previously
+      ? document.getSelection().getRangeAt(0)     // Store selection if found
+      : false;                                    // Mark as false to know no selection existed before
+  el.select();                                    // Select the <textarea> content
+  document.execCommand('copy');                   // Copy - only works as a result of a user action (e.g. click events)
+  document.body.removeChild(el);                  // Remove the <textarea> element
+  if (selected) {                                 // If a selection existed before copying
+    document.getSelection().removeAllRanges();    // Unselect everything on the HTML document
+    document.getSelection().addRange(selected);   // Restore the original selection
+    document.querySelector("#share-link-button").classList.add("copied");
+    await sleep(2000);
+  	document.querySelector("#share-link-button").classList.remove("copied");
+  }
+};
+
+// Returns one book - this function should only be used if you have a Book ID
 function googleBooksGetOneBook(response) {
 	for (var i = 0; i < 1; i++) {
 		var item = response.items[i];
@@ -64,16 +95,15 @@ function googleBooksGetOneBook(response) {
 			+ "<input type='hidden' name='book[title]' value='" + item.volumeInfo.title + "'>");
 	}
 
-// " + item.volumeInfo.imageLinks.thumbnail + "
+// You can configure how many books to return - currently set to 5
 function googleBooksApiResponse(response) {
 	for (var i = 0; i < 5; i++) {
 		var item = response.items[i];
 		var bookCoverLink = "https://books.google.com/books/content/images/frontcover/" + item.id
 		var one = escape(1);
 		var isbn = item.volumeInfo.industryIdentifiers[1].identifier
-	
 
-		// var amazonSearchLink = "http://www.google.com/search?q=" + isbn + "+amazon.com&btnI"
+		// DuckDuckGo's search doesn't seem to work as consistently as Google's unfortunately
 		// var amazonSearchLink = "https://duckduckgo.com/?q=!" + item.volumeInfo.title + "+" + item.volumeInfo.authors + "+amazon"
 		
 		var amazonSearchLink = "https://www.amazon.com/s?k=" + isbn + 

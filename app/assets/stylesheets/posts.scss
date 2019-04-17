@@ -585,6 +585,7 @@ figcaption:hover div.rating-title {
 section {
 	display: flex;
 	min-height: 500px;
+	justify-content: center;
 	ul {
 		display: flex;
 		flex-direction: column;

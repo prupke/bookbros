@@ -68,10 +68,8 @@ main {
 
 form input, form textarea {
 	background: var(--gradient-light);
-	&:hover, &:active, &:focus {
-		box-shadow: var(--shadow);
-	}
 }
+
 
 #error_explanation {
 	color: red;

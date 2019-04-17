@@ -9,7 +9,7 @@
 			<p>
 				Link to your club:
 				<span class="share-link" id="share-link"><%= @club_link %></span>
-				<a data-copytarget="#share-link" id="share-link-button" class="rounded-link small-link copied">Copy</a>
+				<a onclick="copyToClipboard()" id="share-link-button" class="rounded-link small-link">Copy</a>
 			</p> 
 		</div>
 		<% else %>

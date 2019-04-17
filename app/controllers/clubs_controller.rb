@@ -67,7 +67,6 @@ class ClubsController < ApplicationController
 
   # GET /clubs/1/edit
   def edit
-    print("SESSION: " + session['club'].to_s)
     if params[:id] == 0 or params[:id].to_s != session['club'].to_s
       redirect_back(fallback_location: club_url)
     end

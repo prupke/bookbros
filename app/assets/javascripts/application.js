@@ -41,9 +41,9 @@ function sendOutput() {
 	document.querySelector("output").value = parseFloat(rating.value);
 }
 
-// function sleep(ms) {
-//   return new Promise(resolve => setTimeout(resolve, ms));
-// }
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 // // Used on the Clubs page to copy the Club URL to the clipboard
 // async function copyToClipboard() {

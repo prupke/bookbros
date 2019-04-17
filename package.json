@@ -1,6 +1,6 @@
 {
   "name": "app",
-  "private": true,
+  // "private": true,
   "description": "Bookbros",
   "version": "8.12.0",
   "engines": {

@@ -102,7 +102,7 @@ class ClubsController < ApplicationController
         # @key = @club.password.to_s
         # print("KEY: " + @club.password.to_s) 
         print(session['club'].to_s)
-        UserMailer.with(club_link: @club_link, email: @club.email).register_email.deliver!
+        UserMailer.with(club_link: @club_link, email: @club.email).register_email.deliver_later
         # session['user'] = @club
         # format.html { 
           redirect_to @club, notice: 'Your club has been created.'

@@ -41,7 +41,7 @@ class ClubsController < ApplicationController
 
     if session['club'] != 0
       @password = @club.password
-      @club_link = "http://www.bookbros.club?club=" + @password
+      @club_link = "https://www.bookbros.club?club=" + @password
     end
 
 
@@ -98,12 +98,14 @@ class ClubsController < ApplicationController
     # respond_to do |format|
       if @club.save
         session['club'] = @club.id
-        @key = @club.password.to_s
-        print("KEY: " + @club.password.to_s) 
+        @club_link = "https://www.bookbros.club?club=" + @club.password.to_s
+        # @key = @club.password.to_s
+        # print("KEY: " + @club.password.to_s) 
         print(session['club'].to_s)
+        UserMailer.with(club_link: @club_link).register_email.deliver_now
         # session['user'] = @club
         # format.html { 
-          redirect_to @club, notice: 'Your club has been created.', key: @key
+          redirect_to @club, notice: 'Your club has been created.'
         # }
         # format.json { render :show, status: :created, location: @club }
 
@@ -159,6 +161,6 @@ class ClubsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def club_params
       # params.fetch(:club, {})
-      params.require(:club).permit(:name, :password)
+      params.require(:club).permit(:name, :password, :email)
     end
 end

@@ -38,7 +38,7 @@ class PostsController < ApplicationController
 		@ratings = Rating.where(club: session[:club]).order('rating DESC')
 		@rating_total = 0
 		@rating_count = 0
-	end
+	end 
 
 	def switch
 		if session['brand'] == 'Book Bros'

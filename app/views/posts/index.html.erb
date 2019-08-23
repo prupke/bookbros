@@ -125,6 +125,7 @@
 				
 				
 					<% if rating.book == book.book %>
+						<% if @rating_count < 5 %>
 							<li class="rating">
 								<p class="name opaque-background"><%= rating.name %></p>:
 								<span class="rating-number rating-<%= Integer(rating.rating) %>">
@@ -137,7 +138,7 @@
 									</span>	
 								<% end %>
 							</li>
-					
+						<% end %>
 						
 						<% @rating_count += 1 %>
 						<% @rating_total += rating.rating %>

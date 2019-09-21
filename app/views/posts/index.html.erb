@@ -121,50 +121,53 @@
 				</li>
 			</ul>	
 			<ul class="ratings">
-				<% @ratings.each do |rating| %>
-				
-				
-					<% if rating.book == book.book %>
-						<% if @rating_count < 5 %>
-							<li class="rating">
-								<p class="name opaque-background"><%= rating.name %></p>:
-								<span class="rating-number rating-<%= Integer(rating.rating) %>">
-									<%= rating.rating %>
-								</span>	
-								<% if rating.notes and rating.notes != '' %>
-									&nbsp;📖
-									<span class="rating-notes">
-										<%= rating.notes %>
+				<% if @ratings != nil %>
+
+					<% @ratings.each do |rating| %>
+					
+					
+						<% if rating.book == book.book %>
+							<% if @rating_count < 5 %>
+								<li class="rating">
+									<p class="name opaque-background"><%= rating.name %></p>:
+									<span class="rating-number rating-<%= Integer(rating.rating) %>">
+										<%= rating.rating %>
 									</span>	
-								<% end %>
-							</li>
-						<% end %>
-						
-						<% @rating_count += 1 %>
-						<% @rating_total += rating.rating %>
-					<% end %>							
-				<% end %>	
-					<li>
-						<% if @rating_count > 5 %>
+									<% if rating.notes and rating.notes != '' %>
+										&nbsp;📖
+										<span class="rating-notes">
+											<%= rating.notes %>
+										</span>	
+									<% end %>
+								</li>
+							<% end %>
+							
+							<% @rating_count += 1 %>
+							<% @rating_total += rating.rating %>
+						<% end %>							
+					<% end %>	
+						<li>
+							<% if @rating_count > 5 %>
 
-						<span class="more">...<%= @rating_count - 5 %> more</span> 
-						<a href="/posts/<%= book.id %>" class="rounded-link small-link">See all</a>
-						
-						<% end %>
-					</li>
-				<% if @rating_total == 0 %>
-					<li><em>No ratings yet</em></li>	
-				<% else %>
-				<!-- <input type="number" value='<%= (@rating_total / @rating_count) %>' id="average_output"> -->
-					<li class="average-rating">
-						<div class="average-rating-text">Average rating:</div>
-						<!-- <output name="average_output" for="average_output" onload="average_output.value=parseFloat(average_output.value)"></output> -->
-						<p class="rating-number average-rating-number rating-<%= Integer(((@rating_total / @rating_count) * 10).floor / 10.0) %>">
-							<%= (((@rating_total / @rating_count) * 100.00).floor / 100.00) %>
-						</p>
-					</li>
+							<span class="more">...<%= @rating_count - 5 %> more</span> 
+							<a href="/posts/<%= book.id %>" class="rounded-link small-link">See all</a>
+							
+							<% end %>
+						</li>
+					<% if @rating_total == 0 %>
+						<li><em>No ratings yet</em></li>	
+					<% else %>
+					<!-- <input type="number" value='<%= (@rating_total / @rating_count) %>' id="average_output"> -->
+						<li class="average-rating">
+							<div class="average-rating-text">Average rating:</div>
+							<!-- <output name="average_output" for="average_output" onload="average_output.value=parseFloat(average_output.value)"></output> -->
+							<p class="rating-number average-rating-number rating-<%= Integer(((@rating_total / @rating_count) * 10).floor / 10.0) %>">
+								<%= (((@rating_total / @rating_count) * 100.00).floor / 100.00) %>
+							</p>
+						</li>
+					<% end %>
+
 				<% end %>
-
 				<li>
 					<div class="search-links book-search-links">
 						<a class="rounded-link fixed-width-link" href="https://www.amazon.com/s?k=<%= book.title %>+<%= book.author %>

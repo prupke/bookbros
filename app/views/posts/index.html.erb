@@ -48,160 +48,161 @@
 		</div>
 	</div>
 
-<% end %>	
+<% else %>	
 
-<% @books.each_with_index do |book, count| %>
+	<% @books.each_with_index do |book, count| %>
 
-	<% if count == 0 %>
-		<div class="book-text current-book-text">
-			| Current book |
-		</div>
-	<% end %>	
-	<section>
-		<figure class="book-cover" id="<%= book.book %>">	
-			<a href="/posts/<%= book.id %>" class="book-cover-link">
-				<span class='selected-by'>
-					Selected by <span class='name opaque-background'><%= book.user %></span>
-				</span>
-				<span class="book-image">
-					<img src="https://books.google.com/books/content/images/frontcover/<%= book.book %>?fife=w1200-h800"
-						alt="<%= book.title %> by <%= book.author %> (No book cover available)">
-				</span>
-			</a>	
-		
-			<figcaption>
-						
-					<button type="button" class="rounded-link add-rating " id = "form-<%= book.book %>-button"
-						onclick="getForm('form-<%= book.book %>')">
-						<span>Add rating</span>
-					</button>
-
-					<div class="rating-form-wrapper " id="form-<%= book.book %>">
-						<%= form_for :rating, url: ratings_path do |f| %>
-							<%= f.label :book %>
-							<%= f.hidden_field :book, :value => book.book %>	
-							<p>	
-								<%= f.label :name %>
-								<%= f.text_field :name, placeholder: "Name", autocomplete: "off", required: "true",
-								value: session['name'], maxLength: 24 %>
-							</p>
-							<p>
-								<%= f.label :rating, autocomplete: "off" %>
+		<% if count == 0 %>
+			<div class="book-text current-book-text">
+				| Current book |
+			</div>
+		<% end %>	
+		<section>
+			<figure class="book-cover" id="<%= book.book %>">	
+				<a href="/posts/<%= book.id %>" class="book-cover-link">
+					<span class='selected-by'>
+						Selected by <span class='name opaque-background'><%= book.user %></span>
+					</span>
+					<span class="book-image">
+						<img src="https://books.google.com/books/content/images/frontcover/<%= book.book %>?fife=w1200-h800"
+							alt="<%= book.title %> by <%= book.author %> (No book cover available)">
+					</span>
+				</a>	
+			
+				<figcaption>
 							
+						<button type="button" class="rounded-link add-rating " id = "form-<%= book.book %>-button"
+							onclick="getForm('form-<%= book.book %>')">
+							<span>Add rating</span>
+						</button>
+
+						<div class="rating-form-wrapper " id="form-<%= book.book %>">
+							<%= form_for :rating, url: ratings_path do |f| %>
+								<%= f.label :book %>
+								<%= f.hidden_field :book, :value => book.book %>	
+								<p>	
+									<%= f.label :name %>
+									<%= f.text_field :name, placeholder: "Name", autocomplete: "off", required: "true",
+									value: session['name'], maxLength: 24 %>
+								</p>
+								<p>
+									<%= f.label :rating, autocomplete: "off" %>
 								
-								<input min="0" max="10" type="range" step="0.5" name="rating[rating]" id="rating_rating" 
-								required="true" oninput="output.value=parseFloat(rating_rating.value)">
-							</span>
+									
+									<input min="0" max="10" type="range" step="0.5" name="rating[rating]" id="rating_rating" 
+									required="true" oninput="output.value=parseFloat(rating_rating.value)">
+								</span>
+								</p>
+								<span class="range-output">
+									<output name="output" for = "rating_rating">?</output>
+								</span>
 							</p>
-							<span class="range-output">
-								<output name="output" for = "rating_rating">?</output>
-							</span>
-						</p>
-							<%= f.text_area :notes, placeholder: "Notes (optional)", autocomplete: "off", maxLength: 400 %>
-						<p>
-							<%= f.submit %>
-						</p>
+								<%= f.text_area :notes, placeholder: "Notes (optional)", autocomplete: "off", maxLength: 400 %>
+							<p>
+								<%= f.submit %>
+							</p>
 
-						<% end %>	
-					</div>
+							<% end %>	
+						</div>
 
-			</figcaption>
+				</figcaption>
 
-		</figure>
+			</figure>
 
-		
-		<div class="book-details-and-ratings">
-			<ul>
-				<li class='book-title-wrapper'>
-					<span class="book-title"><%= book.title %></span>
-				</li>
-				<li class='book-author-wrapper'>
-					<span class="by">by</span>
-					<span class="book-author"><%= book.author %></span>
-				</li>
-			</ul>	
-			<ul class="ratings">
-				<% if @ratings != nil %>
+			
+			<div class="book-details-and-ratings">
+				<ul>
+					<li class='book-title-wrapper'>
+						<span class="book-title"><%= book.title %></span>
+					</li>
+					<li class='book-author-wrapper'>
+						<span class="by">by</span>
+						<span class="book-author"><%= book.author %></span>
+					</li>
+				</ul>	
+				<ul class="ratings">
+					<% if @ratings != nil %>
 
-					<% @ratings.each do |rating| %>
-					
-					
-						<% if rating.book == book.book %>
-							<% if @rating_count < 5 %>
-								<li class="rating">
-									<p class="name opaque-background"><%= rating.name %></p>:
-									<span class="rating-number rating-<%= Integer(rating.rating) %>">
-										<%= rating.rating %>
-									</span>	
-									<% if rating.notes and rating.notes != '' %>
-										&nbsp;📖
-										<span class="rating-notes">
-											<%= rating.notes %>
+						<% @ratings.each do |rating| %>
+						
+						
+							<% if rating.book == book.book %>
+								<% if @rating_count < 5 %>
+									<li class="rating">
+										<p class="name opaque-background"><%= rating.name %></p>:
+										<span class="rating-number rating-<%= Integer(rating.rating) %>">
+											<%= rating.rating %>
 										</span>	
-									<% end %>
-								</li>
-							<% end %>
-							
-							<% @rating_count += 1 %>
-							<% @rating_total += rating.rating %>
-						<% end %>							
-					<% end %>	
-						<li>
-							<% if @rating_count > 5 %>
+										<% if rating.notes and rating.notes != '' %>
+											&nbsp;📖
+											<span class="rating-notes">
+												<%= rating.notes %>
+											</span>	
+										<% end %>
+									</li>
+								<% end %>
+								
+								<% @rating_count += 1 %>
+								<% @rating_total += rating.rating %>
+							<% end %>							
+						<% end %>	
+							<li>
+								<% if @rating_count > 5 %>
 
-							<span class="more">...<%= @rating_count - 5 %> more</span> 
-							<a href="/posts/<%= book.id %>" class="rounded-link small-link">See all</a>
-							
-							<% end %>
-						</li>
-					<% if @rating_total == 0 %>
-						<li><em>No ratings yet</em></li>	
-					<% else %>
-					<!-- <input type="number" value='<%= (@rating_total / @rating_count) %>' id="average_output"> -->
-						<li class="average-rating">
-							<div class="average-rating-text">Average rating:</div>
-							<!-- <output name="average_output" for="average_output" onload="average_output.value=parseFloat(average_output.value)"></output> -->
-							<p class="rating-number average-rating-number rating-<%= Integer(((@rating_total / @rating_count) * 10).floor / 10.0) %>">
-								<%= (((@rating_total / @rating_count) * 100.00).floor / 100.00) %>
-							</p>
-						</li>
+								<span class="more">...<%= @rating_count - 5 %> more</span> 
+								<a href="/posts/<%= book.id %>" class="rounded-link small-link">See all</a>
+								
+								<% end %>
+							</li>
+						<% if @rating_total == 0 %>
+							<li><em>No ratings yet</em></li>	
+						<% else %>
+						<!-- <input type="number" value='<%= (@rating_total / @rating_count) %>' id="average_output"> -->
+							<li class="average-rating">
+								<div class="average-rating-text">Average rating:</div>
+								<!-- <output name="average_output" for="average_output" onload="average_output.value=parseFloat(average_output.value)"></output> -->
+								<p class="rating-number average-rating-number rating-<%= Integer(((@rating_total / @rating_count) * 10).floor / 10.0) %>">
+									<%= (((@rating_total / @rating_count) * 100.00).floor / 100.00) %>
+								</p>
+							</li>
+						<% end %>
+
 					<% end %>
+					<li>
+						<div class="search-links book-search-links">
+							<a class="rounded-link fixed-width-link" href="https://www.amazon.com/s?k=<%= book.title %>+<%= book.author %>
+								&ref=as_li_tl?ie=UTF8&tag=bookbros03-20&camp=15121&creative=330641&linkCode=as2&creativeASIN=1405206276"
+							target="_blank">
+								<img class="icon" src="/assets/amazon_icon.png" alt=""> 
+								<span class="text-after-icon">Amazon search</span>
+							</a>
+							<a class="rounded-link fixed-width-link" href="https://books.google.ca/books?id=<%= book.book %>"
+							target="_blank">
+								<img class="icon" src="/assets/google_icon.png" alt=""> 
+								<span class="text-after-icon">Google search</span>
+							</a>
+							<a class="rounded-link fixed-width-link" href="https://www.torontopubliclibrary.ca/search.jsp?Ntt=<%= book.title %>+<%= book.author %>" target="_blank">
+								<img class="icon library" src="/assets/library_icon.svg" alt=""> 
+								<span class="text-after-icon">Library search</span>
+							</a>
+						</div>
+					</li>
 
-				<% end %>
-				<li>
-					<div class="search-links book-search-links">
-						<a class="rounded-link fixed-width-link" href="https://www.amazon.com/s?k=<%= book.title %>+<%= book.author %>
-							&ref=as_li_tl?ie=UTF8&tag=bookbros03-20&camp=15121&creative=330641&linkCode=as2&creativeASIN=1405206276"
-						target="_blank">
-							<img class="icon" src="/assets/amazon_icon.png" alt=""> 
-							<span class="text-after-icon">Amazon search</span>
-						</a>
-						<a class="rounded-link fixed-width-link" href="https://books.google.ca/books?id=<%= book.book %>"
-						target="_blank">
-							<img class="icon" src="/assets/google_icon.png" alt=""> 
-							<span class="text-after-icon">Google search</span>
-						</a>
-						<a class="rounded-link fixed-width-link" href="https://www.torontopubliclibrary.ca/search.jsp?Ntt=<%= book.title %>+<%= book.author %>" target="_blank">
-							<img class="icon library" src="/assets/library_icon.svg" alt=""> 
-							<span class="text-after-icon">Library search</span>
-						</a>
-					</div>
-				</li>
-
-				<% @rating_count = 0 %>
-				<% @rating_total = 0 %>	
-			</ul>
-		</div>
-<!-- 			<li>Dave: <span>8.5</span></li>
-			<li>Mike: <span>6</span></li>
-			<li>Andrew: <span>9</span></li>
-			<li>Paul: <span>7</span></li>
-			<li>Jeff: <span>8</span></li> -->
-		
-	</section>
-	<% if count == 0 %>
-		<% if @books.length > 1 %>
-			<div class="book-text previous-books">| Previous books |</div>
+					<% @rating_count = 0 %>
+					<% @rating_total = 0 %>	
+				</ul>
+			</div>
+	<!-- 			<li>Dave: <span>8.5</span></li>
+				<li>Mike: <span>6</span></li>
+				<li>Andrew: <span>9</span></li>
+				<li>Paul: <span>7</span></li>
+				<li>Jeff: <span>8</span></li> -->
+			
+		</section>
+		<% if count == 0 %>
+			<% if @books.length > 1 %>
+				<div class="book-text previous-books">| Previous books |</div>
+			<% end %>
 		<% end %>
 	<% end %>
 

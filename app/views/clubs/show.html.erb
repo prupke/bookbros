@@ -101,7 +101,7 @@
 
 						<% @ratings.each do |rating| %>
 
-							<% if rating.book != nil %>
+							<% if rating.book != nil and rating.rating != nil %>
 
 								<% if rating.book == book.book %>
 									<% @rating_count += 1 %>

@@ -97,18 +97,22 @@
 								
 						</p>
 
+
+
 						<% @ratings.each do |rating| %>
 
-							<% if rating.book == book.book %>
-								<% @rating_count += 1 %>
-								<% @rating_total += rating.rating %>
+							<% if rating.book != nil %>
 
-								<% if rating.name == user.user %>
-								<% @self_rating_count += 1 %>
-								<% @self_rating_total += rating.rating %>
+								<% if rating.book == book.book %>
+									<% @rating_count += 1 %>
+									<% @rating_total += rating.rating %>
+
+									<% if rating.name == user.user %>
+									<% @self_rating_count += 1 %>
+									<% @self_rating_total += rating.rating %>
+									<% end %>
 								<% end %>
 							<% end %>
-
 						<% end %>
 
 					<% end %>

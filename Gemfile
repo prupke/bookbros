@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-git_source(:github) { |repo| "https://github.com/prupke/bookbros.git" }
+git_source(:github) { |repo| "https://github.com/prupke2/bookbros.git" }
 
 ruby '2.6.3'
 

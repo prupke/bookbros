@@ -71,45 +71,40 @@
 			
 				<figcaption>
 							
-						<button type="button" class="rounded-link add-rating " id = "form-<%= book.book %>-button"
-							onclick="getForm('form-<%= book.book %>')">
-							<span>Add rating</span>
-						</button>
+					<button type="button" class="rounded-link add-rating " id = "form-<%= book.book %>-button"
+						onclick="getForm('form-<%= book.book %>')">
+						<span>Add rating</span>
+					</button>
 
-						<div class="rating-form-wrapper " id="form-<%= book.book %>">
-							<%= form_for :rating, url: ratings_path do |f| %>
-								<%= f.label :book %>
-								<%= f.hidden_field :book, :value => book.book %>	
-								<p>	
-									<%= f.label :name %>
-									<%= f.text_field :name, placeholder: "Name", autocomplete: "off", required: "true",
-									value: session['name'], maxLength: 24 %>
-								</p>
-								<p>
-									<%= f.label :rating, autocomplete: "off" %>
-								
-									
-									<input min="0" max="10" type="range" step="0.5" name="rating[rating]" id="rating_rating" 
-									required="true" oninput="output.value=parseFloat(rating_rating.value)">
-								</span>
-								</p>
-								<span class="range-output">
-									<output name="output" for = "rating_rating">?</output>
-								</span>
+					<div class="rating-form-wrapper " id="form-<%= book.book %>">
+						<%= form_for :rating, url: ratings_path do |f| %>
+							<%= f.label :book %>
+							<%= f.hidden_field :book, :value => book.book %>	
+							<p>	
+								<%= f.label :name %>
+								<%= f.text_field :name, placeholder: "Name", autocomplete: "off", required: "true",
+								value: session['name'], maxLength: 24 %>
 							</p>
-								<%= f.text_area :notes, placeholder: "Notes (optional)", autocomplete: "off", maxLength: 400 %>
 							<p>
-								<%= f.submit %>
+								<%= f.label :rating, autocomplete: "off" %>
+								<input min="0" max="10" type="range" step="0.5" name="rating[rating]" id="rating_rating" 
+								required="true" oninput="output.value=parseFloat(rating_rating.value)">
+							</span>
 							</p>
+							<span class="range-output">
+								<output name="output" for = "rating_rating">?</output>
+							</span>
+						</p>
+							<%= f.text_area :notes, placeholder: "Notes (optional)", autocomplete: "off", maxLength: 400 %>
+						<p>
+							<%= f.submit %>
+						</p>
 
-							<% end %>	
-						</div>
-
+						<% end %>	
+					</div>
 				</figcaption>
-
 			</figure>
 
-			
 			<div class="book-details-and-ratings">
 				<ul>
 					<li class='book-title-wrapper'>
@@ -122,11 +117,8 @@
 				</ul>	
 				<ul class="ratings">
 					<% if @ratings != nil %>
-
 						<% @ratings.each do |rating| %>
-						
-						
-							<% if rating.book == book.book %>
+							<% if rating.book == book.book and @rating_count != nil %>
 								<% if @rating_count < 5 %>
 									<li class="rating">
 										<p class="name opaque-background"><%= rating.name %></p>:
@@ -192,12 +184,6 @@
 					<% @rating_total = 0 %>	
 				</ul>
 			</div>
-	<!-- 			<li>Dave: <span>8.5</span></li>
-				<li>Mike: <span>6</span></li>
-				<li>Andrew: <span>9</span></li>
-				<li>Paul: <span>7</span></li>
-				<li>Jeff: <span>8</span></li> -->
-			
 		</section>
 		<% if count == 0 %>
 			<% if @books.length > 1 %>
@@ -205,6 +191,5 @@
 			<% end %>
 		<% end %>
 	<% end %>
-
 
 </main>

@@ -118,9 +118,9 @@
 					</li>
 				</ul>	
 				<ul class="ratings">
-					<% if @ratings != nil %>
+					<% if @ratings != nil and @rating_count != nil %>
 						<% @ratings.each do |rating| %>
-							<% if rating.book == book.book %>
+							<% if rating.book == book.book and rating != nil %>
 								<% if @rating_count < 5 %>
 									<li class="rating">
 										<p class="name opaque-background"><%= rating.name %></p>:

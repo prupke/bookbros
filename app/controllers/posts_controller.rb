@@ -26,11 +26,11 @@ class PostsController < ApplicationController
 			end
 		end
 		
-		default_per_page = 5
+		# default_per_page = 15
 		# total_pages = Book.page(1).total_pages
 		# session[:club] = 'default'
 
-		@books = Book.where(club: session[:club]).order('id DESC').limit(5)
+		@books = Book.where(club: session[:club]).order('id DESC').limit(25)
 
 		# @books = Book.joins("LEFT JOIN ratings r ON r.book = books.book").select('books.*, r.*').where(club: session[:club).order('id DESC').limit(5)
 

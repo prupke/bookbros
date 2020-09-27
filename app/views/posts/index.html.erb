@@ -3,16 +3,10 @@
 <main>
 	<%= p("Rating count: " + String(@rating_count)) %>%
 
-	<!-- <img id="book-header" src="/assets/books.png" alt=""> -->
-
 	<% if session['brand'] == 'Book Babes' %>
-
-	<img id="logo" src="/assets/bookbabes_logo.png" alt="Book Babes">
-
+		<img id="logo" src="/assets/bookbabes_logo.png" alt="Book Babes">
 	<% else %>
-
-	<img id="logo" src="/assets/bookbros_logo.png" alt="Book Bros">
-
+		<img id="logo" src="/assets/bookbros_logo.png" alt="Book Bros">
 	<% end %>
 
 	<div class='what-is'>

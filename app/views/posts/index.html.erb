@@ -104,7 +104,8 @@
 					<li class='book-title-wrapper'>
 						<span class="book-title"><%= book.title %></span>
 					</li>
-					<% if !book.author %>
+
+					<% if book.author != 'undefined' %>
 						<li class='book-author-wrapper'>
 							<span class="by">by</span>
 							<span class="book-author"><%= book.author %></span>

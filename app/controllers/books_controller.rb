@@ -37,6 +37,7 @@ class BooksController < ApplicationController
 
 	def show
 		@book = params[:id]
+		@book.title = @book.title.reverse
 	end
 
 	def destroy

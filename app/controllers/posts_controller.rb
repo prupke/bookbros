@@ -34,7 +34,9 @@ class PostsController < ApplicationController
 
 		# @books = Book.joins("LEFT JOIN ratings r ON r.book = books.book").select('books.*, r.*').where(club: session[:club).order('id DESC').limit(5)
 
-		print("CLUB:" + session['club'].to_s)
+		# if session['club']:
+		# 	print("CLUB:" + session['club'].to_s)
+		# end
 		@ratings = Rating.where(club: session[:club]).order('rating DESC')
 		@rating_total = 0
 		@rating_count = 0

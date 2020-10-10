@@ -18,7 +18,7 @@ class BooksController < ApplicationController
 
 	def create
 		if !session['club']
-			session['club'] = 'demo'
+			session['club'] = 10
 		end
 		@book = Book.new(book_params)
 

@@ -21,7 +21,7 @@
 	
 <% if @books.length == 0 %>
 
-	<% if session['club'] != 0 %>
+	<% if session['club'] != 10 %>
 
 	<div class="empty empty-short">
 		<div>Your club hasn't added any books yet!</div>
@@ -32,7 +32,7 @@
 
 <% end %>
 
-<% if session['club'] == 0 %>
+<% if session['club'] == 10 %>
 
 	<div class="empty">
 		<h2>Welcome to <%= session['brand'] %>!</h2>

@@ -21,8 +21,14 @@ class BooksController < ApplicationController
 			session['club'] = 'demo'
 		end
 		@book = Book.new(book_params)
+
 		session['name']	= @book.user
 		@book.club = session['club']
+		if @book.title
+			# Rails doesn't get the full title if it contains quotes, so they were replaced in application.js - this adds them back.
+			@book.title = (@book.title).gsub("~~", "'")
+			@book.title = (@book.title).gsub('::', '"')
+		end
 		@book.save
 		if @book.title
 			flash[:notice] = 'Added "' + @book.title + '" to your book list!'
@@ -32,7 +38,7 @@ class BooksController < ApplicationController
 		redirect_to posts_url(:anchor => @book[:book])
 		# @search = params[:book_search]
 		# redirect_to books_url(@search = params[:book_search])
-		# # render plain: params[:book_search].inspect
+		# render plain: params[:book_search].inspect
 	end
 
 	def show

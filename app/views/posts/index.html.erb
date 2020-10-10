@@ -1,8 +1,6 @@
 <% content_for :title, "Posts" %>
 
 <main>
-	<%= p("Rating count: " + String(@rating_count)) %>%
-
 	<% if session['brand'] == 'Book Babes' %>
 		<img id="logo" src="/assets/bookbabes_logo.png" alt="Book Babes">
 	<% else %>
@@ -106,13 +104,16 @@
 					<li class='book-title-wrapper'>
 						<span class="book-title"><%= book.title %></span>
 					</li>
-					<li class='book-author-wrapper'>
-						<span class="by">by</span>
-						<span class="book-author"><%= book.author %></span>
-					</li>
+
+					<% if book.author != 'undefined' %>
+						<li class='book-author-wrapper'>
+							<span class="by">by</span>
+							<span class="book-author"><%= book.author %></span>
+						</li>
+					<% end %>
 				</ul>	
 				<ul class="ratings">
-					<% if @ratings != nil and @rating_count != nil %>
+					<% if @ratings and @rating_count %>
 						<% @ratings.each do |rating| %>
 							<% if rating.book == book.book and rating != nil %>
 								<% if @rating_count < 5 %>

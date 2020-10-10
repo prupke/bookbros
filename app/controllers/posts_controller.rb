@@ -56,9 +56,10 @@ class PostsController < ApplicationController
 
 	def show
 		@book = Book.find_by_id(params[:id])
+		# print("book.club: " + @book.club.to_s + ", session.club: " + session[:club].to_s)
+		# print("session name: " + session['name'].to_s + ", book.user: " + @book.user.to_s)
+		# print("\n\nBOOK TITLE: " +  @book.title)
 
-		print("book.club: " + @book.club.to_s + ", session.club: " + session[:club].to_s)
-		print("session name: " + session['name'].to_s + ", book.user: " + @book.user.to_s)
 		if @book.club.to_s == session[:club].to_s
 			@rating_total = 0
 			@rating_count = 0

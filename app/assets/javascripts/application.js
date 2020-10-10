@@ -90,9 +90,13 @@ function googleBooksGetOneBook(response) {
 							+ "<span class='synopsis'>" + description + "<span>"
 						+ "</p>");
 		}
+		// Rails doesn't get the full title if it contains quotes, so this temporarily removes them
+		const unsanitized_title = item.volumeInfo.title;
+		let title = unsanitized_title.replaceAll("'", "~~");
+		title = title.replaceAll('"', '::'); 
 		document.getElementById("book_info").innerHTML +=
 			("<input type='hidden' name='book[author]' value='" + item.volumeInfo.authors + "'>"
-			+ "<input type='hidden' name='book[title]' value='" + item.volumeInfo.title + "'>");
+			+ "<input type='hidden' name='book[title]' value='" + title + "'>");
 	}
 
 // You can configure how many books to return - currently set to 5
@@ -100,14 +104,12 @@ function googleBooksApiResponse(response) {
 	for (var i = 0; i < 5; i++) {
 		var item = response.items[i];
 		var bookCoverLink = "https://books.google.com/books/content/images/frontcover/" + item.id
-		var one = escape(1);
 		var isbn = item.volumeInfo.industryIdentifiers[1].identifier
 
 		// DuckDuckGo's search doesn't seem to work as consistently as Google's unfortunately
 		// var amazonSearchLink = "https://duckduckgo.com/?q=!" + item.volumeInfo.title + "+" + item.volumeInfo.authors + "+amazon"
 		
-		var amazonSearchLink = "https://www.amazon.com/s?k=" + isbn + 
-		"&ref=as_li_tl?ie=UTF8&tag=bookbros03-20&camp=15121&creative=330641&linkCode=as2&creativeASIN=1405206276"
+		var amazonSearchLink = "https://www.amazon.com/s?k=" + isbn + "?ie=UTF8"
 
 		var googleSearchLink = "https://books.google.ca/books?id=" + item.id
 		// Check if there are values so that "Undefined" does not get put into the app

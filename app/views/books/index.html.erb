@@ -20,26 +20,14 @@
 		<% if params[:book_search] %>
 			<p class="tinted-background">
 				Showing results for '<%= @search %>'. Now select a book for your club!
-			
-<!-- 			<% if !session['name'] %>
-
-				Now select a book cover.
-				</p>
-				<input id='name-input' type="hidden" name='chosen_by' value="<%= session['name'] %>">
-
-			<% else %>
-				<p>Name:
-				<input id='name-input' type="text" name="chosen_by" form = '' required="true">
-				</p>
-				
-			<% end %> -->
 		<% end %>
 	<%= form_with model: @book, id: 'template' do |f| %>
 
 	<% end %>
 
-		<ul id="book-search-results"></ul>
-	<script src="https://www.googleapis.com/books/v1/volumes?q=<%= @search %>&callback=googleBooksApiResponse"></script>
-
+	<ul id="book-search-results"></ul>
+	<% if @search %>
+		<script src="https://www.googleapis.com/books/v1/volumes?q=<%= @search %>&callback=googleBooksApiResponse"></script>
+	<% end %>
 </main>
 

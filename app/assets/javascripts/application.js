@@ -15,18 +15,27 @@
 //= require turbolinks
 //= require_tree .
 
-window.onscroll = function() {
-	scrollFunction()
-};
-
-function scrollFunction() {
-  if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
-  	document.querySelector("#logo").classList.remove("logo-appear");
-  } else {
-  	document.querySelector("#logo").classList.add("logo-appear");
-  }
+document.onload = function() {
+	const logo = document.querySelector("#logo");
+	if (logo) {
+		logo.classList.add("logo-appear");
+	}
 }
 
+window.onscroll = function() {
+	const logo = document.querySelector("#logo");
+	if (logo) {
+		scrollFunction(logo);
+	}
+};
+
+function scrollFunction(logo) {
+  if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+  	logo.classList.remove("logo-appear");
+  } else {
+  	logo.classList.add("logo-appear");
+  }
+}
 
 // Causes the rating form to appear when the "Add rating" button is clicked (and the button to move up)
 function getForm(id) {
@@ -73,64 +82,59 @@ async function copyToClipboard() {
 
 // Returns one book - this function should only be used if you have a Book ID
 function googleBooksGetOneBook(response) {
-	for (var i = 0; i < 1; i++) {
-		var item = response.items[i];
-		var categories = item.volumeInfo.categories === undefined ? 
-			'' : "<span class='categories'>Category: " + item.volumeInfo.categories + "</span>"
-		var pages = item.volumeInfo.pageCount === undefined ? '' : "<span class='pages'>" + item.volumeInfo.pageCount + " pages</span>"
-		var published = item.volumeInfo.publishedDate === undefined ? 
-			published = '' : published = "<span class='published'>Published " + item.volumeInfo.publishedDate + "</span>"
+	const item = response.items[0];
+	const categories = item.volumeInfo.categories === undefined ? ''
+		: "<span class='categories'>Category: " + item.volumeInfo.categories + "</span>"
+	const pages = item.volumeInfo.pageCount === undefined ? '' 
+		: "<span class='pages'>" + item.volumeInfo.pageCount + " pages</span>"
+	const published = item.volumeInfo.publishedDate === undefined ? ''
+		: "<span class='published'>Published " + item.volumeInfo.publishedDate + "</span>"
+	const plural = item.volumeInfo.ratingsCount === 1 ? " vote)</em>" : " votes)</em>"
+	const rating = item.volumeInfo.averageRating === undefined ? '' 
+		: "<em>Average rating on Google Books: " + item.volumeInfo.averageRating + 
+			"/5 (" + item.volumeInfo.ratingsCount + plural
+	const description = item.volumeInfo.description === undefined ? 
+		'No synopsis is available for this book.' 
+		: item.volumeInfo.description 
+	document.getElementById("book-synopsis").innerHTML += (
+		"<p>" + 
+			categories + pages + published + rating +
+			"<span class='synopsis'>" + 
+				description + 
+			"</span>" +
+		"</p>"
+	);
+	// Temporarily replace quotes so they don't end the string prematurely
+	const unsanitized_title = item.volumeInfo.title;
+	let title = unsanitized_title.replaceAll("'", "~~");
+	title = title.replaceAll('"', '::'); 
+	document.getElementById("book_info").innerHTML +=
+		("<input type='hidden' name='book[author]' value='" + item.volumeInfo.authors + "'>"
+		+ "<input type='hidden' name='book[title]' value='" + title + "'>");
+}
 
-		var plural = item.volumeInfo.ratingsCount === 1 ? " vote)</em>" : " votes)</em>"
-		var rating = item.volumeInfo.averageRating === undefined ? '' : "<em>Average rating on Google Books: " 
-			+ item.volumeInfo.averageRating + "/5 (" + item.volumeInfo.ratingsCount + plural
-		var description = item.volumeInfo.description === undefined ? 
-			description = 'No synopsis is available for this book.' : description = item.volumeInfo.description 
-		document.getElementById("book-synopsis").innerHTML += ("<p>" + categories + pages + published + rating
-							+ "<span class='synopsis'>" + description + "<span>"
-						+ "</p>");
-		}
-		// Rails doesn't get the full title if it contains quotes, so this temporarily removes them
-		const unsanitized_title = item.volumeInfo.title;
-		let title = unsanitized_title.replaceAll("'", "~~");
-		title = title.replaceAll('"', '::'); 
-		document.getElementById("book_info").innerHTML +=
-			("<input type='hidden' name='book[author]' value='" + item.volumeInfo.authors + "'>"
-			+ "<input type='hidden' name='book[title]' value='" + title + "'>");
-	}
-
-// You can configure how many books to return - currently set to 5
+// Function that queries Google Books API - currently set to return 5 results
 function googleBooksApiResponse(response) {
-	for (var i = 0; i < 5; i++) {
-		var item = response.items[i];
-		var bookCoverLink = "https://books.google.com/books/content/images/frontcover/" + item.id
-		var isbn = item.volumeInfo.industryIdentifiers[1].identifier
-
-		// DuckDuckGo's search doesn't seem to work as consistently as Google's unfortunately
-		// var amazonSearchLink = "https://duckduckgo.com/?q=!" + item.volumeInfo.title + "+" + item.volumeInfo.authors + "+amazon"
-		
-		var amazonSearchLink = "https://www.amazon.com/s?k=" + isbn + "?ie=UTF8"
-
-		var googleSearchLink = "https://books.google.ca/books?id=" + item.id
-		// Check if there are values so that "Undefined" does not get put into the app
-		var categories = item.volumeInfo.categories === undefined ? 
+	for (let i = 0; i < 5; i++) {
+		const item = response.items[i];
+		const bookCoverLink = "https://books.google.com/books/content/images/frontcover/" + item.id
+		const isbn = item.volumeInfo.industryIdentifiers[1].identifier
+		const amazonSearchLink = "https://www.amazon.ca/s?k=" + isbn + "&i=stripbooks&ie=UTF8"
+		const googleSearchLink = "https://books.google.ca/books?id=" + item.id
+		const categories = item.volumeInfo.categories === undefined ? 
 			'' : "<span class='categories'>Category: " + item.volumeInfo.categories + "</span>"
-		var pages = item.volumeInfo.pageCount === undefined ? '' : "<span class='pages'>" + item.volumeInfo.pageCount + " pages</span>"
-		var published = item.volumeInfo.publishedDate === undefined ? 
-			published = '' : published = "<span class='published'>Published " + item.volumeInfo.publishedDate + "</span>"
-
-		var plural = item.volumeInfo.ratingsCount === 1 ? " vote)" : " votes)"
-		var rating = item.volumeInfo.averageRating === undefined ? '' : "<br><br>Average rating: " 
+			const pages = item.volumeInfo.pageCount === undefined ? '' : "<span class='pages'>" + item.volumeInfo.pageCount + " pages</span>"
+		const published = item.volumeInfo.publishedDate === undefined ? 
+			published = '' : "<span class='published'>Published " + item.volumeInfo.publishedDate + "</span>"
+		const plural = item.volumeInfo.ratingsCount === 1 ? " vote)" : " votes)"
+		const rating = item.volumeInfo.averageRating === undefined ? '' : "<br><br>Average rating: " 
 			+ item.volumeInfo.averageRating + "/5 (" + item.volumeInfo.ratingsCount + plural
+		const description = item.volumeInfo.description === undefined ? 
+			description = 'No synopsis is available for this book.' : item.volumeInfo.description 
 
-		var description = item.volumeInfo.description === undefined ? 
-			description = 'No synopsis is available for this book.' : description = item.volumeInfo.description 
-		// Associate ID: bookbros03-20
-		var template_form = document.querySelector('#template')
-		// console.log(template_form.elements)
-		var token = template_form.elements[1].value
-
-		document.getElementById("book-search-results").innerHTML += 
+		const bookSearchResults = document.getElementById("book-search-results");
+		if (bookSearchResults) { 
+			bookSearchResults.innerHTML += 
 			("<li>"
 				+ "<div class='book-title-and-author'>"
 					+ "<span class='book-title'>" + item.volumeInfo.title + "</span>"
@@ -156,7 +160,7 @@ function googleBooksApiResponse(response) {
 					+ "</figure>"
 				+ "</a>"
 			+ "</li>");
-
+		}
 	}
 	return response.items
 }

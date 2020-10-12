@@ -6,10 +6,6 @@
 	<% else %>
 		<img id="logo" class="logo-appear" src="/assets/bookbros_logo.png" alt="Book Bros">
 	<% end %>
-
-	<div class='what-is'>
-		<a href="/about">What is <%= session['brand'] %>?</a>
-	</div>
 	
 	<% if session['club'] != 10 %>
 		<% if @books.length == 0 %>
@@ -19,6 +15,9 @@
 			</div>
 		<% end %>
 	<% else %>
+		<div class='what-is'>
+			<a href="/about">What is <%= session['brand'] %>?</a>
+		</div>
 		<div class="empty">
 			<div class="button-group">
 				<%= link_to "Start a club now", clubs_path, class: "rounded-link" %>

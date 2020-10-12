@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
 	before_action :check_brand
 	before_action :check_club
+	before_action :set_session
+
+	def set_session
+		response.headers['SameSite'] = 'Lax'
+	end
 
 	def check_brand
 		if !session['brand']

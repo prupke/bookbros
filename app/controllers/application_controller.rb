@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-	before_action :check_brand
 	before_action :check_club
+	before_action :check_brand
 	before_action :set_session
 
 	def set_session

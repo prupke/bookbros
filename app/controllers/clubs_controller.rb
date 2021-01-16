@@ -4,7 +4,7 @@ class ClubsController < ApplicationController
   # GET /clubs
   # GET /clubs.json
   def index
-    if session['club'] != 10
+    if session['club'] != 10 and session['club'] != 0
       return redirect_to :action => "show", id: session['club']
     else
       return redirect_to new_club_url
@@ -34,7 +34,7 @@ class ClubsController < ApplicationController
     @books = Book.where(club: params[:id])
     @user_books = @books.distinct.select(:user)
 
-    if session['club'] != 10
+    if session['club'] != 10 and session['club'] != 0
       @password = @club.password
       @club_link = "https://www.bookbros.club?club=" + @password
     end

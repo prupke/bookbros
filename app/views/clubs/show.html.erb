@@ -3,7 +3,7 @@
 <main>
 	<div class="club-links">
 
-		<% if session['club'] != 10 %>
+		<% if session['club'] != 10 and session['club'] != 0 %>
 
 		<div>
 			<p>
@@ -17,7 +17,7 @@
 		<% end %>
 
 		<ul class="button-group">
-			<% if session['club'] != 10 %>
+			<% if session['club'] != 10 and session['club'] != 0 %>
 
 			<li>
 	    		<%= link_to 'Edit club', edit_club_path(session['club']), class: 'rounded-link small-link' %>
@@ -35,7 +35,7 @@
 
 	<% if @user_books.length == 0 %>
 
-		<% if session['club'] == 10 %>
+		<% if session['club'] == 10 and session['club'] != 0 %>
 
 		<div class="empty">
 			<div>You aren't part of a club yet.</div>
@@ -59,7 +59,7 @@
 
 	<% else %>
 		<h2>
-			<% if session['club'] == 10 %> 
+			<% if session['club'] == 10 or session['club'] == 0 %> 
 			Demo
 
 			<% else %>

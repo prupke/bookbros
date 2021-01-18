@@ -101,7 +101,7 @@
 								<% if @rating_count < 5 %>
 									<li class="rating">
 										<p class="name opaque-background"><%= rating.name %></p>:
-										<span class="rating-number rating-">
+										<span class="rating-number rating-<%= Integer(rating.rating) %>">
 											<%= rating.rating %>
 										</span>	
 										<% if rating.notes and rating.notes != '' %>

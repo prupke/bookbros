@@ -124,7 +124,7 @@
 				</p>
 
 				<% @ratings.each do |rating| %>
-					<% if user.user == rating.name %>
+					<% if user.user == rating.name and rating.rating.present? %>
 						<% @user_rating_count += 1 %>
 						<% @user_rating_total += rating.rating %>
 					<% end %>	

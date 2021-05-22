@@ -11,9 +11,7 @@
 		<%= f.hidden_field :name, value: session['name'], maxLength: 24 %>
 		<span class="range-output">
 			<output name="output" for = "rating_rating">
-				<% if rating.rating.present? %>
-					<%= @rating.rating %>
-				<% end %>%
+				<%= @rating.rating %>
 			</output>
 		</span>
 		<p>

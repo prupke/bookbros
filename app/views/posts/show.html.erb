@@ -82,7 +82,7 @@
 			
 				<li class="rating">
 					<p class="name"><%= rating.name %></p>:
-					<p class="rating-number average-rating-number rating-<% if rating.rating.present? %><%= rating.rating %><% end %>">
+					<p class="rating-number average-rating-number rating-<% if rating.rating.present? %><%= Integer(rating.rating) %><% end %>">
 						<%= rating.rating %>
 					</p>	
 					

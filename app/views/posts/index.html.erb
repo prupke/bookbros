@@ -114,7 +114,9 @@
 								<% end %>
 								
 								<% @rating_count += 1 %>
-								<% @rating_total += rating.rating %>
+								<% if rating.rating.present? %>
+									<% @rating_total += rating.rating %>
+								<% end %>
 							<% end %>							
 						<% end %>	
 							<li>

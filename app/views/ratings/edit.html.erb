@@ -11,13 +11,15 @@
 		<%= f.hidden_field :name, value: session['name'], maxLength: 24 %>
 		<span class="range-output">
 			<output name="output" for = "rating_rating">
-				<%= @rating.rating %>
+				<% if @rating.rating.present? %>
+					<%= @rating.rating %>
+				<% end %>
 			</output>
 		</span>
 		<p>
 			<%= f.label :rating %>			
 			<input min="0" max="10" type="range" step="0.5" name="rating[rating]" 
-				id="rating_rating" value="<% if rating.rating.present? %><%= @rating.rating %><% end %>"
+				id="rating_rating" value="<% if @rating.rating.present? %><%= @rating.rating %><% end %>"
 				required="true" oninput="output.value=parseFloat(rating_rating.value)">
 		</p>
 		</p>

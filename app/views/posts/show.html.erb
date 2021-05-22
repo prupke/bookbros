@@ -82,7 +82,7 @@
 			
 				<li class="rating">
 					<p class="name"><%= rating.name %></p>:
-					<p class="rating-number average-rating-number rating-<%= Integer(rating.rating) %>">
+					<p class="rating-number average-rating-number rating-<% if rating.rating.present? %><%= rating.rating %><% end %>">
 						<%= rating.rating %>
 					</p>	
 					
@@ -96,19 +96,17 @@
 					<% end %>
 				</li>
 				<li>	
-				
-
 					<% if rating.notes and rating.notes != '' %>
 						<p class="rating-notes-show">
 							<%= rating.notes %>
 						</p>	
 					<% end %>
-
 				</li>
 				
 				<% @rating_count += 1 %>
-				<% @rating_total += rating.rating %>
-					
+				<% if rating.rating.present? %>
+					<% @rating_total += rating.rating %>
+				<% end %>
 			<% end %>	
 
 			<% if @rating_total == 0 %>

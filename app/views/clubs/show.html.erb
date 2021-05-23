@@ -71,123 +71,298 @@
 		</h2>	
 	<% end %>
 
+	<div class="book-data-wrapper">
 
-		<% @user_books.each do |user| %>
+		<section class="club-stats-wrapper">
+			<% @user_books.each do |user| %>
 
-		<section class="club-stats">
-			<div class="club-stat-books">
-				<p class="big-name tinted-background"> 
-					<span class="name"><%= user.user %>'s</span> books
-				</p>
+			<section class="club-stats">
+				<div class="club-stat-books">
+					<p class="big-name tinted-background"> 
+						<span class="name"><%= user.user %>'s</span> books
+					</p>
 
-				<% @books.each do |book| %>
-					<% if user.user == book.user %>
-						<p>
-							<a class="opaque-background" href="/posts/<%= book.id %>">
-								<!-- <%= book.title %></a>  -->
-								
-								<span class='book-title-wrapper'>
-									<span class="book-title"><%= book.title %></span>
-								</span>
-								<span class='book-author-wrapper'>
-									<span class="by">by</span>
-									<span class="book-author"><%= book.author %></span>
-								</span>
-							</a>
-								
-						</p>
+					<% @books.each do |book| %>
+						<% @current_book_rating_total = 0 %>
+						<% @current_book_rating_count = 0 %>
 
-						<% @ratings.each do |rating| %>
+						<% if user.user == book.user %>
+							<p>
+								<a class="opaque-background" href="/posts/<%= book.id %>">
+									<span class='book-title-wrapper'>
+										<span class="book-title"><%= book.title %></span>
+									</span>
+									<span class='book-author-wrapper'>
+										<span class="by">by</span>
+										<span class="book-author"><%= book.author %></span>
+									</span>
+								</a>
+									
+							</p>
 
-							<% if rating.book != nil and rating.rating != nil %>
-
-								<% if rating.book == book.book %>
-									<% @rating_count += 1 %>
-									<% @rating_total += rating.rating %>
-
-									<% if rating.name == user.user %>
-									<% @self_rating_count += 1 %>
-									<% @self_rating_total += rating.rating %>
+							<% @ratings.each do |rating| %>
+								<% if rating.book != nil and rating.rating != nil %>
+									<% if rating.book == book.book %>
+										<% @rating_count += 1 %>
+										<% @rating_total += rating.rating %>
+										<% if rating.name == user.user %>
+											<% @self_rating_count += 1 %>
+											<% @self_rating_total += rating.rating %>
+										<% end %>
 									<% end %>
 								<% end %>
 							<% end %>
+							
+							<% @current_book_rating = (((@rating_total / @rating_count) * 100.00).floor / 100.00) %>
+
+							<%# Check if this book is the current highest or lowest rated %>
+							<% if @current_book_rating > @highest_book_rating %>
+								<% @highest_book_rating = @current_book_rating %>
+								<% @highest_rated_book = book.id %>
+								<% @highest_rated_book_title = book.title %>
+								<% @highest_rated_book_author = book.author %>
+								<% @highest_rated_book_user = user.user %>
+							<% end %>
+
+							<% if @current_book_rating < @lowest_book_rating %>
+								<% @lowest_book_rating = @current_book_rating %>
+								<% @lowest_rated_book = book.book %>
+								<% @lowest_rated_book_title = book.title %>
+								<% @lowest_rated_book_author = book.author %>
+								<% @lowest_rated_book_user = user.user %>
+							<% end %>
+
+						<% end %>
+					<% end %>
+
+				</div>	
+
+				<div class="club-stat-averages">
+					<p class="big-name tinted-background">
+						<span class="name"><%= user.user %>'s</span> averages
+					</p>
+
+					<% @ratings.each do |rating| %>
+						<% if user.user == rating.name and rating.rating.present? %>
+							<% @user_rating_count += 1 %>
+							<% @user_rating_total += rating.rating %>
+						<% end %>	
+					<% end %>	
+
+					<div class="average-rating">
+						<div class="average-rating-text">Ratings given:</div>
+
+						<% if @user_rating_count != 0 %>
+							<% @current_user_avg_ratings_given = (((@user_rating_total / @user_rating_count) * 100.00).floor / 100.00) %>
+
+							<%# A class is added based on the rating (0 to 10). If the rating is 10, the rating-10 class is used.
+								Otherwise, just get the first digit of the rating (rating-2, rating-6, etc.) - this helps
+								accommodate ratings with decimals.
+							%>
+							<p class="rating-number average-rating-number rating-<%
+									if @current_user_avg_ratings_given == 10 %>10
+								<% else %><%= String(@current_user_avg_ratings_given)[0] %><% end %>
+							">
+								<%= @current_user_avg_ratings_given %>
+							</p>
+
+							<%# Check if this user has the highest average ratings given (so far). If they do, 
+									update: @highest_avg_ratings_given_user and @highest_avg_ratings_given_rating  %>
+							<% if @highest_avg_ratings_given_user == nil %>
+								<% @highest_avg_ratings_given_user = user.user %>
+								<% @highest_avg_ratings_given_rating = @current_user_avg_ratings_given %>
+							<% elsif @current_user_avg_ratings_given > @highest_avg_ratings_given_rating %>
+								<% @highest_avg_ratings_given_rating = @current_user_avg_ratings_given %>
+								<% @highest_avg_ratings_given_user = user.user %>
+							<% end %>
+
+						<% else %>
+
+						<p class="rating-number average-rating-number rating-1">N/A</p>
+
+						<% end %>
+					</div>
+				
+					<div class="average-rating">
+						<div class="average-rating-text">Ratings received:</div>
+
+						<% if @rating_count != 0 %>
+							<% @current_user_avg_ratings_received = (((@rating_total / @rating_count) * 100.00).floor / 100.00) %>
+
+							<p class="rating-number average-rating-number rating-<%
+									if @current_user_avg_ratings_received == 10 %>10
+								<% else %><%= String(@current_user_avg_ratings_received)[0] %><% end %>
+							">
+								<%= (((@rating_total / @rating_count) * 100.00).floor / 100.00) %>
+							</p>
+
+							<%# Check if this user has the highest average ratings received (so far). If they do, 
+									update: @highest_avg_ratings_received_user and @highest_avg_ratings_received_rating  %>
+							<% if @highest_avg_ratings_received_user == nil %>
+								<% @highest_avg_ratings_received_user = user.user %>
+								<% @highest_avg_ratings_received_rating = @current_user_avg_ratings_given %>
+							<% elsif @current_user_avg_ratings_received > @highest_avg_ratings_received_rating %>
+								<% @highest_avg_ratings_received_rating = @current_user_avg_ratings_received %>
+								<% @highest_avg_ratings_received_user = user.user %>
+							<% end %>
+
+						<% else %>
+
+							<p class="rating-number average-rating-number rating-1">N/A</p>
+
 						<% end %>
 
-					<% end %>
-				<% end %>
+						</div>
 
-			</div>	
+					<div class="average-rating">
+						<div class="average-rating-text">Own book ratings:</div>
 
-			<div class="club-stat-averages">
-				<p class="big-name tinted-background">
-					<span class="name"><%= user.user %>'s</span> averages
-				</p>
+						<% if @self_rating_count != 0 %>
+							<% @current_user_self_rating = (((@self_rating_total / @self_rating_count) * 100.00).floor / 100.00) %>
 
-				<% @ratings.each do |rating| %>
-					<% if user.user == rating.name and rating.rating.present? %>
-						<% @user_rating_count += 1 %>
-						<% @user_rating_total += rating.rating %>
-					<% end %>	
-				<% end %>	
+							<p class="rating-number average-rating-number rating-<%
+									if @current_user_self_rating == 10 %>10
+								<% else %><%= String(@current_user_self_rating)[0] %><% end %>
+							">
+								<%= @current_user_self_rating %>
+							</p>
 
-				<div class="average-rating">
-					<div class="average-rating-text">Ratings given:</div>
+							<%# Check if this user has the highest average self ratings received (so far). If they do, 
+									update: @highest_avg_self_ratings_user and @highest_avg_self_ratings_rating  %>
+							<% if @highest_avg_self_ratings_rating == nil %>
+								<% @highest_avg_self_ratings_user = user.user %>
+								<% @highest_avg_self_ratings_rating = @current_user_self_rating %>
+							<% elsif @current_user_self_rating > @highest_avg_self_ratings_rating %>
+								<% @highest_avg_self_ratings_rating = @current_user_self_rating %>
+								<% @highest_avg_self_ratings_user = user.user %>
+							<% end %>
 
-					<% if @user_rating_count != 0 %>
-					<p class="rating-number average-rating-number rating-<%= Integer(((@user_rating_total / @user_rating_count) * 10).floor / 10.0) %>">
-						<%= (((@user_rating_total / @user_rating_count) * 100.00).floor / 100.00) %>
-					</p>
+						<% else %>
 
-					<% else %>
+							<p class="rating-number average-rating-number rating-1">N/A</p>
 
-					<p class="rating-number average-rating-number rating-1">N/A</p>
+						<% end %>
 
-					<% end %>
+					</div>
+
+					<% @rating_count = 0 %>
+					<% @rating_total = 0 %>
+					<% @user_rating_count = 0 %>
+					<% @user_rating_total = 0 %>
+					<% @self_rating_count = 0 %>
+					<% @self_rating_total = 0 %>
 				</div>
-			
-				<div class="average-rating">
-					<div class="average-rating-text">Ratings received:</div>
+			</section>
 
-					<% if @rating_count != 0 %>
-
-					<p class="rating-number average-rating-number rating-<%= Integer(((@rating_total / @rating_count) * 10).floor / 10.0) %>">
-						<%= (((@rating_total / @rating_count) * 100.00).floor / 100.00) %>
-					</p>
-
-					<% else %>
-
-					<p class="rating-number average-rating-number rating-1">N/A</p>
-
-					<% end %>
-
-				</div>
-
-				<div class="average-rating">
-					<div class="average-rating-text">Own book ratings:</div>
-
-					<% if @self_rating_count != 0 %>
-
-					<p class="rating-number average-rating-number rating-<%= Integer(((@self_rating_total / @self_rating_count) * 10).floor / 10.0) %>">
-						<%= (((@self_rating_total / @self_rating_count) * 100.00).floor / 100.00) %>
-					</p>
-
-					<% else %>
-
-					<p class="rating-number average-rating-number rating-1">N/A</p>
-
-					<% end %>
-
-				</div>
-
-				<% @rating_count = 0 %>
-				<% @rating_total = 0 %>	
-				<% @user_rating_count = 0 %>
-				<% @user_rating_total = 0 %>
-				<% @self_rating_count = 0 %>
-				<% @self_rating_total = 0 %>
-			</div>	
+			<% end %>
 		</section>
 
-		<% end %>
+			<section class="club-stats-summary">
+
+				<p class="big-name tinted-background">
+					Highest averages
+				</p>
+
+				<div class="average-rating wide-rating">
+					<div class="average-rating-text black-text">Ratings <span class="bold">given</span>:
+						<span class="name"><%= @highest_avg_ratings_given_user %></span>
+					</div>
+					<p class="rating-number average-rating-number rating-<% 
+							if @highest_avg_ratings_given_rating == 10 %>10
+						<% else %><%= String(@highest_avg_ratings_given_rating)[0] %><% end %>
+					">
+						<%= @highest_avg_ratings_given_rating %>
+					</p>
+				</div>
+
+				<div class="average-rating wide-rating">
+					<div class="average-rating-text black-text">Ratings <span class="bold">received</span>:
+						<span class="name"><%= @highest_avg_ratings_received_user %></span>
+					</div>
+					<p class="rating-number average-rating-number rating-<% 
+							if @highest_avg_ratings_received_rating == 10 %>10
+						<% else %><%= String(@highest_avg_ratings_received_rating)[0] %><% end %>
+					">
+						<%= @highest_avg_ratings_received_rating %>
+					</p>
+				</div>
+
+				<div class="average-rating wide-rating">
+					<div class="average-rating-text black-text"><span class="bold">Own book</span> ratings:
+						<span class="name"><%= @highest_avg_self_ratings_user %></span>
+					</div>
+					<p class="rating-number average-rating-number rating-<% 
+							if @highest_avg_self_ratings_rating == 10 %>10
+						<% else %><%= String(@highest_avg_self_ratings_rating)[0] %><% end %>
+					">
+						<%= @highest_avg_self_ratings_rating %>
+					</p>
+				</div>
+
+				<% if @highest_rated_book.present? %>
+					<div class="spotlight highest-rated">
+						<div class="spotlight-text">Highest rated <span class="bold">book</span>:
+								<p class="rating-number rating-<% 
+									if @highest_book_rating == 10 %>10
+								<% else %><%= String(@highest_book_rating)[0] %><% end %>
+								">
+									<%= @highest_book_rating %>
+								</p>
+							<p>
+								<a class="opaque-background" href="/posts/<%= @highest_rated_book %>">
+									<span class='book-title-wrapper'>
+										<span class="book-title"><%= @highest_rated_book_title %></span>
+									</span>
+									<span class='book-author-wrapper'>
+										<span class="by">by</span>
+										<span class="book-author"><%= @highest_rated_book_author %></span>
+									</span>
+								</a>
+							</p>
+							<div>
+								<p>
+									Selected by:
+									<span class="name">
+										<%= @highest_rated_book_user %>
+									</span>
+								</p>
+							</div>
+						</div>
+					</div>	
+				<% end %>
+				<% if @lowest_rated_book.present? && @lowest_book_rating != 999 %>
+					<div class="spotlight lowest-rated">
+						<div class="spotlight-text">Lowest rated <span class="bold">book</span>:
+								<p class="rating-number rating-<% 
+									if @lowest_book_rating == 10 %>10
+								<% else %><%= String(@lowest_book_rating)[0] %><% end %>
+								">
+									<%= @lowest_book_rating %>
+								</p>
+							<p>
+								<a class="opaque-background" href="/posts/<%= @lowest_rated_book %>">
+									<span class='book-title-wrapper'>
+										<span class="book-title"><%= @lowest_rated_book_title %></span>
+									</span>
+									<span class='book-author-wrapper'>
+										<span class="by">by</span>
+										<span class="book-author"><%= @lowest_rated_book_author %></span>
+									</span>
+								</a>
+							</p>
+							<div>
+								<p>
+									Selected by:
+									<span class="name">
+										<%= @highest_rated_book_user %>
+									</span>
+								</p>
+							</div>
+						</div>
+					</div>	
+				<% end %>
+			</section>
+
+	</div>
 	
 </main>

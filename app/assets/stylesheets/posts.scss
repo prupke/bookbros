@@ -429,6 +429,11 @@ figcaption:hover div.rating-title {
 	clear: both;
 }
 
+.wide-rating {
+	width: 600px;
+	margin: 10px auto;
+}
+
 .average-rating span:first-child {
 	font-weight: bold;
 	background: transparent;
@@ -441,6 +446,15 @@ figcaption:hover div.rating-title {
 	font-size: 1.1rem;
 	// display: inline;
 	float: left;
+}
+
+.black-text {
+	color: black;
+	font-size: 1.3rem;
+}
+
+.bold {
+	font-weight: bold;
 }
 
 .average-rating-number {
@@ -627,7 +641,6 @@ output {
 	border-radius: 25px;
 	text-align: center; 
 }
-
 
 
 // -------------------------- RANGE INPUT MIXINS --------------------------

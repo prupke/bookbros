@@ -83,6 +83,8 @@
 					</p>
 
 					<% @books.each do |book| %>
+						<% @current_book_rating_total = 0 %>
+						<% @current_book_rating_count = 0 %>
 
 						<% if user.user == book.user %>
 							<p>
@@ -99,18 +101,35 @@
 							</p>
 
 							<% @ratings.each do |rating| %>
-
 								<% if rating.book != nil and rating.rating != nil %>
 									<% if rating.book == book.book %>
 										<% @rating_count += 1 %>
 										<% @rating_total += rating.rating %>
-
 										<% if rating.name == user.user %>
-										<% @self_rating_count += 1 %>
-										<% @self_rating_total += rating.rating %>
+											<% @self_rating_count += 1 %>
+											<% @self_rating_total += rating.rating %>
 										<% end %>
 									<% end %>
 								<% end %>
+							<% end %>
+							
+							<% @current_book_rating = (((@rating_total / @rating_count) * 100.00).floor / 100.00) %>
+
+							<%# Check if this book is the current highest or lowest rated %>
+							<% if @current_book_rating > @highest_book_rating %>
+								<% @highest_book_rating = @current_book_rating %>
+								<% @highest_rated_book = book.id %>
+								<% @highest_rated_book_title = book.title %>
+								<% @highest_rated_book_author = book.author %>
+								<% @highest_rated_book_user = user.user %>
+							<% end %>
+
+							<% if @current_book_rating < @lowest_book_rating %>
+								<% @lowest_book_rating = @current_book_rating %>
+								<% @lowest_rated_book = book.book %>
+								<% @lowest_rated_book_title = book.title %>
+								<% @lowest_rated_book_author = book.author %>
+								<% @lowest_rated_book_user = user.user %>
 							<% end %>
 
 						<% end %>
@@ -241,7 +260,7 @@
 			<section class="club-stats-summary">
 
 				<p class="big-name tinted-background">
-					Highest user averages
+					Highest averages
 				</p>
 
 				<div class="average-rating wide-rating">
@@ -269,7 +288,7 @@
 				</div>
 
 				<div class="average-rating wide-rating">
-					<div class="average-rating-text black-text">Ratings of <span class="bold">own books</span>:
+					<div class="average-rating-text black-text"><span class="bold">Own book</span> ratings:
 						<span class="name"><%= @highest_avg_self_ratings_user %></span>
 					</div>
 					<p class="rating-number average-rating-number rating-<% 
@@ -280,6 +299,68 @@
 					</p>
 				</div>
 
+				<% if @highest_rated_book.present? %>
+					<div class="spotlight highest-rated">
+						<div class="spotlight-text">Highest rated <span class="bold">book</span>:
+								<p class="rating-number rating-<% 
+									if @highest_book_rating == 10 %>10
+								<% else %><%= String(@highest_book_rating)[0] %><% end %>
+								">
+									<%= @highest_book_rating %>
+								</p>
+							<p>
+								<a class="opaque-background" href="/posts/<%= @highest_rated_book %>">
+									<span class='book-title-wrapper'>
+										<span class="book-title"><%= @highest_rated_book_title %></span>
+									</span>
+									<span class='book-author-wrapper'>
+										<span class="by">by</span>
+										<span class="book-author"><%= @highest_rated_book_author %></span>
+									</span>
+								</a>
+							</p>
+							<div>
+								<p>
+									Selected by:
+									<span class="name">
+										<%= @highest_rated_book_user %>
+									</span>
+								</p>
+							</div>
+						</div>
+					</div>	
+				<% end %>
+				<% if @lowest_rated_book.present? && @lowest_book_rating != 999 %>
+					<div class="spotlight lowest-rated">
+						<div class="spotlight-text">Lowest rated <span class="bold">book</span>:
+								<p class="rating-number rating-<% 
+									if @lowest_book_rating == 10 %>10
+								<% else %><%= String(@lowest_book_rating)[0] %><% end %>
+								">
+									<%= @lowest_book_rating %>
+								</p>
+							<p>
+								<a class="opaque-background" href="/posts/<%= @lowest_rated_book %>">
+									<span class='book-title-wrapper'>
+										<span class="book-title"><%= @lowest_rated_book_title %></span>
+									</span>
+									<span class='book-author-wrapper'>
+										<span class="by">by</span>
+										<span class="book-author"><%= @lowest_rated_book_author %></span>
+									</span>
+								</a>
+							</p>
+							<div>
+								<p>
+									Selected by:
+									<span class="name">
+										<%= @highest_rated_book_user %>
+									</span>
+								</p>
+							</div>
+						</div>
+					</div>	
+				<% end %>
 			</section>
 
 	</div>

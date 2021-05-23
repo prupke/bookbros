@@ -171,7 +171,7 @@
 							<% if @highest_avg_ratings_given_user == nil %>
 								<% @highest_avg_ratings_given_user = user.user %>
 								<% @highest_avg_ratings_given_rating = @current_user_avg_ratings_given %>
-							<% elsif @current_user_avg_ratings_given > @highest_avg_ratings_given_rating %>
+							<% elsif @current_user_avg_ratings_given.present? && @current_user_avg_ratings_given > @highest_avg_ratings_given_rating %>
 								<% @highest_avg_ratings_given_rating = @current_user_avg_ratings_given %>
 								<% @highest_avg_ratings_given_user = user.user %>
 							<% end %>
@@ -201,7 +201,7 @@
 							<% if @highest_avg_ratings_received_user == nil %>
 								<% @highest_avg_ratings_received_user = user.user %>
 								<% @highest_avg_ratings_received_rating = @current_user_avg_ratings_given %>
-							<% elsif @current_user_avg_ratings_received > @highest_avg_ratings_received_rating %>
+							<% elsif @current_user_avg_ratings_received.present? && @current_user_avg_ratings_received > @highest_avg_ratings_received_rating %>
 								<% @highest_avg_ratings_received_rating = @current_user_avg_ratings_received %>
 								<% @highest_avg_ratings_received_user = user.user %>
 							<% end %>
@@ -232,7 +232,7 @@
 							<% if @highest_avg_self_ratings_rating == nil %>
 								<% @highest_avg_self_ratings_user = user.user %>
 								<% @highest_avg_self_ratings_rating = @current_user_self_rating %>
-							<% elsif @current_user_self_rating > @highest_avg_self_ratings_rating %>
+							<% elsif @current_user_self_rating.present? && @current_user_self_rating > @highest_avg_self_ratings_rating %>
 								<% @highest_avg_self_ratings_rating = @current_user_self_rating %>
 								<% @highest_avg_self_ratings_user = user.user %>
 							<% end %>

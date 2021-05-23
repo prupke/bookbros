@@ -113,8 +113,11 @@
 								<% end %>
 							<% end %>
 							
-							<% @current_book_rating = (((@rating_total / @rating_count) * 100.00).floor / 100.00) if (@rating_count.present? && @rating_count != 0) else 0 end %>
-
+							<% @current_book_rating = 0 %>
+							<% if (@rating_count.present? && @rating_count != 0) %>
+								<% @current_book_rating = (((@rating_total / @rating_count) * 100.00).floor / 100.00) %>
+							<% end %>
+							
 							<%# Check if this book is the current highest or lowest rated %>
 							<% if @current_book_rating > @highest_book_rating %>
 								<% @highest_book_rating = @current_book_rating %>

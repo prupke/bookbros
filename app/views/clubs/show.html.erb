@@ -113,7 +113,7 @@
 								<% end %>
 							<% end %>
 							
-							<% @current_book_rating = 0 %>
+							<% @current_book_rating = nil %>
 							<% if (@rating_count.present? && @rating_count != 0) %>
 								<% @current_book_rating = ((@rating_total / @rating_count) * 100.00).floor / 100.00 %>
 							<% end %>
@@ -125,7 +125,7 @@
 							<% @highest_rated_book = book.id %>
 							<% @highest_rated_book_title = book.title %>
 							<% @highest_rated_book_author = book.author %>
-							<% @highest_rated_book_user = user.user %>
+							<% @highest_rated_book_user = book.user %>
 						<% end %>
 
 						<% if @current_book_rating.present? && @current_book_rating < @lowest_book_rating %>
@@ -133,7 +133,7 @@
 							<% @lowest_rated_book = book.book %>
 							<% @lowest_rated_book_title = book.title %>
 							<% @lowest_rated_book_author = book.author %>
-							<% @lowest_rated_book_user = user.user %>
+							<% @lowest_rated_book_user = book.user %>
 						<% end %>
 
 					<% end %>

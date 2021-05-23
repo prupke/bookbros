@@ -115,27 +115,28 @@
 							
 							<% @current_book_rating = 0 %>
 							<% if (@rating_count.present? && @rating_count != 0) %>
-								<% @current_book_rating = (((@rating_total / @rating_count) * 100.00).floor / 100.00) %>
+								<% @current_book_rating = ((@rating_total / @rating_count) * 100.00).floor / 100.00 %>
 							<% end %>
-							
-							<%# Check if this book is the current highest or lowest rated %>
-							<% if @current_book_rating > @highest_book_rating %>
-								<% @highest_book_rating = @current_book_rating %>
-								<% @highest_rated_book = book.id %>
-								<% @highest_rated_book_title = book.title %>
-								<% @highest_rated_book_author = book.author %>
-								<% @highest_rated_book_user = user.user %>
-							<% end %>
-
-							<% if @current_book_rating < @lowest_book_rating %>
-								<% @lowest_book_rating = @current_book_rating %>
-								<% @lowest_rated_book = book.book %>
-								<% @lowest_rated_book_title = book.title %>
-								<% @lowest_rated_book_author = book.author %>
-								<% @lowest_rated_book_user = user.user %>
-							<% end %>
-
 						<% end %>
+
+						<%# Check if this book is the current highest or lowest rated %>
+						<% if @current_book_rating > @highest_book_rating %>
+							<% @highest_book_rating = @current_book_rating %>
+							<% @highest_rated_book = book.id %>
+							<% @highest_rated_book_title = book.title %>
+							<% @highest_rated_book_author = book.author %>
+							<% @highest_rated_book_user = user.user %>
+						<% end %>
+
+						<% if @current_book_rating < @lowest_book_rating %>
+							<% @lowest_book_rating = @current_book_rating %>
+							<% @lowest_rated_book = book.book %>
+							<% @lowest_rated_book_title = book.title %>
+							<% @lowest_rated_book_author = book.author %>
+							<% @lowest_rated_book_user = user.user %>
+						<% end %>
+
+					<% end %>
 				</div>	
 
 				<div class="club-stat-averages">

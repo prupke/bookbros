@@ -4,71 +4,59 @@
 	<div class="club-links">
 
 		<% if session['club'] != 10 and session['club'] != 0 %>
-
-		<div>
-			<p>
-				Link to your club:
-				<span class="share-link" id="share-link"><%= @club_link %></span>
-				<a onclick="copyToClipboard()" id="share-link-button" class="rounded-link small-link">Copy</a>
-			</p> 
-		</div>
+			<div>
+				<p>
+					Link to your club:
+					<span class="share-link" id="share-link"><%= @club_link %></span>
+					<a onclick="copyToClipboard()" id="share-link-button" class="rounded-link small-link">Copy</a>
+				</p> 
+			</div>
 		<% else %>
-		<div></div>
+			<div></div>
 		<% end %>
 
 		<ul class="button-group">
 			<% if session['club'] != 10 and session['club'] != 0 %>
-
-			<li>
-	    		<%= link_to 'Edit club', edit_club_path(session['club']), class: 'rounded-link small-link' %>
-			</li>
-
+				<li>
+						<%= link_to 'Edit club', edit_club_path(session['club']), class: 'rounded-link small-link' %>
+				</li>
 			<% end %>
-
 			<li>
 	   			<%= link_to 'Start a new club', new_club_path, class: 'rounded-link small-link' %>
 			</li>
-
 		</ul>
-
 	</div>
 
 	<% if @user_books.length == 0 %>
 
 		<% if session['club'] == 10 and session['club'] != 0 %>
-
-		<div class="empty">
-			<div>You aren't part of a club yet.</div>
-			<p class="small-text">Once you join a club, you will see the club members on this page.</p>
-			<div class="button-group">
-				<%= link_to "Start a club now", clubs_path, class: "rounded-link" %>
-				<%= link_to "Try a quick demo", books_path, class: "rounded-link" %>
+			<div class="empty">
+				<div>You aren't part of a club yet.</div>
+				<p class="small-text">Once you join a club, you will see the club members on this page.</p>
+				<div class="button-group">
+					<%= link_to "Start a club now", clubs_path, class: "rounded-link" %>
+					<%= link_to "Try a quick demo", books_path, class: "rounded-link" %>
+				</div>
 			</div>
-		</div>
-
 		<% else %>
-
-		<div class="empty">
-			<div>Your club hasn't added any books yet!</div>
-			<p class="small-text">As soon as users select a book for your club, their names will appear on this page.</p>
-			<p class="small-text">You will also see their book statistics here!</p>
-			<div><%= link_to "Add a book now", books_path, class: "rounded-link" %></div>
-		</div>
-
+			<div class="empty">
+				<div>Your club hasn't added any books yet!</div>
+				<p class="small-text">As soon as users select a book for your club, their names will appear on this page.</p>
+				<p class="small-text">You will also see their book statistics here!</p>
+				<div><%= link_to "Add a book now", books_path, class: "rounded-link" %></div>
+			</div>
 		<% end %>
 
 	<% else %>
+
 		<h2>
 			<% if session['club'] == 10 or session['club'] == 0 %> 
-			Demo
-
+				Demo
 			<% else %>
-
-			<%= @club.name %>
-
+				<%= @club.name %>
 			<% end %>
-			
 		</h2>	
+
 	<% end %>
 
 	<div class="book-data-wrapper">
@@ -101,7 +89,9 @@
 								<% if rating.book != nil and rating.rating != nil %>
 									<% if rating.book == book.book %>
 										<% @rating_count += 1 %>
+										<% @current_book_rating_count += 1 %>
 										<% @rating_total += rating.rating %>
+										<% @current_book_rating_total += rating.rating %>
 										<% if rating.name == user.user %>
 											<% @self_rating_count += 1 %>
 											<% @self_rating_total += rating.rating %>
@@ -111,27 +101,26 @@
 							<% end %>
 							
 							<% @current_book_rating = nil %>
-							<% if (@rating_count.present? && @rating_count != 0) %>
-								<% @current_book_rating = ((@rating_total / @rating_count) * 100.00).floor / 100.00 %>
+							<% if (@current_book_rating_count.present? && @current_book_rating_count != 0) %>
+								<% @current_book_rating = ((@current_book_rating_total / @current_book_rating_count) * 100.00).floor / 100.00 %>
 							<% end %>
 
-						<% end %>
+							<%# Check if this book is the current highest or lowest rated %>
+							<% if @current_book_rating.present? && @current_book_rating > @highest_book_rating %>
+								<% @highest_book_rating = @current_book_rating %>
+								<% @highest_rated_book = book.id %>
+								<% @highest_rated_book_title = book.title %>
+								<% @highest_rated_book_author = book.author %>
+								<% @highest_rated_book_user = user.user %>
+							<% end %>
 
-						<%# Check if this book is the current highest or lowest rated %>
-						<% if @current_book_rating.present? && @current_book_rating > @highest_book_rating %>
-							<% @highest_book_rating = @current_book_rating %>
-							<% @highest_rated_book = book.id %>
-							<% @highest_rated_book_title = book.title %>
-							<% @highest_rated_book_author = book.author %>
-							<% @highest_rated_book_user = user.user %>
-						<% end %>
-
-						<% if @current_book_rating.present? && @current_book_rating < @lowest_book_rating %>
-							<% @lowest_book_rating = @current_book_rating %>
-							<% @lowest_rated_book = book.book %>
-							<% @lowest_rated_book_title = book.title %>
-							<% @lowest_rated_book_author = book.author %>
-							<% @lowest_rated_book_user = user.user %>
+							<% if @current_book_rating.present? && @current_book_rating < @lowest_book_rating %>
+								<% @lowest_book_rating = @current_book_rating %>
+								<% @lowest_rated_book = book.book %>
+								<% @lowest_rated_book_title = book.title %>
+								<% @lowest_rated_book_author = book.author %>
+								<% @lowest_rated_book_user = user.user %>
+							<% end %>
 						<% end %>
 
 					<% end %>

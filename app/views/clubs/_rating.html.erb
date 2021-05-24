@@ -1,0 +1,10 @@
+<%# A class is added based on the rating (0 to 10). If the rating is 10, the rating-10 class is used.
+  Otherwise, just get the first digit of the rating (rating-2, rating-6, etc.) - this helps
+  accommodate ratings with decimals.
+%>
+<p class="rating-number average-rating-number rating-<%
+    if rating == 10 %>10
+  <% else %><%= String(rating)[0] %><% end %>
+">
+  <%= rating %>
+</p>

@@ -340,7 +340,17 @@
 	}
 
 	.wide-rating {
-		width: 500px;
+		width: 90vw;
+		margin: 20px 5px;
+	}
+
+	.club-stats {
+		flex-direction: column-reverse !important;
+	}
+
+	.club-stat-averages, .club-stat-books {
+		width: auto !important;
+		margin: 20px auto !important;
 	}
 
 }

@@ -78,7 +78,7 @@
 
 			<section class="club-stats">
 				<div class="club-stat-books">
-					<p class="big-name tinted-background"> 
+					<p class="big-name tinted-background user-books"> 
 						<span class="name"><%= user.user %>'s</span> books
 					</p>
 
@@ -98,8 +98,6 @@
 									</span>
 								</a>
 									
-							</p>
-
 							<% @ratings.each do |rating| %>
 								<% if rating.book != nil and rating.rating != nil %>
 									<% if rating.book == book.book %>
@@ -117,6 +115,7 @@
 							<% if (@rating_count.present? && @rating_count != 0) %>
 								<% @current_book_rating = ((@rating_total / @rating_count) * 100.00).floor / 100.00 %>
 							<% end %>
+
 						<% end %>
 
 						<%# Check if this book is the current highest or lowest rated %>
@@ -140,7 +139,7 @@
 				</div>	
 
 				<div class="club-stat-averages">
-					<p class="big-name tinted-background">
+					<p class="big-name tinted-background user-averages">
 						<span class="name"><%= user.user %>'s</span> averages
 					</p>
 

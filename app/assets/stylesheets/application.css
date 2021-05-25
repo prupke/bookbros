@@ -335,8 +335,10 @@
 		text-align: center;
 	}
 
-	.club-stat-books > p a, .club-stat-averages > div {
+	.club-stat-books > div, .club-stat-averages > div {
 		margin: 5px 5vw;
+		text-align: left;
+		float: left;
 	}
 
 	.wide-rating {
